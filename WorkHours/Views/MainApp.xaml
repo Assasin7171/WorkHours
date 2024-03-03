@@ -2,8 +2,79 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Views.MainApp">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+             x:Class="WorkHours.Views.MainApp"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             x:DataType="vm:MainPageViewModel">
+    <FlexLayout
+        Direction="Column"
+        JustifyContent="SpaceBetween"
+        Padding="5">
+        <Frame
+            x:DataType="vm:MainPageViewModel">
+            <Grid
+                ColumnDefinitions="*,*"
+                RowDefinitions="auto,*,*,*,*,*"
+                RowSpacing="10"
+                ColumnSpacing="5">
+                <!-- title -->
+                <Frame
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2">
+                    <Label
+                        Text="Work Hours"
+                        FontSize="26"
+                        HorizontalOptions="Center" />
+                </Frame>
+                <!-- first row -->
+                <Label
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Grid.Column="0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span
+                                Text="Today is " />
+                            <Span
+                                Text="{Binding CurrentTime}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <!-- second row -->
+                <Entry
+                    Placeholder="Your hours"
+                    Text="{Binding WorkTime}"
+                    x:Name="UserEntry"
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2" />
+                <!-- third row -->
+                <DatePicker
+                    Grid.Row="3"
+                    MinimumDate="{Binding MinDate}"
+                    MaximumDate="{Binding MaxDate}"
+                    Date="{Binding WorkDate}"
+                    Grid.ColumnSpan="2"
+                    x:Name="DatePicker" />
+                <!-- fourth row -->
+                <Picker
+                    Grid.Row="4"
+                    Grid.ColumnSpan="2"
+                    x:Name="LocationPicker" />
+                <Entry
+                    Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Placeholder="Additional description"
+                    Text="{Binding Description}"
+                    x:Name="DescriptionEntry" />
+            </Grid>
+        </Frame>
+        <VerticalStackLayout>
+            <Button
+                Text="Add to data base"
+                Command="{Binding AddToDataBase}"
+                x:Name="SaveButton" />
+        </VerticalStackLayout>
+
+    </FlexLayout>
 </ContentPage>

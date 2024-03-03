@@ -17,6 +17,7 @@ namespace WorkHours.DataServices
         }
 
         #region WorkSession
+
         public async Task<List<WorkSession>> GetWorkSessionsListAsync()
         {
             return await _connection.Table<WorkSession>().ToListAsync();
@@ -26,17 +27,21 @@ namespace WorkHours.DataServices
         {
             _connection.InsertAsync(workSession);
         }
+
         #endregion
 
         #region Workplace
+
         public async Task<List<Workplace>> GetWorkplacesAsync()
         {
             return await _connection.Table<Workplace>().ToListAsync();
         }
+
         public void CreateWorkplace(Workplace workplace)
         {
             _connection.InsertAsync(workplace);
         }
+
         #endregion
     }
 }

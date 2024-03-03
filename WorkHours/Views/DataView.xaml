@@ -2,8 +2,34 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
              x:Class="WorkHours.Views.DataView">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+    <ScrollView>
+        <VerticalStackLayout>
+            <!-- Nagłówki -->
+            <Frame Margin="5">
+                <Grid Padding="10" ColumnDefinitions="0.5*,0.5*,*" RowSpacing="10">
+                    <Label Grid.Column="0" Text="Working time" FontAttributes="Bold" Padding="5" />
+                    <Label Grid.Column="1" Text="Workplace" FontAttributes="Bold" Padding="5" />
+                    <Label Grid.Column="2" Text="Additional information" FontAttributes="Bold" Padding="5" />
+                </Grid>
+            </Frame>
+
+            <!-- Lista Sesji -->
+            <CollectionView Margin="5" ItemsSource="{Binding SessionsList}" x:DataType="vm:DataViewViewModel">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <Grid Padding="5" ColumnDefinitions="0.5*,0.5*,*" ColumnSpacing="10" RowSpacing="10">
+                                <Label Grid.Column="0" Text="{Binding WorkTime}" Padding="4, 5" />
+                                <Label Grid.Column="1" Text="{Binding Location}" Padding="4,5" />
+                                <Label Grid.Column="2" Text="{Binding Description}" LineBreakMode="WordWrap"
+                                       Padding="4,5" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

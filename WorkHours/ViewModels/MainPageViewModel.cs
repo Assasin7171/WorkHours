@@ -21,13 +21,16 @@ public class MainPageViewModel : ViewModelBase
         _dataBaseServiceService = dataBaseService;
 
         #region clock code
+
         var timer = new System.Timers.Timer(1000);
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
+
         #endregion
     }
 
     #region clock code
+
     private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
         UpdateActualDateTime();
@@ -35,11 +38,9 @@ public class MainPageViewModel : ViewModelBase
 
     public void UpdateActualDateTime()
     {
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss");
-        });
+        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
     }
+
     #endregion
 
     // public string UserName => _userModel.UserName;
@@ -55,9 +56,15 @@ public class MainPageViewModel : ViewModelBase
         }
     }
 
-    public DateTime MinDate { get => GetMinimalDate(); }
+    public DateTime MinDate
+    {
+        get => GetMinimalDate();
+    }
 
-    public DateTime MaxDate { get => GetMaxDate(); }
+    public DateTime MaxDate
+    {
+        get => GetMaxDate();
+    }
 
     public string? WorkTime
     {

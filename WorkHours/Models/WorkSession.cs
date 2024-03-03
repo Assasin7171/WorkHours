@@ -18,7 +18,6 @@ public class WorkSession
 
     public WorkSession()
     {
-
     }
 
     [PrimaryKey, AutoIncrement, Column("Id")]

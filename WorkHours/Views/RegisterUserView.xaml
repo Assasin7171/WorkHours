@@ -2,10 +2,10 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Views.LoginView"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             Shell.NavBarIsVisible="False"
-             x:DataType="vm:LoginUserViewModel">
+             x:Class="WorkHours.Views.RegisterUserView"
+             x:DataType="vm:RegisterUserViewModel"
+             Shell.NavBarIsVisible="False">
     <Grid
         RowDefinitions="1*,10*,1*"
         Margin="10">
@@ -35,9 +35,24 @@
             <VerticalStackLayout
                 Spacing="10">
                 <Label
-                    Text="SIGN IN"
+                    Text="SIGN UP"
                     FontSize="24"
                     FontAttributes="Bold" />
+                
+                <Frame 
+                    BorderColor="Transparent">
+                    <Grid
+                        ColumnDefinitions="25,*"
+                        ColumnSpacing="10">
+                        <Image
+                            Source="user.png"
+                            HeightRequest="25"
+                            WidthRequest="25" />
+                        <Entry
+                            Grid.Column="1"
+                            Placeholder="Name" />
+                    </Grid>
+                </Frame>
                 
                 <Frame 
                     BorderColor="Transparent">
@@ -69,26 +84,40 @@
                             Placeholder="Password" />
                     </Grid>
                 </Frame>
+                <Frame 
+                    BorderColor="Transparent">
+                    <Grid
+                        ColumnDefinitions="25,*"
+                        ColumnSpacing="10">
+                        <Image
+                            Source="password.png"
+                            HeightRequest="25"
+                            WidthRequest="25" />
+                        <Entry
+                            Grid.Column="1"
+                            Margin="0"
+                            IsPassword="True"
+                            Placeholder="Password" />
+                    </Grid>
+                </Frame>
                 <Button
-                    Text="SIGN IN"
+                    Text="SIGN UP"
                     CornerRadius="0"
                     FontAttributes="Bold"/>
-                <Label 
-                    Text="Forgot password?"
-                    HorizontalOptions="Center"/>
+                
                 <HorizontalStackLayout
                     Spacing="10"
                     HorizontalOptions="Center">
                     <Label 
-                        Text="Don't have account?"
+                        Text="Do have account?"
                         VerticalOptions="Center"/>
                     <Label 
-                        Text="SIGN UP"
+                        Text="LOGIN IN"
                         FontSize="18"
                         FontAttributes="Bold"
                         TextColor="{x:StaticResource Primary}">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding SignUpCommand}"/>
+                            <TapGestureRecognizer Command="{Binding GoToLoginViewCommand}"/>
                         </Label.GestureRecognizers>
                     </Label>
                 </HorizontalStackLayout>

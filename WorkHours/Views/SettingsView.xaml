@@ -2,8 +2,17 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Views.SettingsView">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+             x:Class="WorkHours.Views.SettingsView"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             x:DataType="vm:SettingsViewModel">
+    <VerticalStackLayout
+        Spacing="10"
+        Margin="5"
+        Padding="5">
+        <Button
+            Text="Edit locations"
+            Command="{Binding }" />
+        <Button
+            Text="User's settings" />
+    </VerticalStackLayout>
 </ContentPage>
