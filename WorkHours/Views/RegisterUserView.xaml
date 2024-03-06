@@ -50,7 +50,9 @@
                             WidthRequest="25" />
                         <Entry
                             Grid.Column="1"
-                            Placeholder="Name" />
+                            Placeholder="Name" 
+                            PlaceholderColor="{StaticResource PrimaryDarkText}"
+                            Text="{Binding Name}"/>
                     </Grid>
                 </Frame>
                 
@@ -65,7 +67,9 @@
                             WidthRequest="25" />
                         <Entry
                             Grid.Column="1"
-                            Placeholder="Email" />
+                            Placeholder="Email" 
+                            PlaceholderColor="{StaticResource PrimaryDarkText}"
+                            Text="{Binding Email}"/>
                     </Grid>
                 </Frame>
                 
@@ -81,35 +85,39 @@
                         <Entry
                             Grid.Column="1"
                             IsPassword="True"
-                            Placeholder="Password" />
+                            Placeholder="Password" 
+                            PlaceholderColor="{StaticResource PrimaryDarkText}"
+                            Text="{Binding Password}"/>
                     </Grid>
                 </Frame>
-                <Frame 
-                    BorderColor="Transparent">
-                    <Grid
-                        ColumnDefinitions="25,*"
-                        ColumnSpacing="10">
-                        <Image
-                            Source="password.png"
-                            HeightRequest="25"
-                            WidthRequest="25" />
-                        <Entry
-                            Grid.Column="1"
-                            Margin="0"
-                            IsPassword="True"
-                            Placeholder="Password" />
-                    </Grid>
-                </Frame>
+                <!-- <Frame  -->
+                <!--     BorderColor="Transparent"> -->
+                <!--     <Grid -->
+                <!--         ColumnDefinitions="25,*" -->
+                <!--         ColumnSpacing="10"> -->
+                <!--         <Image -->
+                <!--             Source="password.png" -->
+                <!--             HeightRequest="25" -->
+                <!--             WidthRequest="25" /> -->
+                <!--         <Entry -->
+                <!--             Grid.Column="1" -->
+                <!--             Margin="0" -->
+                <!--             IsPassword="True" -->
+                <!--             Placeholder="Password"  -->
+                <!--             PlaceholderColor="{StaticResource PrimaryDarkText}"/> -->
+                <!--     </Grid> -->
+                <!-- </Frame> -->
                 <Button
                     Text="SIGN UP"
                     CornerRadius="0"
-                    FontAttributes="Bold"/>
+                    FontAttributes="Bold"
+                    Command="{Binding RegisterUserCommand}"/>
                 
                 <HorizontalStackLayout
                     Spacing="10"
                     HorizontalOptions="Center">
                     <Label 
-                        Text="Do have account?"
+                        Text="Have account?"
                         VerticalOptions="Center"/>
                     <Label 
                         Text="LOGIN IN"

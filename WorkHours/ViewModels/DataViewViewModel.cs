@@ -1,19 +1,19 @@
 using System.Collections.ObjectModel;
-using WorkHours.DataServices;
 using WorkHours.Models;
+using WorkHours.Services;
 
 namespace WorkHours.ViewModels;
 
 public class DataViewViewModel : ViewModelBase
 {
-    private readonly DataBaseService _dataBaseService;
+    private readonly DBService _dbService;
     private readonly WorkSession _sessionModel;
     private readonly ObservableCollection<WorkSession> _sessionsList = new();
     private bool isActive;
 
-    public DataViewViewModel(DataBaseService dataBaseService)
+    public DataViewViewModel(DBService dbService)
     {
-        _dataBaseService = dataBaseService;
+        _dbService = dbService;
         _sessionModel = new WorkSession();
     }
 
@@ -52,7 +52,7 @@ public class DataViewViewModel : ViewModelBase
 
     private async void UpdateCollection(ObservableCollection<WorkSession> collection)
     {
-        var newItems = await _dataBaseService.GetWorkSessionsListAsync();
+        var newItems = await _dbService.GetWorkSessionsListAsync();
         collection.Clear();
         foreach (var item in newItems)
         {

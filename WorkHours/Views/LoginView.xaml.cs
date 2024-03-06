@@ -10,12 +10,13 @@ namespace WorkHours.Views;
 public partial class LoginView : ContentPage
 {
     private readonly LoginUserViewModel _loginUserViewModel;
-        
-    public LoginView()
+
+    public LoginView(LoginUserViewModel loginUserViewModel)
     {
+        _loginUserViewModel = loginUserViewModel;
         InitializeComponent();
-        
-        _loginUserViewModel = new LoginUserViewModel();
+
+
         this.BindingContext = _loginUserViewModel;
     }
 }

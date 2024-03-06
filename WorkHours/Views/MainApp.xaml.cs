@@ -11,11 +11,11 @@ public partial class MainApp : ContentPage
 {
     private readonly MainPageViewModel _mainPageViewModel;
 
-    public MainApp()
+    public MainApp(MainPageViewModel mainPageViewModel)
     {
+        _mainPageViewModel = mainPageViewModel;
         InitializeComponent();
 
         BindingContext = _mainPageViewModel;
-        // _mainPageViewModel = _mainPageViewModel;
     }
 }

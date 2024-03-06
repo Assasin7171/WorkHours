@@ -1,14 +1,14 @@
 ﻿using System.Windows.Input;
-using WorkHours.DataServices;
+using WorkHours.Services;
 using WorkHours.Views;
 
 namespace WorkHours.ViewModels
 {
     public class SettingsViewModel
     {
-        private readonly DataBaseService _database;
+        private readonly DBService _database;
 
-        public SettingsViewModel(DataBaseService database)
+        public SettingsViewModel(DBService database)
         {
             _database = database;
         }
@@ -17,7 +17,7 @@ namespace WorkHours.ViewModels
 
         private async void OpenPage()
         {
-            //await Shell.Current.GoToAsync();
+            await Shell.Current.GoToAsync("//EditLocationsPage");
         }
     }
 }

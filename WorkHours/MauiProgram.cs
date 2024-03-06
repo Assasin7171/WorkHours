@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using WorkHours.DataServices;
+using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
 
@@ -19,15 +19,22 @@ public static class MauiProgram
             });
         //database starting config
         string dbPath = Path.Combine(FileSystem.AppDataDirectory, "db.db3");
-        builder.Services.AddSingleton<DataBaseService>(new DataBaseService(dbPath));
+        builder.Services.AddSingleton<DBService>(new DBService(dbPath));
 
+        //view models
         builder.Services.AddTransient<MainPageViewModel>();
         builder.Services.AddTransient<DataViewViewModel>();
         builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<RegisterUserViewModel>();
+        builder.Services.AddTransient<LoginUserViewModel>();
 
+        //views - pages
         builder.Services.AddTransient<MainApp>();
         builder.Services.AddTransient<DataView>();
         builder.Services.AddTransient<SettingsView>();
+        builder.Services.AddTransient<RegisterUserView>();
+        builder.Services.AddTransient<LoginView>();
+        
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

@@ -1,13 +1,13 @@
 using System.Timers;
 using System.Windows.Input;
-using WorkHours.DataServices;
 using WorkHours.Models;
+using WorkHours.Services;
 
 namespace WorkHours.ViewModels;
 
 public class MainPageViewModel : ViewModelBase
 {
-    private readonly DataBaseService _dataBaseServiceService;
+    private readonly DBService _dbServiceService;
 
     private string? _description;
 
@@ -16,9 +16,9 @@ public class MainPageViewModel : ViewModelBase
     private string? _workTime;
     private string? _currentTime;
 
-    public MainPageViewModel(DataBaseService dataBaseService)
+    public MainPageViewModel(DBService dbService)
     {
-        _dataBaseServiceService = dataBaseService;
+        _dbServiceService = dbService;
 
         #region clock code
 
@@ -99,7 +99,7 @@ public class MainPageViewModel : ViewModelBase
         // Application.Current.MainPage.DisplayAlert("Hi", "click", "OK");
         if ((_workTime != null) & (_location != null))
         {
-            _dataBaseServiceService.CreateWorkSessionAsync(new WorkSession(_workTime, _location, _description));
+            _dbServiceService.CreateWorkSessionAsync(new WorkSession(_workTime, _location, _description));
 
             WorkTime = string.Empty;
             Location = string.Empty;
