@@ -5,21 +5,28 @@
              x:Class="WorkHours.Views.MainApp"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
              x:DataType="vm:MainPageViewModel">
-    <FlexLayout
-        Direction="Column"
-        JustifyContent="SpaceBetween"
-        Padding="5">
-        <Frame
-            x:DataType="vm:MainPageViewModel">
-            <Grid
-                ColumnDefinitions="*,*"
-                RowDefinitions="auto,*,*,*,*,*"
-                RowSpacing="10"
-                ColumnSpacing="5">
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="auto,*,auto">
+            <HorizontalStackLayout VerticalOptions="Center"
+                                   Spacing="5"
+                                   Grid.Column="0">
+                <Label Text="Witaj" />
+                <Label Text="{Binding User.Name}" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Column="2"
+                                   VerticalOptions="Center">
+                <Button Text="Wyloguj"
+                        Scale="0.7"/>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+    <VerticalStackLayout Padding="5"
+                         Margin="10"
+                         BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorWhite},Dark={StaticResource BackgroundColorBlack}}">
+        <Frame>
+            <VerticalStackLayout Spacing="10">
                 <!-- title -->
-                <Frame
-                    Grid.Row="0"
-                    Grid.ColumnSpan="2">
+                <Frame>
                     <Label
                         Text="Work Hours"
                         FontSize="26"
@@ -28,10 +35,7 @@
                 <!-- first row -->
                 <Label
                     HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    Grid.ColumnSpan="2"
-                    Grid.Row="1"
-                    Grid.Column="0">
+                    VerticalOptions="Center">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span
@@ -44,37 +48,26 @@
                 <!-- second row -->
                 <Entry
                     Placeholder="Your hours"
-                    Text="{Binding WorkTime}"
-                    x:Name="UserEntry"
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2" />
+                    Text="{Binding WorkTime}" />
                 <!-- third row -->
                 <DatePicker
                     Grid.Row="3"
                     MinimumDate="{Binding MinDate}"
                     MaximumDate="{Binding MaxDate}"
-                    Date="{Binding WorkDate}"
-                    Grid.ColumnSpan="2"
-                    x:Name="DatePicker" />
+                    Date="{Binding WorkDate}" />
                 <!-- fourth row -->
-                <Picker
-                    Grid.Row="4"
-                    Grid.ColumnSpan="2"
-                    x:Name="LocationPicker" />
+                <Picker ItemsSource="{Binding }" />
                 <Entry
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
                     Placeholder="Additional description"
-                    Text="{Binding Description}"
-                    x:Name="DescriptionEntry" />
-            </Grid>
+                    Text="{Binding Description}" />
+            </VerticalStackLayout>
         </Frame>
-        <VerticalStackLayout>
+        <VerticalStackLayout Margin="10, 30">
             <Button
                 Text="Add to data base"
                 Command="{Binding AddToDataBase}"
-                x:Name="SaveButton" />
+                IsEnabled="True" />
         </VerticalStackLayout>
 
-    </FlexLayout>
+    </VerticalStackLayout>
 </ContentPage>

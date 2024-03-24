@@ -2,6 +2,7 @@
 using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
+using WorkHours.Views.Pages;
 
 namespace WorkHours;
 
@@ -16,25 +17,27 @@ public static class MauiProgram
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("Poppins-Medium.ttf", "Poppins-Medium");
             });
-        //database starting config
+        //database starting config or services
         string dbPath = Path.Combine(FileSystem.AppDataDirectory, "db.db3");
         builder.Services.AddSingleton<DBService>(new DBService(dbPath));
+        builder.Services.AddSingleton<UserService>();
 
         //view models
         builder.Services.AddTransient<MainPageViewModel>();
         builder.Services.AddTransient<DataViewViewModel>();
         builder.Services.AddTransient<SettingsViewModel>();
-        builder.Services.AddTransient<RegisterUserViewModel>();
-        builder.Services.AddTransient<LoginUserViewModel>();
+        builder.Services.AddTransient<EditLocationViewModel>();
+        builder.Services.AddTransient<StartingPageViewModel>();
 
         //views - pages
         builder.Services.AddTransient<MainApp>();
         builder.Services.AddTransient<DataView>();
         builder.Services.AddTransient<SettingsView>();
-        builder.Services.AddTransient<RegisterUserView>();
-        builder.Services.AddTransient<LoginView>();
-        
+        builder.Services.AddTransient<EditLocationsPage>();
+        builder.Services.AddTransient<StartingPage>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

@@ -7,39 +7,29 @@
     xmlns:pages="clr-namespace:WorkHours.Views.Pages"
     xmlns:views="clr-namespace:WorkHours.Views"
     Shell.FlyoutBehavior="Disabled"
-    Title="WorkHours">
+    Title="WorkHours"
+    Shell.ForegroundColor="{AppThemeBinding Dark = White, Light = Black}"
+    Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"
+    TabBarBackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}">
 
     <ShellContent
-        Title="Sign In"
-        ContentTemplate="{DataTemplate views:LoginView}"
-        Route="loginView" />
-    <ShellContent
-        Title="Sign Up"
-        ContentTemplate="{DataTemplate views:RegisterUserView}"
-        Route="registerView" />
-    
-    <ShellContent
-        Title="Edit Locations"
-        ContentTemplate="{DataTemplate pages:EditLocationsPage}"
-        Route="EditLocationsPage" />
-    <ShellContent
-        Title="User settings"
-        ContentTemplate="{DataTemplate pages:UserSettingsPage}"
-        Route="UserSettingsPage" />
-    
+        Title="Welcome Page"
+        ContentTemplate="{DataTemplate views:StartingPage}"
+        Route="StartingPage" />
+
     <TabBar>
         <ShellContent
             Title="Main"
             ContentTemplate="{DataTemplate views:MainApp}"
-            Route="MainApp"/>
+            Route="MainApp" />
         <ShellContent
             Title="DataView"
             ContentTemplate="{DataTemplate views:DataView}"
-            Route="DataView"/>
+            Route="DataView" />
         <ShellContent
             Title="Settings"
             ContentTemplate="{DataTemplate views:SettingsView}"
-            Route="SettingsView"/>
+            Route="SettingsView" />
     </TabBar>
 
 </Shell>

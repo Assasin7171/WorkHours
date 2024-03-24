@@ -9,8 +9,4 @@ public class User
     public int Id { get; set; }
     [Column("Name")]
     public string Name { get; set; }
-    [Column("Password")]
-    public string Password { get; set; }
-    [Column("Email")]
-    public string Email { get; set; }
 }

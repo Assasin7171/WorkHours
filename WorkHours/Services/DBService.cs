@@ -6,9 +6,10 @@ namespace WorkHours.Services
     public class DBService
     {
         private string _dbPath;
-        private SQLiteAsyncConnection _connection;
+        public SQLiteAsyncConnection _connection;
         private bool authState = false;
         public User user;
+        public List<Workplace> ListOfWorkplaces = new List<Workplace>();
 
         public DBService(string dbPath)
         {
@@ -46,33 +47,6 @@ namespace WorkHours.Services
 
         #endregion
 
-        #region Users
-
-        public async void CreateUserAsync(User user)
-        {
-            await _connection.InsertAsync(user);
-        }
-
-        // public async Task<bool> IsAuthenticatedAsync()
-        // {
-        //     await Task.Delay(2000);
-        //     
-        // }
-
-        public async Task<List<User>?> CheckUserExistsAsync(User user)
-        {
-            var result = await _connection.Table<User>()
-                .Where(x => x.Email == user.Email && x.Password == user.Password).ToListAsync();
-
-            if (result.Count > 0)
-            {
-                this.user = result[0];
-                return result;
-            }
-
-            return null;
-        }
-
-        #endregion
+        
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Timers;
 using System.Windows.Input;
 using WorkHours.Models;
@@ -8,6 +9,7 @@ namespace WorkHours.ViewModels;
 public class MainPageViewModel : ViewModelBase
 {
     private readonly DBService _dbServiceService;
+    private readonly UserService _userService;
 
     private string? _description;
 
@@ -15,17 +17,37 @@ public class MainPageViewModel : ViewModelBase
     private DateTime _workDate = DateTime.Now;
     private string? _workTime;
     private string? _currentTime;
+    private ObservableCollection<Workplace> _workplaces;
 
-    public MainPageViewModel(DBService dbService)
+    public ObservableCollection<Workplace> Workplaces
+    {
+        get
+        {
+            if (_dbServiceService.ListOfWorkplaces.Count > 0)
+            {
+                foreach (var item in _dbServiceService.ListOfWorkplaces)
+                {
+                    _workplaces.Add(item);
+                }
+            }
+
+            return _workplaces;
+        }
+    }
+
+    public User User => _userService.User;
+
+    public MainPageViewModel(DBService dbService, UserService userService)
     {
         _dbServiceService = dbService;
+        _userService = userService;
 
         #region clock code
-
+        
         var timer = new System.Timers.Timer(1000);
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
-
+        
         #endregion
     }
 
@@ -36,14 +58,13 @@ public class MainPageViewModel : ViewModelBase
         UpdateActualDateTime();
     }
 
-    public void UpdateActualDateTime()
+    private void UpdateActualDateTime()
     {
         MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
     }
 
     #endregion
 
-    // public string UserName => _userModel.UserName;
     public string CurrentTime
     {
         get => _currentTime;
@@ -94,9 +115,6 @@ public class MainPageViewModel : ViewModelBase
 
     private void ClickAddToBase()
     {
-        // var singleSession = new WorkSession("8", "Rawka", _description);
-        // _dataService.AddItem(singleSession);
-        // Application.Current.MainPage.DisplayAlert("Hi", "click", "OK");
         if ((_workTime != null) & (_location != null))
         {
             _dbServiceService.CreateWorkSessionAsync(new WorkSession(_workTime, _location, _description));

@@ -2,10 +2,25 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Views.Pages.EditLocationsPage">
+             x:Class="WorkHours.Views.Pages.EditLocationsPage"
+             xmlns:viewModel="clr-namespace:WorkHours.ViewModels"
+             xmlns:model="clr-namespace:WorkHours.Models"
+             x:DataType="viewModel:EditLocationViewModel">
     <ContentPage.Content>
-        <VerticalStackLayout>
-            
+        <VerticalStackLayout Padding="10">
+            <Frame>
+                <VerticalStackLayout Spacing="20" Margin="10">
+                    <Label Text="Your new workplace:"/>
+                    <Entry Placeholder="Name off your new workplace" FontSize="18"
+                           Text="{Binding Workplace.Name}"/>
+                    <Button Text="Add" 
+                            WidthRequest="200"
+                            Command="{Binding AddToListCommand}"/>
+                </VerticalStackLayout>
+            </Frame>
+            <CollectionView ItemsSource="{Binding Workplaces}">
+                
+            </CollectionView>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

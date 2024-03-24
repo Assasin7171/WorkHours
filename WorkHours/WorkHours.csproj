@@ -38,10 +38,6 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <CodesignKey>Apple Development: k.bojanecki@icloud.com (NU53A92RKX)</CodesignKey>
-    </PropertyGroup>
-
     <ItemGroup>
         <!-- App Icon -->
         <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
@@ -65,15 +61,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
-        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
+        <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.7" />
+        <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.7" />
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.NET.ILLink.Tasks" Version="8.0.2" />
         <PackageReference Include="sqlite-net-pcl" Version="1.8.116"/>
         <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.8"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Views\Pages\Components\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -87,6 +80,11 @@
         <DependentUpon>UserSettingsPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Interfaces\" />
+      <Folder Include="Views\Pages\Components\" />
     </ItemGroup>
 
 </Project>

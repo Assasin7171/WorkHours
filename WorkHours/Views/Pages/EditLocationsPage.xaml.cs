@@ -1,15 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
+using WorkHours.ViewModels;
 
 namespace WorkHours.Views.Pages;
 
 public partial class EditLocationsPage : ContentPage
 {
-    public EditLocationsPage()
+    private readonly EditLocationViewModel _editLocationViewModel;
+    public EditLocationsPage(EditLocationViewModel editLocationViewModel)
     {
         InitializeComponent();
+        _editLocationViewModel = editLocationViewModel;
+        BindingContext = editLocationViewModel;
     }
 }
