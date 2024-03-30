@@ -2,9 +2,8 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Views.StartingPage"
+             x:Class="WorkHours.Views.LoginView"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             Shell.NavBarIsVisible="False"
              x:DataType="vm:StartingPageViewModel">
     <ContentPage.Content>
         <Grid
@@ -57,12 +56,12 @@
                                 Text="{Binding Name}" />
                         </Grid>
                     </Frame>
-                    
+
                     <Button
                         Text="Dalej"
                         CornerRadius="0"
                         FontAttributes="Bold"
-                        Command="{Binding CreateUserCommand}"/>
+                        Command="{Binding CreateUserCommand}" />
                 </VerticalStackLayout>
 
             </Frame>

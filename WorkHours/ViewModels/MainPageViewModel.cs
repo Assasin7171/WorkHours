@@ -3,89 +3,60 @@ using System.Timers;
 using System.Windows.Input;
 using WorkHours.Models;
 using WorkHours.Services;
+using Timer = System.Timers.Timer;
 
 namespace WorkHours.ViewModels;
 
 public class MainPageViewModel : ViewModelBase
 {
+    private readonly AuthUserService _authUserService;
     private readonly DBService _dbServiceService;
-    private readonly UserService _userService;
+    private string? _currentTime = string.Empty;
 
-    private string? _description;
+    private string? _description = string.Empty;
 
-    private string? _location;
+    private string? _location = string.Empty;
     private DateTime _workDate = DateTime.Now;
-    private string? _workTime;
-    private string? _currentTime;
-    private ObservableCollection<Workplace> _workplaces;
+    private List<Workplace> _workplaces = new();
+    private string? _workTime = string.Empty;
 
-    public ObservableCollection<Workplace> Workplaces
-    {
-        get
-        {
-            if (_dbServiceService.ListOfWorkplaces.Count > 0)
-            {
-                foreach (var item in _dbServiceService.ListOfWorkplaces)
-                {
-                    _workplaces.Add(item);
-                }
-            }
-
-            return _workplaces;
-        }
-    }
-
-    public User User => _userService.User;
-
-    public MainPageViewModel(DBService dbService, UserService userService)
+    public MainPageViewModel(DBService dbService, AuthUserService authUserService)
     {
         _dbServiceService = dbService;
-        _userService = userService;
+        _authUserService = authUserService;
 
-        #region clock code
+        GetListWorkplaces();
         
-        var timer = new System.Timers.Timer(1000);
+        var timer = new Timer(1000);
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
-        
-        #endregion
     }
 
-    #region clock code
-
-    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+    public async void GetListWorkplaces()
     {
-        UpdateActualDateTime();
+        Workplaces = await _dbServiceService.GetWorkplacesAsync();
     }
-
-    private void UpdateActualDateTime()
+    
+    public List<Workplace> Workplaces
     {
-        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
+        get => _workplaces;
+        set => SetField(ref _workplaces, value);
     }
 
-    #endregion
+    public string Name => _authUserService.Name;
 
     public string CurrentTime
     {
         get => _currentTime;
         set
         {
-            if (_currentTime != value)
-            {
-                SetField(ref _currentTime, value);
-            }
+            if (_currentTime != value) SetField(ref _currentTime, value);
         }
     }
 
-    public DateTime MinDate
-    {
-        get => GetMinimalDate();
-    }
+    public DateTime MinDate => GetMinimalDate();
 
-    public DateTime MaxDate
-    {
-        get => GetMaxDate();
-    }
+    public DateTime MaxDate => GetMaxDate();
 
     public string? WorkTime
     {
@@ -111,9 +82,16 @@ public class MainPageViewModel : ViewModelBase
         set => SetField(ref _description, value);
     }
 
-    public ICommand AddToDataBase => new Command(ClickAddToBase);
+    public ICommand LogoutCommand => new Command(Logout);
 
-    private void ClickAddToBase()
+    public ICommand AddToDataBase => new Command(AddToBase);
+
+    private void Logout()
+    {
+        _authUserService.Logout();
+    }
+
+    private void AddToBase()
     {
         if ((_workTime != null) & (_location != null))
         {
@@ -138,4 +116,18 @@ public class MainPageViewModel : ViewModelBase
 
         return maxDate;
     }
+
+    #region clock code
+
+    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+    {
+        UpdateActualDateTime();
+    }
+
+    private void UpdateActualDateTime()
+    {
+        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
+    }
+
+    #endregion
 }

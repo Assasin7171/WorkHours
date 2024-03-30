@@ -7,9 +7,13 @@ namespace WorkHours.ViewModels;
 
 public class StartingPageViewModel : ViewModelBase
 {
-    private readonly UserService _userService;
-    private bool _checkingUserInBase = false;
+    private readonly AuthUserService _authUserService;
     private string _name;
+
+    public StartingPageViewModel(AuthUserService authUserService)
+    {
+        _authUserService = authUserService;
+    }
 
     public string Name
     {
@@ -21,43 +25,32 @@ public class StartingPageViewModel : ViewModelBase
         }
     }
 
-    public StartingPageViewModel(UserService userService)
-    {
-        _userService = userService;
-    }
-
     public ICommand CreateUserCommand => new Command(CreateUser);
 
     private async void CreateUser()
     {
+        // await Shell.Current.DisplayAlert("Błąd", $"test", "OK");
         try
         {
-            if (!string.IsNullOrWhiteSpace(_name))
-            {
-                _checkingUserInBase = true;
-                var user = new User
-                {
-                    Name = _name
-                };
-                _userService.CreateUserAsync(user);
+            if (string.IsNullOrWhiteSpace(_name))
+                return;
 
-                await Shell.Current.GoToAsync("//MainApp");
-                _userService.User = user;
-                _userService.IsUserLogged = true;
-            }
-            else
-                Shell.Current.DisplayAlert("error", "test", "OK");
+            var user = new User
+            {
+                Name = _name
+            };
+
+            _authUserService.User = user;
+            _authUserService.IsUserLogged = true;
+
+            //login and redirect to main app
+            _authUserService.Login();
         }
 
         catch (Exception e)
         {
             // await Shell.Current.DisplayAlert("Błąd", $"Wystąpił błąd {e.Message}", "OK");
             Debug.WriteLine($"Wystąpił błąd {e.Message}");
-        }
-
-        finally
-        {
-            _checkingUserInBase = false;
         }
     }
 }

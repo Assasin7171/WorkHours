@@ -45,7 +45,7 @@ public class DataViewViewModel : ViewModelBase
         }
     }
 
-    public async void StartRefreshingData()
+    public void StartRefreshingData()
     {
         UpdateCollection(_sessionsList);
     }
@@ -54,9 +54,6 @@ public class DataViewViewModel : ViewModelBase
     {
         var newItems = await _dbService.GetWorkSessionsListAsync();
         collection.Clear();
-        foreach (var item in newItems)
-        {
-            collection.Add(item);
-        }
+        foreach (var item in newItems) collection.Add(item);
     }
 }

@@ -13,4 +13,10 @@ public partial class MainApp : ContentPage
 
         BindingContext = _mainPageViewModel;
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _mainPageViewModel.GetListWorkplaces();
+    }
 }

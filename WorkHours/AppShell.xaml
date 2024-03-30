@@ -4,31 +4,42 @@
     x:Class="WorkHours.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:WorkHours.Views.Pages"
     xmlns:views="clr-namespace:WorkHours.Views"
-    Shell.FlyoutBehavior="Disabled"
+    FlyoutBehavior="Disabled"
     Title="WorkHours"
     Shell.ForegroundColor="{AppThemeBinding Dark = White, Light = Black}"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"
     TabBarBackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}">
 
     <ShellContent
-        Title="Welcome Page"
-        ContentTemplate="{DataTemplate views:StartingPage}"
-        Route="StartingPage" />
+        Title="LoadingView"
+        ContentTemplate="{DataTemplate views:LoadingView}"
+        Route="LoadingView"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.FlyoutBehavior="Disabled" />
 
-    <TabBar>
+    <ShellContent
+        Title="Tworzenie nowego użytkownika"
+        ContentTemplate="{DataTemplate views:LoginView}"
+        Route="LoginView"
+        Shell.FlyoutItemIsVisible="False"
+        Shell.FlyoutBehavior="Disabled" />
+
+    <TabBar FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent
-            Title="Main"
+            Title="Głowna aplikacja"
             ContentTemplate="{DataTemplate views:MainApp}"
+            Shell.FlyoutBehavior="Flyout"
             Route="MainApp" />
         <ShellContent
-            Title="DataView"
+            Title="Dane"
             ContentTemplate="{DataTemplate views:DataView}"
+            Shell.FlyoutBehavior="Flyout"
             Route="DataView" />
         <ShellContent
-            Title="Settings"
+            Title="Ustawienia"
             ContentTemplate="{DataTemplate views:SettingsView}"
+            Shell.FlyoutBehavior="Flyout"
             Route="SettingsView" />
     </TabBar>
 

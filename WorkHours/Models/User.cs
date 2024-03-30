@@ -1,12 +1,13 @@
-using SQLite;
-
 namespace WorkHours.Models;
 
-[Table("Users")]
 public class User
 {
-    [PrimaryKey, AutoIncrement, Column("Id")]
-    public int Id { get; set; }
-    [Column("Name")]
+    public User()
+    {
+        CreatedTime = DateTime.Today;
+    }
+
     public string Name { get; set; }
+
+    public DateTime CreatedTime { get; set; }
 }

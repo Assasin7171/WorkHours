@@ -4,20 +4,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.Views.MainApp"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             xmlns:model="clr-namespace:WorkHours.Models"
              x:DataType="vm:MainPageViewModel">
     <Shell.TitleView>
         <Grid ColumnDefinitions="auto,*,auto">
             <HorizontalStackLayout VerticalOptions="Center"
+                                   HorizontalOptions="Center"
                                    Spacing="5"
                                    Grid.Column="0">
-                <Label Text="Witaj" />
-                <Label Text="{Binding User.Name}" />
+                <Label Text="Witaj"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding Name}"
+                       Padding="5,0"
+                       FontAttributes="Bold"
+                       FontSize="16">
+                    <Label.Shadow>
+                        <Shadow Brush="Red"
+                                Radius="3" />
+                    </Label.Shadow>
+                </Label>
             </HorizontalStackLayout>
-            <HorizontalStackLayout Grid.Column="2"
-                                   VerticalOptions="Center">
-                <Button Text="Wyloguj"
-                        Scale="0.7"/>
-            </HorizontalStackLayout>
+            <!-- <HorizontalStackLayout Grid.Column="2" -->
+            <!--                        VerticalOptions="Center"> -->
+            <!--     <Button Text="Wyloguj" -->
+            <!--             Scale="0.7" -->
+            <!--             Command="{Binding LogoutCommand}" /> -->
+            <!-- </HorizontalStackLayout> -->
         </Grid>
     </Shell.TitleView>
     <VerticalStackLayout Padding="5"
@@ -39,7 +52,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span
-                                Text="Today is " />
+                                Text="Dziś jest " />
                             <Span
                                 Text="{Binding CurrentTime}" />
                         </FormattedString>
@@ -47,24 +60,25 @@
                 </Label>
                 <!-- second row -->
                 <Entry
-                    Placeholder="Your hours"
+                    Placeholder="Dziś przepracowane godziny"
                     Text="{Binding WorkTime}" />
                 <!-- third row -->
                 <DatePicker
-                    Grid.Row="3"
                     MinimumDate="{Binding MinDate}"
                     MaximumDate="{Binding MaxDate}"
                     Date="{Binding WorkDate}" />
                 <!-- fourth row -->
-                <Picker ItemsSource="{Binding }" />
+                <Picker ItemsSource="{Binding Workplaces}"
+                        ItemDisplayBinding="{Binding Name}"
+                        Title="Wybierz miejsce pracy" />
                 <Entry
-                    Placeholder="Additional description"
+                    Placeholder="Dodatkowe informacje"
                     Text="{Binding Description}" />
             </VerticalStackLayout>
         </Frame>
         <VerticalStackLayout Margin="10, 30">
             <Button
-                Text="Add to data base"
+                Text="Dodaj"
                 Command="{Binding AddToDataBase}"
                 IsEnabled="True" />
         </VerticalStackLayout>

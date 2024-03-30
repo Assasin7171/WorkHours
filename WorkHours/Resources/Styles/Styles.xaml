@@ -44,6 +44,7 @@
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="MinimumHeightRequest" Value="44" />
         <Setter Property="MinimumWidthRequest" Value="44" />
+        <Setter Property="TextTransform" Value="Uppercase" />
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
@@ -59,7 +60,7 @@
                     <VisualState x:Name="PointerOver" />
                     <VisualState x:Name="Pressed">
                         <VisualState.Setters>
-                            <Setter Property="Scale" Value="1.1"/>
+                            <Setter Property="Scale" Value="1.1" />
                         </VisualState.Setters>
                     </VisualState>
                 </VisualStateGroup>
