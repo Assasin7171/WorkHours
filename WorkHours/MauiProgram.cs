@@ -20,8 +20,8 @@ public static class MauiProgram
                 fonts.AddFont("Poppins-Medium.ttf", "Poppins-Medium");
             });
         //database starting config or services
-        string dbPath = Path.Combine(FileSystem.AppDataDirectory, "db.db3");
-        builder.Services.AddSingleton<DBService>(new DBService(dbPath));
+        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "db.db3");
+        builder.Services.AddSingleton(new DBService(dbPath));
         builder.Services.AddSingleton<UserService>();
 
         //view models
@@ -36,7 +36,9 @@ public static class MauiProgram
         builder.Services.AddTransient<DataView>();
         builder.Services.AddTransient<SettingsView>();
         builder.Services.AddTransient<EditLocationsPage>();
-        builder.Services.AddTransient<StartingPage>();
+        builder.Services.AddTransient<LoginView>();
+
+        //views - components
 
 #if DEBUG
         builder.Logging.AddDebug();

@@ -4,23 +4,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.Views.Pages.EditLocationsPage"
              xmlns:viewModel="clr-namespace:WorkHours.ViewModels"
-             xmlns:model="clr-namespace:WorkHours.Models"
              x:DataType="viewModel:EditLocationViewModel">
     <ContentPage.Content>
-        <VerticalStackLayout Padding="10">
+        <VerticalStackLayout Padding="10"
+                             Spacing="10">
             <Frame>
                 <VerticalStackLayout Spacing="20" Margin="10">
-                    <Label Text="Your new workplace:"/>
-                    <Entry Placeholder="Name off your new workplace" FontSize="18"
-                           Text="{Binding Workplace.Name}"/>
-                    <Button Text="Add" 
+                    <Label Text="Nazwa twojego miejsca pracy:" />
+                    <Entry Placeholder="Nazwa" FontSize="18"
+                           Text="{Binding Name}" />
+                    <Button Text="Dodaj"
                             WidthRequest="200"
-                            Command="{Binding AddToListCommand}"/>
+                            Command="{Binding AddToListCommand}" />
                 </VerticalStackLayout>
             </Frame>
-            <CollectionView ItemsSource="{Binding Workplaces}">
-                
-            </CollectionView>
+            <ListView ItemsSource="{Binding Workplaces}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding Name}"
+                                   Margin="10,5"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

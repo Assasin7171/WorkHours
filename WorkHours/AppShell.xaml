@@ -4,30 +4,34 @@
     x:Class="WorkHours.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:WorkHours.Views.Pages"
     xmlns:views="clr-namespace:WorkHours.Views"
-    Shell.FlyoutBehavior="Disabled"
+    FlyoutBehavior="Disabled"
     Title="WorkHours"
     Shell.ForegroundColor="{AppThemeBinding Dark = White, Light = Black}"
     Shell.BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}"
     TabBarBackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}">
-
+    
     <ShellContent
-        Title="Welcome Page"
-        ContentTemplate="{DataTemplate views:StartingPage}"
-        Route="StartingPage" />
-
+        Title="LoadingView"
+        ContentTemplate="{DataTemplate views:LoadingView}"
+        Route="LoadingView" />
+    
+    <ShellContent
+        Title="LoginView"
+        ContentTemplate="{DataTemplate views:LoginView}"
+        Route="LoginView" />
+    
     <TabBar>
         <ShellContent
-            Title="Main"
+            Title="Głowna aplikacja"
             ContentTemplate="{DataTemplate views:MainApp}"
             Route="MainApp" />
         <ShellContent
-            Title="DataView"
+            Title="Dane"
             ContentTemplate="{DataTemplate views:DataView}"
             Route="DataView" />
         <ShellContent
-            Title="Settings"
+            Title="Ustawienia"
             ContentTemplate="{DataTemplate views:SettingsView}"
             Route="SettingsView" />
     </TabBar>

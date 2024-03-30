@@ -3,6 +3,7 @@ using System.Timers;
 using System.Windows.Input;
 using WorkHours.Models;
 using WorkHours.Services;
+using Timer = System.Timers.Timer;
 
 namespace WorkHours.ViewModels;
 
@@ -10,32 +11,14 @@ public class MainPageViewModel : ViewModelBase
 {
     private readonly DBService _dbServiceService;
     private readonly UserService _userService;
+    private string? _currentTime;
 
     private string? _description;
 
     private string? _location;
     private DateTime _workDate = DateTime.Now;
-    private string? _workTime;
-    private string? _currentTime;
     private ObservableCollection<Workplace> _workplaces;
-
-    public ObservableCollection<Workplace> Workplaces
-    {
-        get
-        {
-            if (_dbServiceService.ListOfWorkplaces.Count > 0)
-            {
-                foreach (var item in _dbServiceService.ListOfWorkplaces)
-                {
-                    _workplaces.Add(item);
-                }
-            }
-
-            return _workplaces;
-        }
-    }
-
-    public User User => _userService.User;
+    private string? _workTime;
 
     public MainPageViewModel(DBService dbService, UserService userService)
     {
@@ -43,49 +26,40 @@ public class MainPageViewModel : ViewModelBase
         _userService = userService;
 
         #region clock code
-        
-        var timer = new System.Timers.Timer(1000);
+
+        var timer = new Timer(1000);
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
-        
+
         #endregion
     }
 
-    #region clock code
-
-    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+    public ObservableCollection<Workplace> Workplaces
     {
-        UpdateActualDateTime();
+        get
+        {
+            if (_dbServiceService.ListOfWorkplaces.Count > 0)
+                foreach (var item in _dbServiceService.ListOfWorkplaces)
+                    _workplaces.Add(item);
+
+            return _workplaces;
+        }
     }
 
-    private void UpdateActualDateTime()
-    {
-        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
-    }
-
-    #endregion
+    public User User => _userService.User;
 
     public string CurrentTime
     {
         get => _currentTime;
         set
         {
-            if (_currentTime != value)
-            {
-                SetField(ref _currentTime, value);
-            }
+            if (_currentTime != value) SetField(ref _currentTime, value);
         }
     }
 
-    public DateTime MinDate
-    {
-        get => GetMinimalDate();
-    }
+    public DateTime MinDate => GetMinimalDate();
 
-    public DateTime MaxDate
-    {
-        get => GetMaxDate();
-    }
+    public DateTime MaxDate => GetMaxDate();
 
     public string? WorkTime
     {
@@ -111,9 +85,9 @@ public class MainPageViewModel : ViewModelBase
         set => SetField(ref _description, value);
     }
 
-    public ICommand AddToDataBase => new Command(ClickAddToBase);
+    public ICommand AddToDataBase => new Command(AddToBase);
 
-    private void ClickAddToBase()
+    private void AddToBase()
     {
         if ((_workTime != null) & (_location != null))
         {
@@ -138,4 +112,18 @@ public class MainPageViewModel : ViewModelBase
 
         return maxDate;
     }
+
+    #region clock code
+
+    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+    {
+        UpdateActualDateTime();
+    }
+
+    private void UpdateActualDateTime()
+    {
+        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
+    }
+
+    #endregion
 }

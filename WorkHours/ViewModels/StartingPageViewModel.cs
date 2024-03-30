@@ -8,8 +8,13 @@ namespace WorkHours.ViewModels;
 public class StartingPageViewModel : ViewModelBase
 {
     private readonly UserService _userService;
-    private bool _checkingUserInBase = false;
+    private bool _checkingUserInBase;
     private string _name;
+
+    public StartingPageViewModel(UserService userService)
+    {
+        _userService = userService;
+    }
 
     public string Name
     {
@@ -21,32 +26,29 @@ public class StartingPageViewModel : ViewModelBase
         }
     }
 
-    public StartingPageViewModel(UserService userService)
-    {
-        _userService = userService;
-    }
+    public ICommand CreateUserCommand => new Command(LoginOrCreateUser);
 
-    public ICommand CreateUserCommand => new Command(CreateUser);
-
-    private async void CreateUser()
+    private async void LoginOrCreateUser()
     {
+        // await Shell.Current.DisplayAlert("Błąd", $"test", "OK");
         try
         {
-            if (!string.IsNullOrWhiteSpace(_name))
+            if (string.IsNullOrWhiteSpace(_name))
+                return;
+
+            _checkingUserInBase = true;
+            var user = new User
             {
-                _checkingUserInBase = true;
-                var user = new User
-                {
-                    Name = _name
-                };
+                Name = _name,
+                IsLogged = true
+            };
+            var isUserInDb = await _userService.CheckUserExistsAsync(user);
+            if (!isUserInDb)
                 _userService.CreateUserAsync(user);
 
-                await Shell.Current.GoToAsync("//MainApp");
-                _userService.User = user;
-                _userService.IsUserLogged = true;
-            }
-            else
-                Shell.Current.DisplayAlert("error", "test", "OK");
+            _userService.User = user;
+            _userService.User.IsLogged = true;
+            if (_userService.User.IsLogged) await Shell.Current.GoToAsync("//MainApp");
         }
 
         catch (Exception e)

@@ -10,9 +10,9 @@
         Margin="5"
         Padding="5">
         <Button
-            Text="Edit locations"
+            Text="Edytuj lokalizacje"
             Command="{Binding OpenSettingsPage}" />
         <Button
-            Text="User's settings" />
+            Text="Ustawienia użytkownika" />
     </VerticalStackLayout>
 </ContentPage>

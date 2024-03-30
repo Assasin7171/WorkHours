@@ -10,13 +10,23 @@
             <HorizontalStackLayout VerticalOptions="Center"
                                    Spacing="5"
                                    Grid.Column="0">
-                <Label Text="Witaj" />
-                <Label Text="{Binding User.Name}" />
+                <Label Text="Witaj"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center" />
+                <Label Text="{Binding User.Name}"
+                       Padding="5,0"
+                       FontAttributes="Bold"
+                       FontSize="16">
+                    <Label.Shadow>
+                        <Shadow Brush="Red"
+                                Radius="3" />
+                    </Label.Shadow>
+                </Label>
             </HorizontalStackLayout>
             <HorizontalStackLayout Grid.Column="2"
                                    VerticalOptions="Center">
                 <Button Text="Wyloguj"
-                        Scale="0.7"/>
+                        Scale="0.7" />
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
@@ -39,7 +49,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <Span
-                                Text="Today is " />
+                                Text="Dziś jest " />
                             <Span
                                 Text="{Binding CurrentTime}" />
                         </FormattedString>
@@ -47,24 +57,23 @@
                 </Label>
                 <!-- second row -->
                 <Entry
-                    Placeholder="Your hours"
+                    Placeholder="Dziś przepracowane godziny"
                     Text="{Binding WorkTime}" />
                 <!-- third row -->
                 <DatePicker
-                    Grid.Row="3"
                     MinimumDate="{Binding MinDate}"
                     MaximumDate="{Binding MaxDate}"
                     Date="{Binding WorkDate}" />
                 <!-- fourth row -->
                 <Picker ItemsSource="{Binding }" />
                 <Entry
-                    Placeholder="Additional description"
+                    Placeholder="Dodatkowe informacje"
                     Text="{Binding Description}" />
             </VerticalStackLayout>
         </Frame>
         <VerticalStackLayout Margin="10, 30">
             <Button
-                Text="Add to data base"
+                Text="Dodaj"
                 Command="{Binding AddToDataBase}"
                 IsEnabled="True" />
         </VerticalStackLayout>
