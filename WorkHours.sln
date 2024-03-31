@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkHours", "WorkHours\WorkHours.csproj", "{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDBD2B9-61C1-4339-A984-1F8E77C73B97}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
