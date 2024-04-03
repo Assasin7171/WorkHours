@@ -17,13 +17,13 @@ public partial class MainPageViewModel : ObservableObject
 {
     private readonly AuthUserService _authUserService;
     private readonly DBService _dbServiceService;
-    
+
     [ObservableProperty]
     private string _currentTime = string.Empty;
     [ObservableProperty]
     private string _description = string.Empty;
     [ObservableProperty]
-    private string _location = string.Empty;
+    private Workplace _location;
     [ObservableProperty]
     private DateTime _workDate = DateTime.Now;
     [ObservableProperty]
@@ -37,7 +37,7 @@ public partial class MainPageViewModel : ObservableObject
         _authUserService = authUserService;
 
         GetListWorkplaces();
-        
+
         var timer = new Timer(1000);
         timer.Elapsed += Timer_Elapsed;
         timer.Start();
@@ -59,10 +59,10 @@ public partial class MainPageViewModel : ObservableObject
     {
         if ((WorkTime != null) & (Location != null))
         {
-            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime, Location, Description));
+            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime, Location.Name, Description));
 
             WorkTime = string.Empty;
-            Location = string.Empty;
+            Location = null;
             Description = null;
         }
     }
@@ -94,6 +94,6 @@ public partial class MainPageViewModel : ObservableObject
     }
 
     #endregion
-    
-    
+
+
 }
