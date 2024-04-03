@@ -1,4 +1,6 @@
-﻿namespace WorkHours;
+﻿using Microsoft.Maui.Controls;
+
+namespace WorkHours;
 
 public partial class App : Application
 {

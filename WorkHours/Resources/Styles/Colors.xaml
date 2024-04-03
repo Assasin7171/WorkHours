@@ -8,8 +8,8 @@
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
     <!-- White mode -->
-    <Color x:Key="BackgroundColorWhite">#FFF</Color>
-    <Color x:Key="TextColorWhite">#333333</Color>
+    <Color x:Key="BackgroundColorWhite">#ececec</Color>
+    <Color x:Key="TextColorWhite">#000</Color>
     <Color x:Key="AccentColorWhite">#4caf50</Color>
     
     <!-- Black Mode -->

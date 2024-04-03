@@ -1,6 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Timers;
 using System.Windows.Input;
+using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Controls;
 using WorkHours.Models;
 using WorkHours.Services;
 using Timer = System.Timers.Timer;
@@ -70,7 +74,7 @@ public class MainPageViewModel : ViewModelBase
         set => SetField(ref _workDate, value);
     }
 
-    public string? Location
+    public string Location
     {
         get => _location;
         set => SetField(ref _location, value);
@@ -84,7 +88,14 @@ public class MainPageViewModel : ViewModelBase
 
     public ICommand LogoutCommand => new Command(Logout);
 
-    public ICommand AddToDataBase => new Command(AddToBase);
+    public ICommand AddToDataBaseCommand => new Command(AddToBase);
+
+    public ICommand SelectLocationFromPickerCommand => new Command(SelectLocation);
+
+    private void SelectLocation(object? sender)
+    {
+        throw new NotImplementedException();
+    }
 
     private void Logout()
     {

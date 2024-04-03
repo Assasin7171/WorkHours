@@ -1,3 +1,5 @@
+using System;
+
 namespace WorkHours.Models;
 
 public class User

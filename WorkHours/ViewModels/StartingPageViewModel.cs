@@ -1,5 +1,7 @@
+using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using Microsoft.Maui.Controls;
 using WorkHours.Models;
 using WorkHours.Services;
 
@@ -21,7 +23,10 @@ public class StartingPageViewModel : ViewModelBase
         set
         {
             if (_name != value)
+            {
                 SetField(ref _name, value);
+                _authUserService.Name = _name;
+            }
         }
     }
 

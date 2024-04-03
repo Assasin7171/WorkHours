@@ -1,4 +1,7 @@
-﻿using SQLite;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using SQLite;
 using WorkHours.Models;
 
 namespace WorkHours.Services;
@@ -38,5 +41,12 @@ public class DBService
     public void CreateWorkplace(Workplace workplace)
     {
         _connection.InsertAsync(workplace);
+    }
+
+    public async void DeleteWorkplace(string name)
+    {
+        var workplaces = await GetWorkplacesAsync();
+        var workplaceToRemove = (workplaces.FirstOrDefault(x => x.Name == name)).Id;
+        await _connection.DeleteAsync<Workplace>(workplaceToRemove);
     }
 }

@@ -5,7 +5,9 @@
              x:Class="WorkHours.Views.Pages.EditLocationsPage"
              xmlns:model="clr-namespace:WorkHours.Models"
              xmlns:viewModel="clr-namespace:WorkHours.ViewModels"
-             x:DataType="viewModel:EditLocationViewModel">
+             x:DataType="viewModel:EditLocationViewModel"
+             BackgroundColor="#ececec"
+             x:Name="MyPage">
     <ContentPage.Content>
         <VerticalStackLayout Padding="10"
                              Spacing="10">
@@ -19,21 +21,38 @@
                             Command="{Binding AddToListCommand}" />
                 </VerticalStackLayout>
             </Frame>
-            <CollectionView ItemsSource="{Binding Workplaces}">
+            <CollectionView ItemsSource="{Binding Workplaces}"
+                            SelectionMode="None"
+                            x:Name="MyCollectionView">
+                <CollectionView.EmptyView>
+                    <Label Text="Brak danych do wyświetlenia."
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                </CollectionView.EmptyView>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:Workplace">
-                        <Grid Margin="5"
-                              ColumnDefinitions="*,auto,auto,*">
-                            <Label Text="{Binding Name}"
-                                   Margin="5"
-                                   Grid.Column="1"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-                            <CheckBox
-                                VerticalOptions="Center"
-                                Grid.Column="2"
-                                HorizontalOptions="Center"/>
-                        </Grid>
+                    <DataTemplate>
+                        <Frame Padding="5">
+                            <Grid ColumnDefinitions="*,auto">
+                                <Label Text="{Binding Name}"
+                                       Margin="5"
+                                       VerticalOptions="Center" />
+                                <Button BackgroundColor="#fff"
+                                        BorderWidth="2"
+                                        BorderColor="#f44336"
+                                        CornerRadius="10"
+                                        Padding="5"
+                                        FontAttributes="None"
+                                        FontFamily="fa-solid"
+                                        Text="{x:Static model:Icons.x}"
+                                        TextColor="#000"
+                                        Command="{Binding DataContext.DeleteFromListCommand, Source={x:Reference MyPage}}"
+                                        Grid.Column="1" />
+                            </Grid>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

@@ -5,7 +5,8 @@
              x:Class="WorkHours.Views.MainApp"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
              xmlns:model="clr-namespace:WorkHours.Models"
-             x:DataType="vm:MainPageViewModel">
+             x:DataType="vm:MainPageViewModel"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorWhite},Dark={StaticResource BackgroundColorBlack}}">
     <Shell.TitleView>
         <Grid ColumnDefinitions="auto,*,auto">
             <HorizontalStackLayout VerticalOptions="Center"
@@ -35,7 +36,7 @@
     </Shell.TitleView>
     <VerticalStackLayout Padding="5"
                          Margin="10"
-                         BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorWhite},Dark={StaticResource BackgroundColorBlack}}">
+                         VerticalOptions="Start">
         <Frame>
             <VerticalStackLayout Spacing="10">
                 <!-- title -->
@@ -68,7 +69,9 @@
                     MaximumDate="{Binding MaxDate}"
                     Date="{Binding WorkDate}" />
                 <!-- fourth row -->
+                <!-- SelectedIndexChanged="{Binding SelectLocationFromPickerCommand}" -->
                 <Picker ItemsSource="{Binding Workplaces}"
+                        SelectedItem="{Binding Location}"
                         ItemDisplayBinding="{Binding Name}"
                         Title="Wybierz miejsce pracy" />
                 <Entry
@@ -77,10 +80,9 @@
             </VerticalStackLayout>
         </Frame>
         <VerticalStackLayout Margin="10, 30">
-            <Button
-                Text="Dodaj"
-                Command="{Binding AddToDataBase}"
-                IsEnabled="True" />
+            <Button Text="Dodaj"
+                    Command="{Binding AddToDataBaseCommand}"
+                    IsEnabled="True" />
         </VerticalStackLayout>
 
     </VerticalStackLayout>

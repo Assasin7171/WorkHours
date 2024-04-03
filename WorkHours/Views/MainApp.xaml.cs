@@ -1,3 +1,4 @@
+using Microsoft.Maui.Controls;
 using WorkHours.ViewModels;
 
 namespace WorkHours.Views;
@@ -19,4 +20,9 @@ public partial class MainApp : ContentPage
         base.OnAppearing();
         _mainPageViewModel.GetListWorkplaces();
     }
+
+    // private void Picker_OnSelectedIndexChanged(object? sender, EventArgs e)
+    // {
+    //     var selectedItem = ((Picker)sender).SelectedItem;
+    // }
 }

@@ -1,4 +1,5 @@
-﻿using WorkHours.Views.Pages;
+﻿using Microsoft.Maui.Controls;
+using WorkHours.Views.Pages;
 
 namespace WorkHours;
 

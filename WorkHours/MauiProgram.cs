@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
@@ -13,11 +14,15 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("Poppins-Medium.ttf", "Poppins-Medium");
+                fonts.AddFont("fa-regular.ttf", "fa-regular");
+                fonts.AddFont("fa-solid.ttf", "fa-solid");
+                fonts.AddFont("fa-v4compatibility.ttf", "fa-v4compatibility");
             });
         //database starting config or services
         var dbPath = Path.Combine(FileSystem.AppDataDirectory, "db.db3");
