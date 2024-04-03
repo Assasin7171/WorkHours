@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
@@ -43,10 +44,13 @@ public class DBService
         _connection.InsertAsync(workplace);
     }
 
-    public async void DeleteWorkplace(string name)
+    public async Task<bool> DeleteWorkplace(Workplace x, ObservableCollection<Workplace> workplaces)
     {
-        var workplaces = await GetWorkplacesAsync();
-        var workplaceToRemove = (workplaces.FirstOrDefault(x => x.Name == name)).Id;
-        await _connection.DeleteAsync<Workplace>(workplaceToRemove);
+        await _connection.DeleteAsync<Workplace>(x.Id);
+
+        if (workplaces.Remove(x))
+            return true;
+
+        return false;
     }
 }

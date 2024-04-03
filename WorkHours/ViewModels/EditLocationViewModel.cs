@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WorkHours.Models;
@@ -10,9 +11,11 @@ public partial class EditLocationViewModel : ObservableObject
 {
     private readonly DBService _dbService;
 
-    [ObservableProperty] private string _name = string.Empty;
+    [ObservableProperty]
+    private string _name = string.Empty;
 
-    [ObservableProperty] private ObservableCollection<Workplace> _workplaces = new();
+    [ObservableProperty]
+    private ObservableCollection<Workplace> _workplaces = new();
 
     public EditLocationViewModel(DBService dbService)
     {
@@ -51,8 +54,13 @@ public partial class EditLocationViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void DeleteFromList()
+    private async Task DeleteFromListAsync(Workplace x)
     {
-        Shell.Current.DisplayAlert("test", "Test", "OK");
+        bool isDeleted = await _dbService.DeleteWorkplace(x, Workplaces);
+
+        if (isDeleted)
+        {
+            Debug.WriteLine("Usunięte poprawnie");
+        }
     }
 }

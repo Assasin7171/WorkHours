@@ -22,8 +22,7 @@
                 </VerticalStackLayout>
             </Frame>
             <CollectionView ItemsSource="{Binding Workplaces}"
-                            SelectionMode="None"
-                            x:Name="MyCollectionView">
+                            SelectionMode="None">
                 <CollectionView.EmptyView>
                     <Label Text="Brak danych do wyświetlenia."
                            VerticalOptions="Center"
@@ -49,7 +48,8 @@
                                         FontFamily="fa-solid"
                                         Text="{x:Static model:Icons.x}"
                                         TextColor="#000"
-                                        Command="{Binding DataContext.DeleteFromListCommand, Source={x:Reference MyPage}}"
+                                        Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewModel:EditLocationViewModel}}, Path=DeleteFromListCommand}"
+                                        CommandParameter="{Binding .}"
                                         Grid.Column="1" />
                             </Grid>
                         </Frame>
