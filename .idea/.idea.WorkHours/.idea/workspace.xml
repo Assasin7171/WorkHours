@@ -15,36 +15,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fa0f070-0f65-4028-8001-4e88ebbc9d43" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WorkHours/Models/Icons.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Fonts/fa-regular-400.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Fonts/fa-solid-900.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Fonts/fa-v4compatibility.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/AppShell.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/AppShell.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Platforms/Android/MainActivity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Platforms/Android/MainActivity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Platforms/Android/MainApplication.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Platforms/Android/MainApplication.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Resources/Styles/Colors.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Resources/Styles/Colors.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Services/AuthUserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/AuthUserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Services/DBService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/DBService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/EditLocationViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/EditLocationViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/StartingPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/StartingPageViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/ViewModelBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/ViewModelBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/LoadingView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/LoadingView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/LoginView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/LoginView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/Pages/EditLocationsPage.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/Pages/EditLocationsPage.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/Pages/EditLocationsPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/Pages/EditLocationsPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/Pages/UserSettingsPage.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/Pages/UserSettingsPage.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +66,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e07861194222f4365d2cdb635bc978f2d1ae087c5564f3f3913fc3e9af05479/View.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f212d83ed0494f92525874ac9e33378ff10b276a8f56731665d6df2fe1c1377/TapGestureRecognizer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f83720d513c47b17e8acdcf59a35ef33a0c2e6a7fae5be4a92dfba6f4a65d0/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/bojanecki/Projects/C#/MAUI/WorkHours/WorkHours/MauiProgram.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/AppDelegate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -225,7 +199,9 @@
       <workItem from="1712043559676" duration="11243000" />
       <workItem from="1712075661034" duration="8939000" />
       <workItem from="1712087289517" duration="1819000" />
-      <workItem from="1712127923616" duration="1793000" />
+      <workItem from="1712127923616" duration="1866000" />
+      <workItem from="1712137513280" duration="309000" />
+      <workItem from="1712138659392" duration="1432000" />
     </task>
     <task id="LOCAL-00001" summary="Added login view and register view.">
       <option name="closed" value="true" />
@@ -291,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711896482757</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=".">
+      <option name="closed" value="true" />
+      <created>1712129766770</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712129766770</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +322,7 @@
     <MESSAGE value="Added logic for Login and Register views." />
     <MESSAGE value="Global changes in app.&#10;-new login/register system" />
     <MESSAGE value="New functions&#10;-adding work session to database&#10;-new views : settings view, loading view, edit location view." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
@@ -346,29 +331,16 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs</url>
-          <line>95</line>
-          <properties documentPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" initialLine="91" containingFunctionPresentation="Method 'SelectLocation'">
+          <line>60</line>
+          <properties documentPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" initialLine="58" containingFunctionPresentation="Method 'AddToDataBase'">
             <startOffsets>
-              <option value="2393" />
+              <option value="1705" />
             </startOffsets>
             <endOffsets>
-              <option value="2394" />
+              <option value="1749" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs</url>
-          <line>108</line>
-          <properties documentPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" initialLine="104" containingFunctionPresentation="Method 'AddToBase'">
-            <startOffsets>
-              <option value="2633" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2727" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
