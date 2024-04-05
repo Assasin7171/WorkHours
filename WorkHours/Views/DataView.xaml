@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             xmlns:microCharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
-             x:Class="WorkHours.Views.DataView"
-             x:DataType="vm:DataViewViewModel"
-             BackgroundColor="#ececec">
-    <StackLayout Orientation="Horizontal">
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:WorkHours.ViewModels"
+    xmlns:charts="clr-namespace:DevExpress.Maui.Charts;assembly=DevExpress.Maui.Charts"
+    x:Class="WorkHours.Views.DataView"
+    x:DataType="vm:DataViewViewModel"
+    BackgroundColor="#ececec">
+    <StackLayout
+        Orientation="Horizontal">
         <!-- ~1~ Nagłówki @1@ -->
         <!-- <Frame Margin="5"> -->
         <!--     <Grid ColumnDefinitions="0.5*,0.5*,*" RowSpacing="5"> -->
@@ -52,7 +54,6 @@
         <!--     </CollectionView.ItemTemplate> -->
         <!-- </CollectionView> -->
 
-
         <!-- <RefreshView Command="{Binding RefreshViewCommand}" -->
         <!--              IsRefreshing="{Binding IsRefreshing}"> -->
         <!--     <ScrollView> -->
@@ -93,6 +94,24 @@
         <!--         </VerticalStackLayout> -->
         <!--     </ScrollView> -->
         <!-- </RefreshView> -->
-        <microCharts:ChartView Chart="{Binding Entries}"/>
+        <charts:PieChartView>
+            <charts:PieChartView.Series>
+                <charts:DonutSeries>
+                    <charts:DonutSeries.Data>
+                        <charts:PieSeriesDataAdapter
+                            DataSource="{Binding ChartsData}"
+                            LabelDataMember="WorkHours"
+                            ValueDataMember="Value" />
+                    </charts:DonutSeries.Data>
+
+                </charts:DonutSeries>
+            </charts:PieChartView.Series>
+            <charts:PieChartView.Legend>
+                <charts:Legend
+                    Orientation="TopToBottom"
+                    HorizontalPosition="Center"
+                    VerticalPosition="Center" />
+            </charts:PieChartView.Legend>
+        </charts:PieChartView>
     </StackLayout>
 </ContentPage>

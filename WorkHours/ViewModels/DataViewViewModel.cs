@@ -1,8 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microcharts;
-using SkiaSharp;
 using WorkHours.Models;
 using WorkHours.Services;
 
@@ -16,37 +14,8 @@ public partial class DataViewViewModel : ObservableObject
     [ObservableProperty] private bool _isRefreshing;
     [ObservableProperty] private ObservableCollection<WorkSession> _sessionsList = [];
     [ObservableProperty] private Tuple<int, int> _workingDaysInMonth;
+    [ObservableProperty] private List<ChartsData> _chartsData = new List<ChartsData>();
 
-    [ObservableProperty]
-    private ChartEntry[] _entries =
-    [
-        new ChartEntry(212)
-        {
-            Label = "UWP",
-            ValueLabel = "112",
-            Color = SKColor.Parse("#2c3e50")
-        },
-        new ChartEntry(248)
-        {
-            Label = "Android",
-            ValueLabel = "648",
-            Color = SKColor.Parse("#77d065")
-        },
-        new ChartEntry(128)
-        {
-            Label = "iOS",
-            ValueLabel = "428",
-            Color = SKColor.Parse("#b455b6")
-        },
-        new ChartEntry(514)
-        {
-            Label = "Forms",
-            ValueLabel = "214",
-            Color = SKColor.Parse("#3498db")
-        }
-    ];
-        
-    
 
     public DataViewViewModel(DBService dbService)
     {
@@ -55,26 +24,9 @@ public partial class DataViewViewModel : ObservableObject
 
         WorkingDaysInMonth = HowManyDaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
         CountedHours = CountHours(SessionsList);
-    }
 
-    public string WorkTime
-    {
-        get => _sessionModel.WorkTime;
-        set => _sessionModel.WorkTime = value;
+        StartRefreshingData();
     }
-
-    public string Location
-    {
-        get => _sessionModel.Location;
-        set => _sessionModel.Location = value;
-    }
-
-    public string Description
-    {
-        get => _sessionModel.Description;
-        set => _sessionModel.Description = value;
-    }
-
 
     [RelayCommand]
     private async Task RefreshView()
@@ -134,15 +86,20 @@ public partial class DataViewViewModel : ObservableObject
         return default;
     }
 
-    public void StartRefreshingData()
+    public async void StartRefreshingData()
     {
-        UpdateCollection(SessionsList);
+        await UpdateCollection(SessionsList);
+        UpdateChartData(ChartsData);
     }
 
-    private async void UpdateCollection(ObservableCollection<WorkSession> collection)
+    private async Task UpdateCollection(ObservableCollection<WorkSession> collection)
     {
         var newItems = await _dbService.GetWorkSessionsListAsync();
         collection.Clear();
         foreach (var item in newItems) collection.Add(item);
+    }
+    private void UpdateChartData(List<ChartsData> chartsDatas)
+    {
+        chartsDatas.Add(new ChartsData("Przepracowane godziny", CountedHours));
     }
 }

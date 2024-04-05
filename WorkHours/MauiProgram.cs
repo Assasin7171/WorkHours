@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Maui;
-using Microcharts.Maui;
+using DevExpress.Maui;
 using Microsoft.Extensions.Logging;
 using WorkHours.Services;
 using WorkHours.ViewModels;
@@ -15,7 +15,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            .UseMicrocharts()
+            .UseDevExpress(useLocalization: true)
             .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
