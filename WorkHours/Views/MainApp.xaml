@@ -4,7 +4,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkHours.Views.MainApp"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             xmlns:model="clr-namespace:WorkHours.Models"
              x:DataType="vm:MainPageViewModel"
              BackgroundColor="{AppThemeBinding Light={StaticResource BackgroundColorWhite},Dark={StaticResource BackgroundColorBlack}}">
     <Shell.TitleView>
@@ -81,8 +80,7 @@
         </Frame>
         <VerticalStackLayout Margin="10, 30">
             <Button Text="Dodaj"
-                    Command="{Binding AddToDataBaseCommand}"
-                    IsEnabled="True" />
+                    Command="{Binding AddToDataBaseCommand}" />
         </VerticalStackLayout>
 
     </VerticalStackLayout>
