@@ -12,13 +12,5 @@ public partial class DataView : ContentPage
     {
         InitializeComponent();
         BindingContext = dataViewViewModel;
-        _viewModel = dataViewViewModel;
-
-        this.Appearing += OnAppearing;
-    }
-
-    private void OnAppearing(object? sender, EventArgs e)
-    {
-        _viewModel.StartRefreshingData();
     }
 }

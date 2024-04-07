@@ -17,11 +17,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fa0f070-0f65-4028-8001-4e88ebbc9d43" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MonthSummaryViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/MonthSummary.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/MonthSummary.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Models/ChartsData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Models/ChartData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainApp.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +46,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/113923c8ecef43eb8ec4708e08898440169dc28/75/68fbe83a/UIGestureRecognizer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/113923c8ecef43eb8ec4708e08898440169dc28/9b/0e29e1c1/Runtime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/186325ac0fba4b2d82f8ca7f8e549ddd42b508/8c/0618251d/RuntimeConstructorInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c3d0d9640464647a1b2585ee263c93b4f470/42/ffcef17c/SelectionBehavior.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c3d0d9640464647a1b2585ee263c93b4f470/fb/4648db79/PieChartStyleController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2a4dad19c64a4f1a994732eaf2de348efb20/57/163d7341/ServiceProviderServiceExtensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7162303322124edd9351d818ec3d2d17169dc20/4e/b9c539f5/UIApplication.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7162303322124edd9351d818ec3d2d17169dc20/52/809c3290/Runtime.cs" root0="SKIP_HIGHLIGHTING" />
@@ -70,10 +76,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d839bf7ce55b8a2fc5764566b1ce2429825717eb8965f4f3aba46bfdacb3/Grid.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e07861194222f4365d2cdb635bc978f2d1ae087c5564f3f3913fc3e9af05479/View.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f212d83ed0494f92525874ac9e33378ff10b276a8f56731665d6df2fe1c1377/TapGestureRecognizer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f365f165ad31bbe4fabf74649d8c61d17b9b0/WorkHours.ViewModels.DataViewViewModel.g.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f83720d513c47b17e8acdcf59a35ef33a0c2e6a7fae5be4a92dfba6f4a65d0/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test.Console/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/AppDelegate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorkHours/obj/Debug/net8.0-android/__Microsoft.Android.Resource.Designer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -100,13 +108,13 @@
     &quot;.NET Project.ConsoleApp1.executor&quot;: &quot;Debug&quot;,
     &quot;.NET Project.ConsoleTests.executor&quot;: &quot;Debug&quot;,
     &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSConnectedDeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours&quot;: &quot;iPhone (Konrad)&quot;,
-    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours&quot;: &quot;iPhone 15 Pro (iOS 17.2)&quot;,
+    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours&quot;: &quot;iPhone 13 Pro Max (iOS 17.2)&quot;,
     &quot;DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider&quot;: &quot;Simulator&quot;,
     &quot;ResourceManagerPrefKey.ResourceType&quot;: &quot;STRING&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.37821484&quot;,
-    &quot;Xamarin.Android.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;Xamarin.Android.WorkHours.executor&quot;: &quot;Run&quot;,
     &quot;Xamarin.Mac.WorkHours.executor&quot;: &quot;Debug&quot;,
     &quot;Xamarin.iOS.WorkHours.executor&quot;: &quot;Debug&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
@@ -116,7 +124,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;rider.code.cleanup.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -128,24 +136,6 @@
   }
 }</component>
   <component name="RunManager" selected="Xamarin.iOS.WorkHours">
-    <configuration name="ConsoleTests" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Tests/bin/Debug/net8.0/Tests" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/bin/Debug/net8.0" />
-      <option name="PASS_PARENT_ENVS" value="1" />
-      <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <option name="USE_MONO" value="0" />
-      <option name="RUNTIME_ARGUMENTS" value="" />
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/Tests/Tests.csproj" />
-      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
-      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
-      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
-      <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="net8.0" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
     <configuration name="WorkHours" type="XamarinAndroidProject" factoryName="Xamarin.Android">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/WorkHours/WorkHours.csproj" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -172,7 +162,6 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue=".NET Project.ConsoleTests" />
       <item itemvalue="Xamarin.Android.WorkHours" />
       <item itemvalue="Xamarin.iOS.WorkHours" />
       <item itemvalue="Xamarin.Mac.WorkHours" />
@@ -235,7 +224,12 @@
       <workItem from="1712138659392" duration="1641000" />
       <workItem from="1712243485490" duration="1878000" />
       <workItem from="1712247180479" duration="9492000" />
-      <workItem from="1712296441116" duration="1753000" />
+      <workItem from="1712296441116" duration="2740000" />
+      <workItem from="1712307593640" duration="563000" />
+      <workItem from="1712313329376" duration="3574000" />
+      <workItem from="1712322912711" duration="5968000" />
+      <workItem from="1712490123078" duration="8238000" />
+      <workItem from="1712499185725" duration="1339000" />
     </task>
     <task id="LOCAL-00001" summary="Added login view and register view.">
       <option name="closed" value="true" />
@@ -317,7 +311,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712140282429</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary=".">
+      <option name="closed" value="true" />
+      <created>1712299397863</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712299397863</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -369,6 +371,23 @@
     <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs</url>
+          <line>52</line>
+          <properties documentPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" initialLine="52" containingFunctionPresentation="Method 'AddToDataBase'">
+            <startOffsets>
+              <option value="1600" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1601" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Microsoft.Maui.Controls.SelectionChangedEventArgs" memberName="CurrentSelection" />

@@ -8,24 +8,28 @@ namespace WorkHours.ViewModels;
 
 public partial class DataViewViewModel : ObservableObject
 {
+    //services
     private readonly DBService _dbService;
+    //models
     private readonly WorkSession _sessionModel;
-    [ObservableProperty] private int _countedHours;
+    //others
+    private double _countedDays;
+    private double _countedFreeDays;
+    [ObservableProperty] private string _workTime = string.Empty;
+    [ObservableProperty] private string _location = string.Empty;
+    [ObservableProperty] private string _description = string.Empty;
     [ObservableProperty] private bool _isRefreshing;
-    [ObservableProperty] private ObservableCollection<WorkSession> _sessionsList = [];
-    [ObservableProperty] private Tuple<int, int> _workingDaysInMonth;
-    [ObservableProperty] private List<ChartsData> _chartsData = new List<ChartsData>();
-
+    [ObservableProperty] private List<WorkSession> _sessionsList = new();
+    [ObservableProperty] private List<ChartData> _chartsData = new();
+    [ObservableProperty] private Tuple<int, int> _workingDaysInMonth = default;
+    [ObservableProperty] private int _allWorkingHoursInMonth;
 
     public DataViewViewModel(DBService dbService)
     {
         _dbService = dbService;
         _sessionModel = new WorkSession();
 
-        WorkingDaysInMonth = HowManyDaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-        CountedHours = CountHours(SessionsList);
-
-        StartRefreshingData();
+        InitDataInCharts();
     }
 
     [RelayCommand]
@@ -34,8 +38,7 @@ public partial class DataViewViewModel : ObservableObject
         try
         {
             IsRefreshing = true;
-            WorkingDaysInMonth = HowManyDaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            CountedHours = CountHours(SessionsList);
+            
         }
         catch (Exception e)
         {
@@ -55,7 +58,7 @@ public partial class DataViewViewModel : ObservableObject
     {
         var daysInMonth = DateTime.DaysInMonth(year, month);
         var workingDays = new List<int>();
-        var otherDays = new List<int>();
+        var freeDays = new List<int>();
 
         for (var i = 1; i < daysInMonth + 1; i++)
         {
@@ -63,15 +66,19 @@ public partial class DataViewViewModel : ObservableObject
             var dayOfWeek = date.DayOfWeek;
 
             if (dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday)
-                otherDays.Add(i);
+                freeDays.Add(i);
             else
                 workingDays.Add(i);
         }
 
-        return new Tuple<int, int>(workingDays.Count, otherDays.Count);
+        return new Tuple<int, int>(workingDays.Count, freeDays.Count);
     }
 
-    private int CountHours(ObservableCollection<WorkSession> workSessions)
+    /// <summary>
+    /// This function counts days from hours, 10 hours = 1 day.
+    /// </summary>
+    /// <returns>Days worked</returns>
+    private int CountDaysFromHours(List<WorkSession> workSessions)
     {
         var countedHours = 0;
         if (workSessions.Count > 0)
@@ -80,26 +87,54 @@ public partial class DataViewViewModel : ObservableObject
                 if (int.TryParse(session.WorkTime, out var result))
                     countedHours += result;
 
-            return countedHours;
+            return countedHours / 10;
         }
 
         return default;
     }
 
-    public async void StartRefreshingData()
+    [RelayCommand]
+    private async Task Appearing()
     {
-        await UpdateCollection(SessionsList);
-        UpdateChartData(ChartsData);
+        try
+        {
+            var list = await _dbService.GetWorkSessionsListAsync();
+            await UpdateCollectionAsync(SessionsList, list);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+    
+    private async Task UpdateCollectionAsync<T>(List<T> collectionToUpdate, List<T> collectionList)
+    {
+        // var newItems = await _dbService.GetWorkSessionsListAsync();
+        List<Task> tasks = new List<Task>();
+
+        if (collectionToUpdate.Count < collectionList.Count)
+        {
+            collectionToUpdate.Clear();
+            
+            foreach (var item in collectionList)
+            {
+                tasks.Add(Task.Run(() =>
+                {
+                    collectionToUpdate.Add(item);
+                }));
+            }
+
+            await Task.WhenAll(tasks);
+        }
+
     }
 
-    private async Task UpdateCollection(ObservableCollection<WorkSession> collection)
+    private void InitDataInCharts()
     {
-        var newItems = await _dbService.GetWorkSessionsListAsync();
-        collection.Clear();
-        foreach (var item in newItems) collection.Add(item);
-    }
-    private void UpdateChartData(List<ChartsData> chartsDatas)
-    {
-        chartsDatas.Add(new ChartsData("Przepracowane godziny", CountedHours));
+        _countedDays = CountDaysFromHours(SessionsList);
+        _countedFreeDays = HowManyDaysInMonth(DateTime.Now.Day, DateTime.Now.Month).Item1 - _countedDays;
+
+        ChartsData.Add(new ChartData("Przepracowane dni (1 dzień = 10H)", _countedDays));
+        ChartsData.Add(new ChartData("Wolne dni", _countedFreeDays));
     }
 }

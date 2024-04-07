@@ -4,114 +4,31 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:WorkHours.ViewModels"
-    xmlns:charts="clr-namespace:DevExpress.Maui.Charts;assembly=DevExpress.Maui.Charts"
+    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:Class="WorkHours.Views.DataView"
     x:DataType="vm:DataViewViewModel"
     BackgroundColor="#ececec">
-    <StackLayout
-        Orientation="Horizontal">
-        <!-- ~1~ Nagłówki @1@ -->
-        <!-- <Frame Margin="5"> -->
-        <!--     <Grid ColumnDefinitions="0.5*,0.5*,*" RowSpacing="5"> -->
-        <!--         <Label Grid.Column="0" -->
-        <!--                Text="Working time" -->
-        <!--                FontAttributes="Bold" -->
-        <!--                Padding="5" /> -->
-        <!--         <Label Grid.Column="1" -->
-        <!--                Text="Workplace" -->
-        <!--                FontAttributes="Bold" -->
-        <!--                Padding="5" /> -->
-        <!--         <Label Grid.Column="2" -->
-        <!--                Text="Additional information" -->
-        <!--                FontAttributes="Bold" -->
-        <!--                Padding="5" /> -->
-        <!--     </Grid> -->
-        <!-- </Frame> -->
-        <!-- -->
-        <!-- ~1~ Lista Sesji @1@ -->
-        <!-- <CollectionView Margin="5" -->
-        <!--                 ItemsSource="{Binding SessionsList}" -->
-        <!--                 x:DataType="vm:DataViewViewModel"> -->
-        <!--     <CollectionView.ItemTemplate> -->
-        <!--         <DataTemplate> -->
-        <!--             <Frame> -->
-        <!--                 <Grid ColumnDefinitions="0.5*,0.5*,*" -->
-        <!--                       ColumnSpacing="5" -->
-        <!--                       RowSpacing="5"> -->
-        <!--                     <Label Grid.Column="0" -->
-        <!--                            Text="{Binding WorkTime}" -->
-        <!--                            Padding="4, 5" /> -->
-        <!--                     <Label Grid.Column="1" -->
-        <!--                            Text="{Binding Location}" -->
-        <!--                            Padding="4,5" /> -->
-        <!--                     <Label Grid.Column="2" -->
-        <!--                            Text="{Binding Description}" -->
-        <!--                            LineBreakMode="WordWrap" -->
-        <!--                            Padding="4,5" /> -->
-        <!--                 </Grid> -->
-        <!--             </Frame> -->
-        <!--         </DataTemplate> -->
-        <!--     </CollectionView.ItemTemplate> -->
-        <!-- </CollectionView> -->
-
-        <!-- <RefreshView Command="{Binding RefreshViewCommand}" -->
-        <!--              IsRefreshing="{Binding IsRefreshing}"> -->
-        <!--     <ScrollView> -->
-        <!--         <VerticalStackLayout> -->
-        <!--             <Label HorizontalOptions="Center" -->
-        <!--                    FontSize="18" -->
-        <!--                    Margin="10"> -->
-        <!--                 <Label.FormattedText> -->
-        <!--                     <FormattedString> -->
-        <!--                         <Span Text="Pracujących dni w tym miesiącu jest: " /> -->
-        <!--                         <Span TextColor="{StaticResource Magenta}" -->
-        <!--                               Text="{Binding WorkingDaysInMonth.Item1}" /> -->
-        <!--                     </FormattedString> -->
-        <!--                 </Label.FormattedText> -->
-        <!--             </Label> -->
-        <!--             <Label HorizontalOptions="Center" -->
-        <!--                    FontSize="18" -->
-        <!--                    Margin="10"> -->
-        <!--                 <Label.FormattedText> -->
-        <!--                     <FormattedString> -->
-        <!--                         <Span Text="Dni wolnych w tym miesiącu jest: " /> -->
-        <!--                         <Span TextColor="{StaticResource MidnightBlue}" -->
-        <!--                               Text="{Binding WorkingDaysInMonth.Item2}" /> -->
-        <!--                     </FormattedString> -->
-        <!--                 </Label.FormattedText> -->
-        <!--             </Label> -->
-        <!--             <Label HorizontalOptions="Center" -->
-        <!--                    FontSize="18" -->
-        <!--                    Margin="10"> -->
-        <!--                 <Label.FormattedText> -->
-        <!--                     <FormattedString> -->
-        <!--                         <Span Text="Przepracowane godziny w tym miesiącu to: " /> -->
-        <!--                         <Span TextColor="{StaticResource MidnightBlue}" -->
-        <!--                               Text="{Binding CountedHours}" /> -->
-        <!--                     </FormattedString> -->
-        <!--                 </Label.FormattedText> -->
-        <!--             </Label> -->
-        <!--         </VerticalStackLayout> -->
-        <!--     </ScrollView> -->
-        <!-- </RefreshView> -->
-        <charts:PieChartView>
-            <charts:PieChartView.Series>
-                <charts:DonutSeries>
-                    <charts:DonutSeries.Data>
-                        <charts:PieSeriesDataAdapter
-                            DataSource="{Binding ChartsData}"
-                            LabelDataMember="WorkHours"
-                            ValueDataMember="Value" />
-                    </charts:DonutSeries.Data>
-
-                </charts:DonutSeries>
-            </charts:PieChartView.Series>
-            <charts:PieChartView.Legend>
-                <charts:Legend
-                    Orientation="TopToBottom"
-                    HorizontalPosition="Center"
-                    VerticalPosition="Center" />
-            </charts:PieChartView.Legend>
-        </charts:PieChartView>
-    </StackLayout>
+    <ContentPage.Behaviors>
+        <mct:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                    EventName="Appearing"/>
+    </ContentPage.Behaviors>
+    <VerticalStackLayout>
+        <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding SessionsList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout>
+                            <Label Text="{Binding WorkTime}"
+                                   Padding="4, 5" />
+                            <Label Text="{Binding Location}"
+                                   Padding="4,5" />
+                            <Label Text="{Binding Description}"
+                                   LineBreakMode="WordWrap"
+                                   Padding="4,5" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace WorkHours.Models
 {
-    public class ChartsData
+    public class ChartData
     {
         public string WorkHours { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
 
-        public ChartsData(string workedHours, int howMatch)
+        public ChartData(string name, double howMatch)
         {
-            this.WorkHours = workedHours;
+            this.WorkHours = name;
             this.Value = howMatch;
         }
     }

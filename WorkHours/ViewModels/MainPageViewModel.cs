@@ -18,18 +18,12 @@ public partial class MainPageViewModel : ObservableObject
     private readonly AuthUserService _authUserService;
     private readonly DBService _dbServiceService;
 
-    [ObservableProperty]
-    private string _currentTime = string.Empty;
-    [ObservableProperty]
-    private string _description = string.Empty;
-    [ObservableProperty]
-    private Workplace _location;
-    [ObservableProperty]
-    private DateTime _workDate = DateTime.Now;
-    [ObservableProperty]
-    private List<Workplace> _workplaces = new();
-    [ObservableProperty]
-    private string _workTime = string.Empty;
+    [ObservableProperty] private string _currentTime = string.Empty;
+    [ObservableProperty] private string _description = string.Empty;
+    [ObservableProperty] private Workplace _location;
+    [ObservableProperty] private DateTime _workDate = DateTime.Now;
+    [ObservableProperty] private List<Workplace> _workplaces = new();
+    [ObservableProperty] private string _workTime = string.Empty;
 
     public MainPageViewModel(DBService dbService, AuthUserService authUserService)
     {
@@ -83,17 +77,15 @@ public partial class MainPageViewModel : ObservableObject
 
     #region clock code
 
-    private void Timer_Elapsed(object? sender, ElapsedEventArgs e)
+    private async void Timer_Elapsed(object? sender, ElapsedEventArgs e)
     {
-        UpdateActualDateTime();
+        await UpdateActualDateTime();
     }
 
-    private void UpdateActualDateTime()
+    private async Task UpdateActualDateTime()
     {
-        MainThread.BeginInvokeOnMainThread(() => { CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"); });
+        await Task.Run(() => CurrentTime = DateTime.Now.ToString("dddd HH:mm:ss"));
     }
 
     #endregion
-
-
 }
