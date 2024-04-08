@@ -12,17 +12,79 @@
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}"
                                     EventName="Appearing" />
     </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <Style x:Key="labelData"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="16"/>
+            <Setter Property="FontFamily"
+                    Value="Poppins-Bold"/>
+            <Setter Property="FontAttributes"
+                    Value="Bold"/>
+            <Setter Property="Margin"
+                    Value="3"/>
+            <Setter Property="Padding"
+                    Value="2"/>
+            <Setter Property="VerticalOptions"
+                    Value="Center"/>
+            <Setter Property="HorizontalOptions"
+                    Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <VerticalStackLayout>
-            <ListView ItemsSource="{Binding SessionsList}">
-                <ListView.ItemTemplate>
+            <CollectionView ItemsSource="{Binding SessionsList}">
+                <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout>
-                            <Label Text="." />
-                        </HorizontalStackLayout>
+                        <Grid ColumnDefinitions="*,*"
+                              RowDefinitions="*,*,*">
+                            <Label Grid.Column="0" 
+                                   Grid.Row="0"
+                                   Style="{StaticResource labelData}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Lokalizacja : "/>
+                                        <Span Text="{Binding Location}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="1" 
+                                   Grid.Row="0"
+                                   Style="{StaticResource labelData}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Data : "/>
+                                        <Span Text="data"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="0" 
+                                   Grid.Row="1"
+                                   Grid.ColumnSpan="2"
+                                   Style="{StaticResource labelData}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Godziny : "/>
+                                        <Span Text="{Binding WorkTime}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Grid.Row="2"
+                                   HorizontalOptions="Center"
+                                   Style="{StaticResource labelData}">            
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Dodatkowe informacje : "/>
+                                        <Span Text="{Binding Description}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

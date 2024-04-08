@@ -100,7 +100,7 @@ public partial class DataViewViewModel : ObservableObject
     {
         try
         {
-            var list = await _dbService.GetWorkSessionsListAsync();
+            var list = (await _dbService.GetWorkSessionsListAsync());
             await UpdateCollectionAsync(SessionsList, list);
         }
         catch (Exception e)
