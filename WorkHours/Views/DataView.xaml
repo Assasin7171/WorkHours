@@ -10,25 +10,19 @@
     BackgroundColor="#ececec">
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}"
-                                    EventName="Appearing"/>
+                                    EventName="Appearing" />
     </ContentPage.Behaviors>
     <VerticalStackLayout>
         <VerticalStackLayout>
-            <CollectionView ItemsSource="{Binding SessionsList}">
-                <CollectionView.ItemTemplate>
+            <ListView ItemsSource="{Binding SessionsList}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <VerticalStackLayout>
-                            <Label Text="{Binding WorkTime}"
-                                   Padding="4, 5" />
-                            <Label Text="{Binding Location}"
-                                   Padding="4,5" />
-                            <Label Text="{Binding Description}"
-                                   LineBreakMode="WordWrap"
-                                   Padding="4,5" />
-                        </VerticalStackLayout>
+                        <HorizontalStackLayout>
+                            <Label Text="." />
+                        </HorizontalStackLayout>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

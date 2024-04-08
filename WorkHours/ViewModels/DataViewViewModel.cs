@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WorkHours.Models;
@@ -10,26 +9,30 @@ public partial class DataViewViewModel : ObservableObject
 {
     //services
     private readonly DBService _dbService;
+
     //models
     private readonly WorkSession _sessionModel;
+    [ObservableProperty] private int _allWorkingHoursInMonth;
+
+    [ObservableProperty] private List<ChartData> _chartsData = new();
+
     //others
     private double _countedDays;
     private double _countedFreeDays;
-    [ObservableProperty] private string _workTime = string.Empty;
-    [ObservableProperty] private string _location = string.Empty;
-    [ObservableProperty] private string _description = string.Empty;
+    [ObservableProperty] private string _description;
     [ObservableProperty] private bool _isRefreshing;
+    [ObservableProperty] private string _location;
     [ObservableProperty] private List<WorkSession> _sessionsList = new();
-    [ObservableProperty] private List<ChartData> _chartsData = new();
-    [ObservableProperty] private Tuple<int, int> _workingDaysInMonth = default;
-    [ObservableProperty] private int _allWorkingHoursInMonth;
+    [ObservableProperty] private Tuple<int, int> _workingDaysInMonth;
+    [ObservableProperty] private WorkSession _workSession;
+    [ObservableProperty] private string _workTime;
 
     public DataViewViewModel(DBService dbService)
     {
         _dbService = dbService;
         _sessionModel = new WorkSession();
 
-        InitDataInCharts();
+        // InitDataInCharts();
     }
 
     [RelayCommand]
@@ -38,7 +41,6 @@ public partial class DataViewViewModel : ObservableObject
         try
         {
             IsRefreshing = true;
-            
         }
         catch (Exception e)
         {
@@ -75,7 +77,7 @@ public partial class DataViewViewModel : ObservableObject
     }
 
     /// <summary>
-    /// This function counts days from hours, 10 hours = 1 day.
+    ///     This function counts days from hours, 10 hours = 1 day.
     /// </summary>
     /// <returns>Days worked</returns>
     private int CountDaysFromHours(List<WorkSession> workSessions)
@@ -106,27 +108,21 @@ public partial class DataViewViewModel : ObservableObject
             Console.WriteLine(e);
         }
     }
-    
+
     private async Task UpdateCollectionAsync<T>(List<T> collectionToUpdate, List<T> collectionList)
     {
         // var newItems = await _dbService.GetWorkSessionsListAsync();
-        List<Task> tasks = new List<Task>();
+        var tasks = new List<Task>();
 
         if (collectionToUpdate.Count < collectionList.Count)
         {
             collectionToUpdate.Clear();
-            
+
             foreach (var item in collectionList)
-            {
-                tasks.Add(Task.Run(() =>
-                {
-                    collectionToUpdate.Add(item);
-                }));
-            }
+                tasks.Add(Task.Run(() => { collectionToUpdate.Add(item); }));
 
             await Task.WhenAll(tasks);
         }
-
     }
 
     private void InitDataInCharts()
