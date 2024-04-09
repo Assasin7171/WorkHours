@@ -1,7 +1,5 @@
-using System;
 using System.Diagnostics;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
 using WorkHours.Models;
 using WorkHours.Services;
 

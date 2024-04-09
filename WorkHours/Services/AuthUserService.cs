@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
 using WorkHours.Models;
 using WorkHours.Views;
 

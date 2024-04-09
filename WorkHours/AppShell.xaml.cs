@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+﻿using WorkHours.Views;
 using WorkHours.Views.Pages;
 
 namespace WorkHours;
@@ -11,7 +11,8 @@ public partial class AppShell : Shell
 
         Routing.RegisterRoute(nameof(EditLocationsPage), typeof(EditLocationsPage));
         Routing.RegisterRoute(nameof(UserSettingsPage), typeof(UserSettingsPage));
+        Routing.RegisterRoute(nameof(MonthSummary), typeof(MonthSummary));
     }
-    
-    
+
+
 }

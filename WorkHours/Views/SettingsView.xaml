@@ -5,14 +5,11 @@
              x:Class="WorkHours.Views.SettingsView"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
              x:DataType="vm:SettingsViewModel">
-    <VerticalStackLayout
-        Spacing="10"
-        Margin="5"
-        Padding="5">
-        <Button
-            Text="Edytuj lokalizacje"
-            Command="{Binding OpenSettingsPage}" />
-        <Button
-            Text="Ustawienia użytkownika" />
+    <VerticalStackLayout Spacing="10"
+                         Margin="5"
+                         Padding="5">
+        <Button Text="Edytuj lokalizacje"
+                Command="{Binding OpenEditLocationsPageCommand}" />
+        <Button Text="Ustawienia użytkownika" />
     </VerticalStackLayout>
 </ContentPage>

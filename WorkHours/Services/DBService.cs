@@ -1,9 +1,54 @@
-﻿using System.Collections.Generic;
+﻿
+/* Unmerged change from project 'WorkHours (net8.0-maccatalyst)'
+Before:
+using System.Collections.Generic;
+After:
+using SQLite;
+using System.Collections.Generic;
+*/
+
+/* Unmerged change from project 'WorkHours (net8.0-windows10.0.19041.0)'
+Before:
+using System.Collections.Generic;
+After:
+using SQLite;
+using System.Collections.Generic;
+*/
+
+/* Unmerged change from project 'WorkHours (net8.0-ios)'
+Before:
+using System.Collections.Generic;
+After:
+using SQLite;
+using System.Collections.Generic;
+*/
+using SQLite;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+using
+/* Unmerged change from project 'WorkHours (net8.0-maccatalyst)'
+Before:
 using SQLite;
 using WorkHours.Models;
+After:
+using WorkHours.Models;
+*/
+
+/* Unmerged change from project 'WorkHours (net8.0-windows10.0.19041.0)'
+Before:
+using SQLite;
+using WorkHours.Models;
+After:
+using WorkHours.Models;
+*/
+
+/* Unmerged change from project 'WorkHours (net8.0-ios)'
+Before:
+using SQLite;
+using WorkHours.Models;
+After:
+using WorkHours.Models;
+*/
+WorkHours.Models;
 
 namespace WorkHours.Services;
 
@@ -33,6 +78,15 @@ public class DBService
         _connection.InsertAsync(workSession);
     }
 
+    public async Task<bool> DeleteWorkSession(WorkSession x, ObservableCollection<WorkSession> workSession)
+    {
+        await _connection.DeleteAsync<WorkSession>(x.Id);
+
+        if (workSession.Remove(x))
+            return true;
+
+        return false;
+    }
 
     public async Task<List<Workplace>> GetWorkplacesAsync()
     {

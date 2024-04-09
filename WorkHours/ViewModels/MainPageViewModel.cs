@@ -1,12 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Timers;
-using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Controls;
+using System.Timers;
 using WorkHours.Models;
 using WorkHours.Services;
 using Timer = System.Timers.Timer;
@@ -53,9 +47,9 @@ public partial class MainPageViewModel : ObservableObject
     {
         if ((WorkTime != null) & (Location != null))
         {
-            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime,Location.Name,WorkDate));
+            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime, Location.Name, WorkDate));
 
-            
+
             WorkTime = string.Empty;
             Location = null;
             Description = null;

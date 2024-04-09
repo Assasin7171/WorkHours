@@ -1,16 +1,16 @@
-﻿using System.Windows.Input;
-using Microsoft.Maui.Controls;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using WorkHours.Services;
 
 namespace WorkHours.ViewModels
 {
-    public class SettingsViewModel(DBService database)
+    public partial class SettingsViewModel(DBService database) : ObservableObject
     {
         private readonly DBService _database = database;
 
-        public ICommand OpenSettingsPage => new Command(OpenPage);
 
-        private async void OpenPage()
+        [RelayCommand]
+        private async Task OpenEditLocationsPage()
         {
             await Shell.Current.GoToAsync("EditLocationsPage");
         }

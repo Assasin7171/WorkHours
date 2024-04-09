@@ -1,48 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:vm="clr-namespace:WorkHours.ViewModels"
-    xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    x:Class="WorkHours.Views.DataView"
-    x:DataType="vm:DataViewViewModel"
-    BackgroundColor="#ececec">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="WorkHours.Views.DataView"
+             x:DataType="vm:DataViewViewModel"
+             BackgroundColor="#ececec">
     <ContentPage.Behaviors>
         <mct:EventToCommandBehavior Command="{Binding AppearingCommand}"
                                     EventName="Appearing" />
     </ContentPage.Behaviors>
     <ContentPage.Resources>
-        <Style x:Key="LabelData"
+        <Style x:Key="TitleLabel"
                TargetType="Label">
             <Setter Property="FontSize"
-                    Value="16" />
+                    Value="15" />
             <Setter Property="FontFamily"
-                    Value="Poppins-Bold" />
-            <Setter Property="FontAttributes"
-                    Value="Bold" />
-            <Setter Property="Margin"
-                    Value="3" />
-            <Setter Property="Padding"
-                    Value="2" />
+                    Value="Poppins-Medium" />
+            <Setter Property="VerticalOptions"
+                    Value="Center" />
+            <Setter Property="HorizontalOptions"
+                    Value="Center" />
+            <Setter Property="TextTransform"
+                    Value="Uppercase" />
+        </Style>
+        <Style x:Key="DataLabel"
+               TargetType="Label">
+            <Setter Property="FontSize"
+                    Value="13" />
             <Setter Property="VerticalOptions"
                     Value="Center" />
             <Setter Property="HorizontalOptions"
                     Value="Center" />
         </Style>
     </ContentPage.Resources>
-    <HorizontalStackLayout>
-        <ListView ItemsSource="{Binding SessionsList}"
-                  BackgroundColor="Transparent">
-                <ListView.ItemTemplate>
-                        <DataTemplate>
-                                <ViewCell>
-                                        <VerticalStackLayout>
-                                                <Label Text="{Binding Location}"/>
-                                        </VerticalStackLayout>
-                                </ViewCell>
-                        </DataTemplate>
-                </ListView.ItemTemplate>
-        </ListView>
-    </HorizontalStackLayout>
+    <Grid RowDefinitions="*,auto">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshViewCommand}"
+                     Grid.Row="0">
+            <CollectionView ItemsSource="{Binding SessionsList}"
+                            Margin="10"
+                            x:Name="CollectionView">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*"
+                          Margin="0,10">
+                        <Label Text="Lokalizacja"
+                               Grid.Column="0"
+                               Style="{x:StaticResource TitleLabel}" />
+                        <Label Text="Godziny"
+                               Grid.Column="1"
+                               Style="{x:StaticResource TitleLabel}" />
+                        <Label Text="Data"
+                               Grid.Column="2"
+                               Style="{x:StaticResource TitleLabel}" />
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Usuń"
+                                               BackgroundColor="Red"
+                                               Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.DeleteElementAsyncCommand}"
+                                               CommandParameter="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame Margin="0,2"
+                                   Padding="3">
+                                <Grid ColumnDefinitions="*,*,*">
+                                    <Label Text="{Binding Location}"
+                                           Grid.Column="0"
+                                           Style="{x:StaticResource DataLabel}" />
+                                    <Label Text="{Binding WorkTime}"
+                                           Grid.Column="1"
+                                           Style="{x:StaticResource DataLabel}" />
+                                    <Label Text="{Binding DateOfWorkTime, StringFormat ='{0:dd/MM}'}"
+                                           Grid.Column="2"
+                                           Style="{x:StaticResource DataLabel}" />
+                                </Grid>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+        <VerticalStackLayout Grid.Row="1"
+                             Margin="10"
+                             Padding="10">
+            <Button Text="Statystyki"
+                    Scale="0.8"
+                    Command="{Binding GoToMonthSummaryViewCommand}"/>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

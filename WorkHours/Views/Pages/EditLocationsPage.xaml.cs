@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-using WorkHours.Models;
 using WorkHours.ViewModels;
 
 namespace WorkHours.Views.Pages;

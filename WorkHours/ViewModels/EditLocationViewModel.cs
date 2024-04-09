@@ -1,7 +1,7 @@
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using WorkHours.Models;
 using WorkHours.Services;
 

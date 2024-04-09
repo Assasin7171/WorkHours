@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WorkHours.ViewModels;
 
 namespace WorkHours.Views;
 
@@ -11,5 +7,9 @@ public partial class MonthSummary : ContentPage
     public MonthSummary()
     {
         InitializeComponent();
+
+        MonthSummaryViewModel viewModel = new MonthSummaryViewModel();
+
+        BindingContext = viewModel;
     }
 }
