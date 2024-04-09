@@ -4,39 +4,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:charts="clr-namespace:DevExpress.Maui.Charts;assembly=DevExpress.Maui.Charts"
              x:Class="WorkHours.Views.MonthSummary">
-    <ContentPage.Content>
-        <StackLayout Orientation="Horizontal">
-            <RefreshView Command="{Binding RefreshViewCommand}"
-                         IsRefreshing="{Binding IsRefreshing}">
-                <ScrollView>
-                    <charts:PieChartView>
-                        <charts:PieChartView.Series>
-                            <charts:DonutSeries>
-                                <charts:DonutSeries.Data>
-                                    <charts:PieSeriesDataAdapter DataSource="{Binding ChartsData}"
-                                                                 LabelDataMember="WorkHours"
-                                                                 ValueDataMember="Value"
-                                                                 AllowLiveDataUpdates="True"/>
-                                </charts:DonutSeries.Data>
-                                <charts:DonutSeries.HintOptions>
-                                    <charts:PieSeriesHintOptions Enabled="True"/>
-                                </charts:DonutSeries.HintOptions>
-                                <charts:DonutSeries.CenterLabel>
-                                    <charts:PieCenterTextLabel TextPattern="Dni robocze {TV}"></charts:PieCenterTextLabel>
-                                </charts:DonutSeries.CenterLabel>
-                            </charts:DonutSeries>
-                        </charts:PieChartView.Series>
-                        <charts:PieChartView.Legend>
-                            <charts:Legend Orientation="TopToBottom"
-                                           HorizontalPosition="Center"
-                                           VerticalPosition="Bottom"/>
-                        </charts:PieChartView.Legend>
-                        <charts:PieChartView.Hint>
-                            <charts:PieHint Enabled="True"/>
-                        </charts:PieChartView.Hint>
-                    </charts:PieChartView>
-                </ScrollView>
-            </RefreshView>
-        </StackLayout>
-    </ContentPage.Content>
+    <charts:PieChartView>
+            <charts:PieChartView.Series>
+                <charts:DonutSeries>
+                    <charts:DonutSeries.Data>
+                        <charts:PieSeriesDataAdapter DataSource="{Binding ChartsData}"
+                                                     LabelDataMember="WorkHours"
+                                                     ValueDataMember="Value"
+                                                     AllowLiveDataUpdates="True" />
+                    </charts:DonutSeries.Data>
+                    <charts:DonutSeries.HintOptions>
+                        <charts:PieSeriesHintOptions Enabled="True" />
+                    </charts:DonutSeries.HintOptions>
+                    <charts:DonutSeries.CenterLabel>
+                        <charts:PieCenterTextLabel TextPattern="Dni robocze {TV}"></charts:PieCenterTextLabel>
+                    </charts:DonutSeries.CenterLabel>
+                </charts:DonutSeries>
+            </charts:PieChartView.Series>
+            <charts:PieChartView.Legend>
+                <charts:Legend Orientation="TopToBottom"
+                               HorizontalPosition="Center"
+                               VerticalPosition="Bottom" />
+            </charts:PieChartView.Legend>
+            <charts:PieChartView.Hint>
+                <charts:PieHint Enabled="True" />
+            </charts:PieChartView.Hint>
+        </charts:PieChartView>
 </ContentPage>
