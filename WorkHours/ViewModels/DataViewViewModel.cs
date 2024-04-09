@@ -26,12 +26,13 @@ public partial class DataViewViewModel : ObservableObject
     [ObservableProperty] private Tuple<int, int> _workingDaysInMonth;
     [ObservableProperty] private WorkSession _workSession;
     [ObservableProperty] private string _workTime;
-
+    [ObservableProperty] private DateTime _dateOfWorkTime;
     public DataViewViewModel(DBService dbService)
     {
         _dbService = dbService;
         _sessionModel = new WorkSession();
 
+        InitOrUpdateWorkSession(SessionsList);
         // InitDataInCharts();
     }
 
@@ -96,12 +97,11 @@ public partial class DataViewViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Appearing()
+    private void Appearing()
     {
         try
         {
-            var list = (await _dbService.GetWorkSessionsListAsync());
-            await UpdateCollectionAsync(SessionsList, list);
+            InitOrUpdateWorkSession(SessionsList);
         }
         catch (Exception e)
         {
@@ -109,11 +109,12 @@ public partial class DataViewViewModel : ObservableObject
         }
     }
 
-    private async Task UpdateCollectionAsync<T>(List<T> collectionToUpdate, List<T> collectionList)
+    private async void InitOrUpdateWorkSession(List<WorkSession> collectionToUpdate)
     {
-        // var newItems = await _dbService.GetWorkSessionsListAsync();
         var tasks = new List<Task>();
 
+        var collectionList = await _dbService.GetWorkSessionsListAsync();
+        
         if (collectionToUpdate.Count < collectionList.Count)
         {
             collectionToUpdate.Clear();

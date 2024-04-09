@@ -53,8 +53,9 @@ public partial class MainPageViewModel : ObservableObject
     {
         if ((WorkTime != null) & (Location != null))
         {
-            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime, Location.Name, Description));
+            _dbServiceService.CreateWorkSessionAsync(new WorkSession(WorkTime,Location.Name,WorkDate));
 
+            
             WorkTime = string.Empty;
             Location = null;
             Description = null;

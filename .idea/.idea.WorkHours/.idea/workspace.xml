@@ -18,7 +18,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4fa0f070-0f65-4028-8001-4e88ebbc9d43" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Models/WorkSession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Models/WorkSession.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,6 +64,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/86378fbcce7246f5cd1110779855f73420e58a7db796c467e47286b5a95478fd/VisualElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e29f976629ead739ccfe2d7ad7d4a4187f8260407feded88302991bce4a8/BindingExpression.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8e588c9ac05c31aa9c24a5a31543cf1947d99edf29b93629c23f76cddbd9f49/BindableObjectExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9ff5c847186ee7c539b44c47b1eceef64dba81686c9bded959c21e37459ae9d/ViewCellRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ad26ae391e9ac7dab0d059c048b92a3be41542d5fc77a5329e123ab721/Command.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bbe38c655b347698f66543a91526d6734be5771ed22d1d7a72aac3624d5/RelayCommandAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bed429c4a5b521274565f54527bf631ced45db2fe2fa3030418de9e798f79/ButtonElement.cs" root0="SKIP_HIGHLIGHTING" />
@@ -97,38 +100,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.ConsoleApp1.executor": "Debug",
-    ".NET Project.ConsoleTests.executor": "Debug",
-    "Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSConnectedDeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours": "iPhone (Konrad)",
-    "Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours": "iPhone 15 Pro (iOS 17.2)",
-    "DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider": "Simulator",
-    "ResourceManagerPrefKey.ResourceType": "STRING",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "XThreadsFramesViewSplitterKey": "0.37821484",
-    "Xamarin.Android.WorkHours.executor": "Run",
-    "Xamarin.Mac.WorkHours.executor": "Debug",
-    "Xamarin.iOS.WorkHours.executor": "Debug",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "rider.code.cleanup.on.save": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.ConsoleApp1.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Project.ConsoleTests.executor&quot;: &quot;Debug&quot;,
+    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSConnectedDeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours&quot;: &quot;iPhone (Konrad)&quot;,
+    &quot;Device#class com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSSimulatorKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider#Xamarin.iOS: WorkHours&quot;: &quot;iPhone 15 Pro&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.run.xamarin.ios.devices.XamarinIOSDevicesProvider&quot;: &quot;Simulator&quot;,
+    &quot;ResourceManagerPrefKey.ResourceType&quot;: &quot;STRING&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.37821484&quot;,
+    &quot;Xamarin.Android.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;Xamarin.Mac.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;Xamarin.iOS.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/Users/bojanecki/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
-      "/Users/bojanecki/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache",
-      "/Users/bojanecki/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/bojanecki/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/bojanecki/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/bojanecki/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Xamarin.iOS.WorkHours">
     <configuration name="WorkHours" type="XamarinAndroidProject" factoryName="Xamarin.Android">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/WorkHours/WorkHours.csproj" />
@@ -225,7 +228,22 @@
       <workItem from="1712490123078" duration="8238000" />
       <workItem from="1712499185725" duration="1663000" />
       <workItem from="1712501978044" duration="727000" />
-      <workItem from="1712502949535" duration="976000" />
+      <workItem from="1712502949535" duration="1004000" />
+      <workItem from="1712646215361" duration="2367000" />
+      <workItem from="1712649441650" duration="540000" />
+      <workItem from="1712649987015" duration="163000" />
+      <workItem from="1712650167312" duration="514000" />
+      <workItem from="1712651314202" duration="276000" />
+      <workItem from="1712651595144" duration="150000" />
+      <workItem from="1712651840353" duration="29000" />
+      <workItem from="1712652172646" duration="8000" />
+      <workItem from="1712652514632" duration="145000" />
+      <workItem from="1712652671459" duration="110000" />
+      <workItem from="1712652842124" duration="41000" />
+      <workItem from="1712652950726" duration="201000" />
+      <workItem from="1712653188168" duration="2849000" />
+      <workItem from="1712656050618" duration="23000" />
+      <workItem from="1712656475061" duration="666000" />
     </task>
     <task id="LOCAL-00001" summary="Added login view and register view.">
       <option name="closed" value="true" />
@@ -323,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712500847283</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=".">
+      <option name="closed" value="true" />
+      <created>1712563143451</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712563143451</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,23 +401,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs</url>
-          <line>52</line>
-          <properties documentPath="$PROJECT_DIR$/WorkHours/ViewModels/MainPageViewModel.cs" initialLine="52" containingFunctionPresentation="Method 'AddToDataBase'">
-            <startOffsets>
-              <option value="1600" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1601" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Type#Microsoft.Maui.Controls.SelectionChangedEventArgs" memberName="CurrentSelection" />
