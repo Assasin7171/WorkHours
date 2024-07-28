@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.Views.MainView"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             x:DataType="vm:MainViewModel"
+             BackgroundColor="DarkSlateGray"
+             HideSoftInputOnTapped="True">
+    <ContentPage.Content>
+        <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout Margin="5"
+                                 Spacing="5">
+                <Label Text="{Binding ActualDate, StringFormat='Dziś jest {0:dddd dd/MM, H:mm:ss}'}"
+                       TextColor="#fff"
+                       FontFamily="RobotoMedium"
+                       HorizontalTextAlignment="Center"
+                       FontSize="24"/>
+            </VerticalStackLayout>
+            <Grid Margin="10,0"
+                  ColumnDefinitions="auto,*"
+                  RowDefinitions="*,*,*"
+                  ColumnSpacing="5"
+                  RowSpacing="5">
+                <Label Text="Ile?"
+                       FontSize="20"
+                       TextColor="#fff"
+                       Padding="10"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       BackgroundColor="LightCoral"/>
+                <Entry TextColor="#fff"
+                       Text=""
+                       Placeholder="0 godzin"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       PlaceholderColor="#eee"
+                       FontSize="20"
+                       BackgroundColor="LightCoral"
+                       Keyboard="Numeric"/>
+                
+                <Label Text="Kiedy?"
+                       Padding="10"
+                       FontSize="20"
+                       TextColor="#fff"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       BackgroundColor="LightCoral"/>
+                
+                <DatePicker MinimumDate="{Binding MinDate}"
+                            MaximumDate="{Binding MaxDate}"
+                            Date="{Binding ActualDate}"
+                            BackgroundColor="LightCoral"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            FontSize="20"
+                            TextColor="#fff"/>
+                
+                <Picker Title="Wybierz miejsce pracy"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        HorizontalTextAlignment="Center"
+                        BackgroundColor="LightCoral"
+                        TextColor="#fff"/>
+            </Grid>
+            <VerticalStackLayout Margin="0,20">
+                <Button Text="DODAJ"
+                        Style="{StaticResource ButtonStyle}"
+                        Command="{Binding AddToDbCommand}"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

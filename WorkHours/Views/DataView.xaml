@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="DarkSlateGray"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             xmlns:v="clr-namespace:WorkHours.Models"
+             x:DataType="vm:DataViewModel"
+             x:Class="WorkHours.Views.DataView">
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Collection}"
+                        Header="">
+            <CollectionView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="*,*,*"
+                          Padding="10,10,10,20">
+                        <Label Text="Lokalizacja"
+                               Grid.Column="0"
+                               Style="{StaticResource TitleLabel}" />
+                        <Label Text="Godziny"
+                               Grid.Column="1"
+                               Style="{StaticResource TitleLabel}" />
+                        <Label Text="Data"
+                               Grid.Column="2"
+                               Style="{StaticResource TitleLabel}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.HeaderTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="1"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="v:WorkSession">
+                    <VerticalStackLayout>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Edytuj"
+                                               BackgroundColor="ForestGreen"/>
+                                    <SwipeItem Text="Usuń"
+                                               BackgroundColor="OrangeRed"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <Grid ColumnDefinitions="*,*,*"
+                                  Margin="10,2">
+                                <Label Text="{Binding Location}"
+                                       Style="{StaticResource DataTextLabel}"
+                                       Grid.Column="0" />
+                                <Label Text="{Binding WorkTime}"
+                                       Style="{StaticResource DataTextLabel}"
+                                       Grid.Column="1" />
+                                <Label Text="{Binding DateTime, StringFormat ='{0:dd/MM}'}"
+                                       Grid.Column="2"
+                                       Style="{StaticResource DataTextLabel}" />
+                            </Grid>
+                        </SwipeView>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.Footer>
+                <Grid ColumnDefinitions="*,*,*"
+                      Padding="10,20,10,0">
+                    <Label Text="Wszystkie"
+                           Grid.Column="0"
+                           Style="{StaticResource FooterLabel}" />
+                    <Label Grid.Column="1"
+                           Text="50"
+                           Style="{StaticResource FooterLabel}" />
+                </Grid>
+            </CollectionView.Footer>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

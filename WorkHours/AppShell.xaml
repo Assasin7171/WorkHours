@@ -3,13 +3,23 @@
     x:Class="WorkHours.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:WorkHours"
+    xmlns:views="clr-namespace:WorkHours.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="WorkHours">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <Tab Title="Strona Domowa">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:MainView}" />
+        </Tab>
+        <Tab Title="Statystyki">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:DataView}" />
+        </Tab>
+        <Tab Title="Ustawienia">
+            <ShellContent
+                ContentTemplate="{DataTemplate views:SettingsView}" />
+        </Tab>
+    </TabBar>
 
 </Shell>
