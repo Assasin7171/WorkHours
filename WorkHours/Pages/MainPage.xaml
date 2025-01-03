@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WorkHours.Pages.MainPage">
+    <ContentPage.Content>
+        <Grid Margin="5"
+              RowDefinitions="*,auto"
+              RowSpacing="10">
+            <VerticalStackLayout Spacing="10"
+                                 Grid.Row="0">
+                <VerticalStackLayout>
+                    <Label Text="Wpisz swoje godziny" />
+                    <Entry />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Kiedy" />
+                    <DatePicker />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Miejsce" />
+                    <Picker />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Dodatkowe informacje" />
+                    <Entry />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                <Button Text="Dodaj" />
+            </VerticalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
