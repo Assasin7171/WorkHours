@@ -6,13 +6,22 @@ public class WorkHoursDbContext : DbContext
 {
     public DbSet<WorkSession> WorkSessions { get; set; }
     public DbSet<Place> Places { get; set; }
-    
+
+    //for adding/removing migrations from class library
+    public WorkHoursDbContext()
+    {
+        
+    }
+
+    public WorkHoursDbContext(DbContextOptions<WorkHoursDbContext> options) : base(options)
+    {
+        Database.Migrate();
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        base.OnConfiguring(optionsBuilder);
-        
-        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "WorkHours.db");
-        optionsBuilder.UseSqlite($"Data Source={dbPath}");
+        //var dbPath = Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.Personal), "WorkHours.db"); //$"Data Source={dbPath}"
+        optionsBuilder.UseSqlite();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
