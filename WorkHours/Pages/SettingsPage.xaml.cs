@@ -8,8 +8,13 @@ namespace WorkHours.Pages;
 
 public partial class SettingsPage : ContentPage
 {
-    public SettingsPage()
+    private readonly SettingsPageViewModel _viewModel;
+
+    public SettingsPage(SettingsPageViewModel viewModel)
     {
+        _viewModel = viewModel;
+        
+        BindingContext = _viewModel;
         InitializeComponent();
     }
 }

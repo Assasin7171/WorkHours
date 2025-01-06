@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkHours", "WorkHours\WorkHours.csproj", "{DAF2DE36-B348-4A73-9951-AD3700CD602B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLib", "ClassLib\ClassLib.csproj", "{4357EAF9-EC6F-4CDB-B065-5B897C0D2D7F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{DAF2DE36-B348-4A73-9951-AD3700CD602B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF2DE36-B348-4A73-9951-AD3700CD602B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF2DE36-B348-4A73-9951-AD3700CD602B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4357EAF9-EC6F-4CDB-B065-5B897C0D2D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4357EAF9-EC6F-4CDB-B065-5B897C0D2D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4357EAF9-EC6F-4CDB-B065-5B897C0D2D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4357EAF9-EC6F-4CDB-B065-5B897C0D2D7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace WorkHours.Pages;
 
-public partial class MainPage : ContentPage
+public partial class StatisticsPage : ContentPage
 {
-    private readonly MainPageViewModel _viewModel;
-    public MainPage(MainPageViewModel viewModel)
+    private readonly StatisticsPageViewModel _viewModel;
+
+    public StatisticsPage(StatisticsPageViewModel viewModel)
     {
         _viewModel = viewModel;
         
