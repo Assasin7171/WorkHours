@@ -16,4 +16,10 @@ public partial class MainPage : ContentPage
         BindingContext = _viewModel;
         InitializeComponent();
     }
+
+    protected override void OnAppearing()
+    {
+        _viewModel.UpdatePlaces();
+        base.OnAppearing();
+    }
 }

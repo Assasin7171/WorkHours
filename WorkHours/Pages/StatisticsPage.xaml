@@ -2,8 +2,56 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Pages.StatisticsPage">
+             xmlns:pages="clr-namespace:WorkHours.Pages"
+             xmlns:entities="clr-namespace:WorkHours.Entities;assembly=WorkHoursDb"
+             x:DataType="pages:StatisticsPageViewModel"
+             x:Class="WorkHours.Pages.StatisticsPage"
+             HideSoftInputOnTapped="True">
     <ContentPage.Content>
-        
+        <RefreshView IsRefreshing="{Binding IsLoading}"
+                     Command="{Binding GetWorkSessionsFromDbCommand}">
+            <CollectionView ItemsSource="{Binding WorkSessions}"
+                            EmptyView="Brak danych do wyświetlenia, odśwież widok."
+                            SelectionMode="Single"
+                            SelectedItem="{Binding SelectedWorkSession}"
+                            SelectionChangedCommand="{Binding SelectedWorkSessionCommand}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*"
+                          Padding="0,20">
+                        <Label Grid.Column="0"
+                               Text="Godziny"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Column="1"
+                               Text="Miejsce pracy"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                        <Label Grid.Column="2"
+                               Text="Data"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="entities:WorkSession">
+                        <Grid ColumnDefinitions="*,*,*"
+                              Margin="0, 10">
+                            <Label Grid.Column="0"
+                                   Text="{Binding Hours}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="1"
+                                   Text="{Binding Place.Name}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                            <Label Grid.Column="2"
+                                   Text="{Binding DateTime, StringFormat='{0:dd/MM/yyyy}'}"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </ContentPage>

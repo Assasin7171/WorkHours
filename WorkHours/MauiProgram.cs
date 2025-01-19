@@ -31,6 +31,8 @@ public static class MauiProgram
         builder.Services.AddSingleton<SettingsPageViewModel>();
         builder.Services.AddSingleton<StatisticsPage>();
         builder.Services.AddSingleton<StatisticsPageViewModel>();
+        builder.Services.AddSingleton<WorkSessionDetailsPage>();
+        builder.Services.AddSingleton<WorkSessionDetailsViewModel>();
 
 
         //var scope = builder.Services.BuildServiceProvider();

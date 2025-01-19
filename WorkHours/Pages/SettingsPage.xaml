@@ -4,17 +4,50 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:WorkHours.Pages"
              x:Class="WorkHours.Pages.SettingsPage"
-             x:DataType="pages:SettingsPageViewModel">
+             x:DataType="pages:SettingsPageViewModel"
+             HideSoftInputOnTapped="True">
     <ContentPage.Content>
-        <VerticalStackLayout Spacing="10"
-                             Margin="5">
-            <VerticalStackLayout Spacing="10">
-                <Label Text="Nazwa nowego miejsca pracy"/>
-                <Entry Text="{Binding Name}"/>
-                <Button Text="Dodaj"
-                        Command="{Binding AddPlaceToDbCommand}"
-                        HorizontalOptions="Center"/>
+        <ScrollView>
+            <VerticalStackLayout Spacing="10"
+                                 Margin="5">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Nazwa nowego miejsca pracy" />
+                    <Entry Text="{Binding Name}" />
+                    <Button Text="Dodaj"
+                            Command="{Binding AddPlaceToDbCommand}"
+                            HorizontalOptions="Center" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="{Binding SelectedPlace.Name, StringFormat='Wybrana lokalizacja do edycji = {0}'}"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center" />
+                    <ListView ItemsSource="{Binding Places}"
+                              SelectionMode="Single"
+                              SelectedItem="{Binding SelectedPlace}"
+                              MaximumHeightRequest="250">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding Name}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="Center" />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Nazwa miejsca do edycji" />
+                    <Entry Text="{Binding SelectedPlace.Name}" />
+                    <Button Text="Zapisz"
+                            Command="{Binding EditPlaceCommand}" />
+                </VerticalStackLayout>
+
             </VerticalStackLayout>
-        </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

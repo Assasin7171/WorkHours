@@ -2,34 +2,44 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="WorkHours.Pages.MainPage">
+             xmlns:pages="clr-namespace:WorkHours.Pages"
+             x:Class="WorkHours.Pages.MainPage"
+             x:DataType="pages:MainPageViewModel"
+             HideSoftInputOnTapped="True">
     <ContentPage.Content>
-        <Grid Margin="5"
+        <Grid Margin="10"
               RowDefinitions="*,auto"
-              RowSpacing="10">
+              RowSpacing="10"
+              Padding="0,0,0,20">
             <VerticalStackLayout Spacing="10"
                                  Grid.Row="0">
                 <VerticalStackLayout>
                     <Label Text="Wpisz swoje godziny" />
-                    <Entry />
+                    <Entry Text="{Binding WorkSession.Hours}"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Kiedy" />
-                    <DatePicker />
+                    <DatePicker Date="{Binding SelectedDate}"
+                                MinimumDate="{Binding MinDate}"
+                                MaximumDate="{Binding MaxDate}"
+                                />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
-                    <Label Text="Miejsce" />
-                    <Picker />
+                    <Picker ItemsSource="{Binding Places}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding WorkSession.Place}"
+                            Title="Wybierz miejsce pracy"/>
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Dodatkowe informacje" />
-                    <Entry />
+                    <Entry Text="{Binding WorkSession.Descriptions}"/>
                 </VerticalStackLayout>
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1"
                                  VerticalOptions="Center"
                                  HorizontalOptions="Center">
-                <Button Text="Dodaj" />
+                <Button Text="Dodaj"
+                        Command="{Binding AddWorkSessionToDbCommand}"/>
             </VerticalStackLayout>
         </Grid>
     </ContentPage.Content>
