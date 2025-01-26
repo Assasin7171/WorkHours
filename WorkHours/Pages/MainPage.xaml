@@ -7,40 +7,68 @@
              x:DataType="pages:MainPageViewModel"
              HideSoftInputOnTapped="True">
     <ContentPage.Content>
-        <Grid Margin="10"
-              RowDefinitions="*,auto"
-              RowSpacing="10"
-              Padding="0,0,0,20">
-            <VerticalStackLayout Spacing="10"
-                                 Grid.Row="0">
-                <VerticalStackLayout>
-                    <Label Text="Wpisz swoje godziny" />
-                    <Entry Text="{Binding WorkSession.Hours}"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Kiedy" />
-                    <DatePicker Date="{Binding SelectedDate}"
-                                MinimumDate="{Binding MinDate}"
-                                MaximumDate="{Binding MaxDate}"
-                                />
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Picker ItemsSource="{Binding Places}"
-                            ItemDisplayBinding="{Binding Name}"
-                            SelectedItem="{Binding WorkSession.Place}"
-                            Title="Wybierz miejsce pracy"/>
-                </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Dodatkowe informacje" />
-                    <Entry Text="{Binding WorkSession.Descriptions}"/>
-                </VerticalStackLayout>
+        <VerticalStackLayout Spacing="10"
+                             Margin="10,0">
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Work Session"
+                       FontSize="30" />
             </VerticalStackLayout>
-            <VerticalStackLayout Grid.Row="1"
-                                 VerticalOptions="Center"
-                                 HorizontalOptions="Center">
-                <Button Text="Dodaj"
-                        Command="{Binding AddWorkSessionToDbCommand}"/>
+
+            <VerticalStackLayout>
+                <Grid ColumnDefinitions="auto,*,*"
+                      ColumnSpacing="10">
+                    <Image Source="clock.png"
+                           WidthRequest="80"
+                           Grid.Column="0" />
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label Text="Początek pracy" />
+                        <TimePicker />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2">
+                        <Label Text="Koniec pracy" />
+                        <TimePicker />
+                    </VerticalStackLayout>
+                </Grid>
             </VerticalStackLayout>
-        </Grid>
+
+            <Grid ColumnSpacing="10"
+                  ColumnDefinitions="auto,*">
+                <Image Source="clock.png"
+                       WidthRequest="80" 
+                       Grid.Column="0"/>
+                <Grid VerticalOptions="Center"
+                      HorizontalOptions="Center"
+                      RowDefinitions="*,*"
+                      Grid.Column="1">
+                    <Label Text="8:00 H"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="0"/>
+                    <Label Text="Ilość przepracowanych godzin"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Row="1"/>
+                </Grid>
+
+            </Grid>
+
+            <VerticalStackLayout>
+                <Grid ColumnDefinitions="auto, *"
+                      ColumnSpacing="10">
+                    <Image Source="compas.png"
+                           WidthRequest="80"
+                           Grid.Column="0" />
+
+                    <Picker Grid.Column="1"
+                            ItemsSource="{Binding Places}"
+                            ItemDisplayBinding="{Binding Name}"/>
+                </Grid>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout>
+                <Button Text="Zapisz sesje"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>
