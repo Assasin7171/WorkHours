@@ -22,21 +22,28 @@ public partial class SettingsPageViewModel : ObservableObject
     [RelayCommand]
     private async Task AddPlaceToDb()
     {
-        try
+        if (string.IsNullOrWhiteSpace(Name))
         {
-            var newPlace = new Place() { Name = Name };
-            await _dbContext.Places.AddAsync(newPlace);
-            Name = string.Empty;
-
-            await _dbContext.SaveChangesAsync();
-            Places = new List<Place>(_dbContext.Places.ToList());
-
-            await App.Current.MainPage.DisplayAlert($"Add New Place {newPlace.Name}", "Place was successfully added.",
-                "OK");
+            await App.Current.MainPage.DisplayAlert("Eror", "Wpisz nazwę miejsca pracy do dodania", "OK");
         }
-        catch (Exception e)
+        else
         {
-            await App.Current.MainPage.DisplayAlert("Error", e.Message, "OK");
+            try
+            {
+                var newPlace = new Place() { Name = Name };
+                await _dbContext.Places.AddAsync(newPlace);
+                Name = string.Empty;
+
+                await _dbContext.SaveChangesAsync();
+                Places = new List<Place>(_dbContext.Places.ToList());
+
+                await App.Current.MainPage.DisplayAlert($"Add New Place {newPlace.Name}", "Place was successfully added.",
+                    "OK");
+            }
+            catch (Exception e)
+            {
+                await App.Current.MainPage.DisplayAlert("Error", e.Message, "OK");
+            }
         }
     }
 

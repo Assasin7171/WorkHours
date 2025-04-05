@@ -3,71 +3,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:WorkHours.Pages"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WorkHours.Pages.MainPage"
+             Title="Work Session"
              x:DataType="pages:MainPageViewModel"
              HideSoftInputOnTapped="True">
     <ContentPage.Content>
         <VerticalStackLayout Spacing="10"
                              Margin="10,0">
-            <VerticalStackLayout HorizontalOptions="Center">
-                <Label Text="Work Session"
-                       FontSize="30" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout>
-                <Grid ColumnDefinitions="auto,*,*"
-                      ColumnSpacing="10">
-                    <Image Source="clock.png"
-                           WidthRequest="80"
-                           Grid.Column="0" />
-                    <VerticalStackLayout Grid.Column="1">
-                        <Label Text="Początek pracy" />
-                        <TimePicker />
-                    </VerticalStackLayout>
-
-                    <VerticalStackLayout Grid.Column="2">
-                        <Label Text="Koniec pracy" />
-                        <TimePicker />
-                    </VerticalStackLayout>
-                </Grid>
-            </VerticalStackLayout>
-
-            <Grid ColumnSpacing="10"
-                  ColumnDefinitions="auto,*">
-                <Image Source="clock.png"
-                       WidthRequest="80" 
-                       Grid.Column="0"/>
-                <Grid VerticalOptions="Center"
-                      HorizontalOptions="Center"
-                      RowDefinitions="*,*"
-                      Grid.Column="1">
-                    <Label Text="8:00 H"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           Grid.Row="0"/>
-                    <Label Text="Ilość przepracowanych godzin"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           Grid.Row="1"/>
-                </Grid>
-
-            </Grid>
-
-            <VerticalStackLayout>
-                <Grid ColumnDefinitions="auto, *"
-                      ColumnSpacing="10">
-                    <Image Source="compas.png"
-                           WidthRequest="80"
-                           Grid.Column="0" />
-
-                    <Picker Grid.Column="1"
-                            ItemsSource="{Binding Places}"
-                            ItemDisplayBinding="{Binding Name}"/>
-                </Grid>
-            </VerticalStackLayout>
+            <Entry Keyboard="Numeric"
+                   Placeholder="Ilość przepracowanych godzin dziś.."
+                   Text="{Binding WorkSession.Hours}"/>
             
+            <!-- <Label Text="Miejsce pracy" /> -->
+            <Picker ItemsSource="{Binding Places}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding WorkSession.Place}" />
+
             <VerticalStackLayout>
-                <Button Text="Zapisz sesje"/>
+                <VerticalStackLayout>
+                    <Grid RowDefinitions="*,*"
+                          RowSpacing="10">
+                        <Label Text="Kiedy"
+                               Grid.Row="0"
+                               StyleClass="TitleLabel" />
+
+                        <DatePicker Grid.Row="1"
+                                    HorizontalOptions="Center"
+                                    MinimumDate="{Binding MinDate}"
+                                    MaximumDate="{Binding MaxDate}"
+                                    Date="{Binding SelectedDate}" />
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Grid RowDefinitions="*,*"
+                      RowSpacing="10">
+                    <Label Grid.Row="0"
+                           Text="Dodatkowe informacje"
+                           StyleClass="TitleLabel" />
+                    <Entry Grid.Row="1"
+                           StyleClass="MainEntry"
+                           Text="{Binding WorkSession.Descriptions}" />
+                </Grid>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Button Text="Zapisz sesje"
+                        FontSize="18"
+                        WidthRequest="200"
+                        StyleClass="MainBtn"
+                        Command="{Binding AddWorkSessionToDbCommand}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ContentPage.Content>

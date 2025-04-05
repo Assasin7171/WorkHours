@@ -10,7 +10,6 @@ public class WorkHoursDbContext : DbContext
     //for adding/removing migrations from class library
     public WorkHoursDbContext()
     {
-        
     }
 
     public WorkHoursDbContext(DbContextOptions<WorkHoursDbContext> options) : base(options)
@@ -40,6 +39,8 @@ public class WorkHoursDbContext : DbContext
             eb.HasKey(x => x.Id);
             eb.Property(x => x.Name).HasMaxLength(200).IsRequired();
             eb.HasMany(x => x.WorkSessions).WithOne(x => x.Place).HasForeignKey(x => x.PlaceId);
+            eb.HasData(new List<Place>().Append(new Place()
+                { Id = 1, WorkSessions = null, Name = "Wybierz miejsce pracy" }));
         });
     }
 }

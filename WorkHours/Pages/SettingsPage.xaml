@@ -3,9 +3,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:WorkHours.Pages"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WorkHours.Pages.SettingsPage"
              x:DataType="pages:SettingsPageViewModel"
              HideSoftInputOnTapped="True">
+
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Spacing="10"
@@ -15,15 +17,11 @@
                     <Entry Text="{Binding Name}" />
                     <Button Text="Dodaj"
                             Command="{Binding AddPlaceToDbCommand}"
-                            HorizontalOptions="Center" />
+                            StyleClass="MainBtn"
+                            WidthRequest="100" />
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="{Binding SelectedPlace.Name, StringFormat='Wybrana lokalizacja do edycji = {0}'}"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center" />
                     <ListView ItemsSource="{Binding Places}"
                               SelectionMode="Single"
                               SelectedItem="{Binding SelectedPlace}"
@@ -40,11 +38,18 @@
                     </ListView>
                 </VerticalStackLayout>
 
+                <!-- <Label Text="{Binding SelectedPlace.Name, StringFormat='Wybrana lokalizacja do edycji = {0}'}" -->
+                <!--        FontSize="20" -->
+                <!--        FontAttributes="Bold" -->
+                <!--        HorizontalTextAlignment="Center" -->
+                <!--        VerticalTextAlignment="Center" /> -->
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Nazwa miejsca do edycji" />
                     <Entry Text="{Binding SelectedPlace.Name}" />
                     <Button Text="Zapisz"
-                            Command="{Binding EditPlaceCommand}" />
+                            Command="{Binding EditPlaceCommand}"
+                            StyleClass="MainBtn"
+                            WidthRequest="100" />
                 </VerticalStackLayout>
 
             </VerticalStackLayout>

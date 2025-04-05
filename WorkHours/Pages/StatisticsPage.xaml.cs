@@ -17,4 +17,5 @@ public partial class StatisticsPage : ContentPage
         BindingContext = _viewModel;
         InitializeComponent();
     }
+    
 }

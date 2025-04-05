@@ -1,7 +1,9 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Maui.Controls;
 using WorkHours.Entities;
 
 namespace WorkHours.Pages;
@@ -26,6 +28,7 @@ public partial class StatisticsPageViewModel : ObservableObject
         {
             { "WorkSession", SelectedWorkSession },
         });
+        SelectedWorkSession = null;
     }
 
     [RelayCommand]
