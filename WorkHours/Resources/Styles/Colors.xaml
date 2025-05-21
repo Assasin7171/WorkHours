@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
+    <!-- Tło aplikacji -->
+    <Color x:Key="BackgroundLight">#FFFFFF</Color>
+    <Color x:Key="BackgroundDark">#121212</Color>
+
+    <!-- Główne kolory -->
+    <Color x:Key="Primary">#3B82F6</Color>           <!-- niebieski CTA -->
+    <Color x:Key="PrimaryDark">#2563EB</Color>       <!-- ciemniejszy niebieski -->
+    <Color x:Key="Secondary">#10B981</Color>         <!-- zielony dla akcentów -->
+    <Color x:Key="SecondaryDarkText">#FFFFFF</Color> <!-- tekst na ciemnym tle -->
+
+    <!-- Tekst -->
+    <Color x:Key="TextPrimary">#374151</Color>       <!-- tekst podstawowy -->
+    <Color x:Key="TextSecondary">#9CA3AF</Color>     <!-- tekst mniej widoczny -->
+    <Color x:Key="TextDisabled">#6B7280</Color>      <!-- tekst nieaktywny -->
+
+    <!-- Linie, obramowania -->
+    <Color x:Key="BorderLight">#E5E7EB</Color>       <!-- linie i podziały -->
+
+    <!-- Komunikaty -->
+    <Color x:Key="Error">#EF4444</Color>             <!-- kolor błędu -->
+
+    <!-- SolidColorBrushes -->
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="{StaticResource BackgroundLight}" />
+    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="{StaticResource BackgroundDark}" />
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDark}" />
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />
+    <SolidColorBrush x:Key="SecondaryDarkTextBrush" Color="{StaticResource SecondaryDarkText}" />
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimary}" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="{StaticResource TextSecondary}" />
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="{StaticResource TextDisabled}" />
+    <SolidColorBrush x:Key="BorderLightBrush" Color="{StaticResource BorderLight}" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource Error}" />
+
+    <!-- Dodatkowe kolory przydatne w formularzach -->
+    <Color x:Key="EntryBackground">#F1F4F6</Color> <!-- Jasne tło dla Entry -->
+    <Color x:Key="SelectionColor">#D1FAE5</Color> <!-- Zaznaczenie / tap -->
+    <Color x:Key="IconColor">#6B7280</Color> <!-- Neutralne ikony -->
+    <Color x:Key="ButtonDisabled">#E5E7EB</Color> <!-- Przycisk nieaktywny -->
+
+    <!-- Odpowiadające pędzle -->
+    <SolidColorBrush x:Key="EntryBackgroundBrush" Color="{StaticResource EntryBackground}" />
+    <SolidColorBrush x:Key="SelectionBrush" Color="{StaticResource SelectionColor}" />
+    <SolidColorBrush x:Key="IconBrush" Color="{StaticResource IconColor}" />
+    <SolidColorBrush x:Key="ButtonDisabledBrush" Color="{StaticResource ButtonDisabled}" />
+</ResourceDictionary>
