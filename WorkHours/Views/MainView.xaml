@@ -2,21 +2,25 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             xmlns:models="clr-namespace:WorkHours.Db.Tables;assembly=WorkHours.Db"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WorkHours.Views.MainView"
              HideSoftInputOnTapped="True"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">
     <ContentPage.Content>
         <VerticalStackLayout Margin="20,0"
-                             Padding="5">
+                             Padding="5"
+                             x:DataType="vm:MainViewModel">
             <Label Text="WorkHours"
                    TextColor="{StaticResource TextPrimary}"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"
                    FontSize="30" />
-            <Label Text="Poniedziałek, Maj 21, 2025"
+            <Label Text="{Binding Date, StringFormat='{0:dddd, dd MMM yyyy}'}"
                    TextColor="{StaticResource TextSecondary}"
                    FontSize="20"
-                   HorizontalTextAlignment="Center"/>
+                   HorizontalTextAlignment="Center" />
             <VerticalStackLayout Spacing="12" Margin="0,20,0,0">
                 <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
                        HasShadow="False">
@@ -37,6 +41,9 @@
                                     TextColor="{StaticResource TextPrimary}"
                                     VerticalOptions="Center"
                                     HorizontalOptions="Center"
+                                    Date="{Binding Date}"
+                                    MinimumDate="{Binding MinDate}"
+                                    MaximumDate="{Binding MaxDate}"
                                     FontSize="16"
                                     HeightRequest="30"
                                     WidthRequest="100" />
@@ -56,11 +63,13 @@
                                    FontSize="16" />
                         </HorizontalStackLayout>
 
-                        <Entry Text=""
+                        <Entry Text="{Binding WorkHours}"
                                BackgroundColor="{StaticResource BorderLight}"
                                TextColor="{StaticResource TextPrimary}"
                                VerticalOptions="Center"
                                HorizontalOptions="FillAndExpand"
+                               Keyboard="Numeric"
+                               MaxLength="2"
                                HeightRequest="30"
                                FontSize="16"
                                WidthRequest="100" />
@@ -86,13 +95,21 @@
                                 HorizontalOptions="FillAndExpand"
                                 HeightRequest="30"
                                 FontSize="16"
-                                WidthRequest="100" />
+                                ItemsSource="{Binding Places}"
+                                WidthRequest="100"
+                                Title="Wybierz"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedPlace}">
+
+                        </Picker>
                     </FlexLayout>
                 </Frame>
 
                 <Button Text="Zapisz sesję"
                         BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
-                        TextColor="{StaticResource TextPrimary}"
+                        TextColor="White"
+                        Command="{Binding AddSessionToDatabaseCommand}"
+                        FontSize="16"
                         FontAttributes="Bold"
                         CornerRadius="8"
                         HeightRequest="50" />
@@ -101,26 +118,53 @@
                      BackgroundColor="{StaticResource BorderLight}"
                      Margin="0,30" />
             <VerticalStackLayout Spacing="10">
-                <Label Text="5 ostatnich sesji"
-                       TextColor="{StaticResource TextPrimary}"
-                       FontSize="20" />
-                <VerticalStackLayout>
-                    <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                           HasShadow="False"
-                           HeightRequest="50">
-                        <FlexLayout Direction="Row"
-                                    JustifyContent="SpaceBetween"
-                                    AlignItems="Center">
-                            <Label Text="Dom"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="18" />
+                <toolkit:Expander>
+                    <toolkit:Expander.Header>
+                        <Frame BackgroundColor="{StaticResource EntryBackground}" 
+                               CornerRadius="8" 
+                               HasShadow="False"
+                               Margin="0,0,0,10">
+                            <FlexLayout Direction="Row"
+                                        JustifyContent="SpaceBetween"
+                                        AlignItems="Center">
+                                <Label Text="Ostatnie sesje"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       FontSize="20"
+                                       Padding="5"
+                                       FontAttributes="Bold" />
+                                <Image Source="arrow_down.png"
+                                       WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+                            </FlexLayout>
+                        </Frame>
 
-                            <Label Text="10H"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="18" />
-                        </FlexLayout>
-                    </Frame>
-                </VerticalStackLayout>
+                    </toolkit:Expander.Header>
+                    <CollectionView ItemsSource="{Binding Worksessions}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:Worksession">
+                                <Frame BackgroundColor="{StaticResource EntryBackground}"
+                                       CornerRadius="8"
+                                       Padding="10,8"
+                                       HasShadow="False"
+                                       Margin="0,5"
+                                       HeightRequest="50">
+                                    <FlexLayout Direction="Row"
+                                                JustifyContent="SpaceBetween"
+                                                AlignItems="Center">
+                                        <Label Text="{Binding Place.Name}"
+                                               TextColor="{StaticResource TextPrimary}"
+                                               FontSize="18" />
+                                        <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
+                                               TextColor="{StaticResource TextPrimary}"
+                                               FontSize="18" />
+                                    </FlexLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </toolkit:Expander>
             </VerticalStackLayout>
         </VerticalStackLayout>
     </ContentPage.Content>

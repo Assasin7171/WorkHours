@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkHours", "WorkHours\WorkHours.csproj", "{8386537C-706B-489F-8699-3D2511CA3058}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkHours.Db", "WorkHours.Db\WorkHours.Db.csproj", "{83658D96-94AA-4812-81E5-D88FD5C5766B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{8386537C-706B-489F-8699-3D2511CA3058}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8386537C-706B-489F-8699-3D2511CA3058}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8386537C-706B-489F-8699-3D2511CA3058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83658D96-94AA-4812-81E5-D88FD5C5766B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83658D96-94AA-4812-81E5-D88FD5C5766B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83658D96-94AA-4812-81E5-D88FD5C5766B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83658D96-94AA-4812-81E5-D88FD5C5766B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
