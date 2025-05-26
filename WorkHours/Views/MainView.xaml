@@ -9,7 +9,7 @@
              HideSoftInputOnTapped="True"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">
     <ContentPage.Content>
-        <VerticalStackLayout Margin="20,0"
+        <VerticalStackLayout Margin="20,10"
                              Padding="5"
                              x:DataType="vm:MainViewModel">
             <Label Text="WorkHours"
@@ -118,7 +118,7 @@
                      BackgroundColor="{StaticResource BorderLight}"
                      Margin="0,30" />
             <VerticalStackLayout Spacing="10">
-                <toolkit:Expander>
+                <toolkit:Expander Command="{Binding ChangeArrowImageCommand}">
                     <toolkit:Expander.Header>
                         <Frame BackgroundColor="{StaticResource EntryBackground}" 
                                CornerRadius="8" 
@@ -132,38 +132,41 @@
                                        FontSize="20"
                                        Padding="5"
                                        FontAttributes="Bold" />
-                                <Image Source="arrow_down.png"
+                                <Image Source="{Binding ArrowImage}"
                                        WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
                             </FlexLayout>
                         </Frame>
-
                     </toolkit:Expander.Header>
-                    <CollectionView ItemsSource="{Binding Worksessions}">
-                        <CollectionView.ItemsLayout>
-                            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="models:Worksession">
-                                <Frame BackgroundColor="{StaticResource EntryBackground}"
-                                       CornerRadius="8"
-                                       Padding="10,8"
-                                       HasShadow="False"
-                                       Margin="0,5"
-                                       HeightRequest="50">
-                                    <FlexLayout Direction="Row"
-                                                JustifyContent="SpaceBetween"
-                                                AlignItems="Center">
-                                        <Label Text="{Binding Place.Name}"
-                                               TextColor="{StaticResource TextPrimary}"
-                                               FontSize="18" />
-                                        <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
-                                               TextColor="{StaticResource TextPrimary}"
-                                               FontSize="18" />
-                                    </FlexLayout>
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                    <toolkit:Expander.Content>
+                        <ScrollView MaximumHeightRequest="300">
+                            <CollectionView ItemsSource="{Binding Worksessions}">
+                                <CollectionView.ItemsLayout>
+                                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:Worksession">
+                                        <Frame BackgroundColor="{StaticResource EntryBackground}"
+                                               CornerRadius="8"
+                                               Padding="10,8"
+                                               HasShadow="False"
+                                               Margin="0,5"
+                                               HeightRequest="50">
+                                            <FlexLayout Direction="Row"
+                                                        JustifyContent="SpaceBetween"
+                                                        AlignItems="Center">
+                                                <Label Text="{Binding Place.Name}"
+                                                       TextColor="{StaticResource TextPrimary}"
+                                                       FontSize="18" />
+                                                <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
+                                                       TextColor="{StaticResource TextPrimary}"
+                                                       FontSize="18" />
+                                            </FlexLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </toolkit:Expander.Content>
                 </toolkit:Expander>
             </VerticalStackLayout>
         </VerticalStackLayout>
