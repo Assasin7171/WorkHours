@@ -1,9 +1,10 @@
-namespace WorkHours.Db.Tables;
+namespace WorkHours.Db.Entities;
 
 public class Worksession
 {
     public Guid Id { get; set; }
     public int HoursWorked { get; set; }
     public Place Place { get; set; }
-    public DateTime CreatedTime { get; set; } = DateTime.Now;
+    public Guid PlaceId { get; set; }
+    public DateTime CreatedTime { get; set; }
 }

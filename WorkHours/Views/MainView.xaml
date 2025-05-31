@@ -3,8 +3,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             xmlns:models="clr-namespace:WorkHours.Db.Tables;assembly=WorkHours.Db"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:WorkHours.Db.Entities;assembly=WorkHours.Db"
              x:Class="WorkHours.Views.MainView"
              HideSoftInputOnTapped="True"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">
@@ -57,7 +57,10 @@
                         <HorizontalStackLayout Spacing="10"
                                                VerticalOptions="Center"
                                                HorizontalOptions="Center">
-                            <Image Source="clock.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                            <Image Source="clock.png"
+                                   WidthRequest="20"
+                                   HeightRequest="20"
+                                   VerticalOptions="Center" />
                             <Label Text="Ilość godzin"
                                    TextColor="{StaticResource TextPrimary}"
                                    FontSize="16" />
@@ -117,11 +120,11 @@
             <BoxView HeightRequest="1"
                      BackgroundColor="{StaticResource BorderLight}"
                      Margin="0,30" />
-            <VerticalStackLayout Spacing="10">
+            <VerticalStackLayout>
                 <toolkit:Expander Command="{Binding ChangeArrowImageCommand}">
                     <toolkit:Expander.Header>
-                        <Frame BackgroundColor="{StaticResource EntryBackground}" 
-                               CornerRadius="8" 
+                        <Frame BackgroundColor="{StaticResource EntryBackground}"
+                               CornerRadius="8"
                                HasShadow="False"
                                Margin="0,0,0,10">
                             <FlexLayout Direction="Row"
@@ -133,7 +136,7 @@
                                        Padding="5"
                                        FontAttributes="Bold" />
                                 <Image Source="{Binding ArrowImage}"
-                                       WidthRequest="20" HeightRequest="20" VerticalOptions="Center"/>
+                                       WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
                             </FlexLayout>
                         </Frame>
                     </toolkit:Expander.Header>

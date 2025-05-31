@@ -1,4 +1,4 @@
-namespace WorkHours.Db.Tables;
+namespace WorkHours.Db.Entities;
 
 public class Place
 {

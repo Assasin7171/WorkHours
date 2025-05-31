@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using WorkHours.Db;
-using WorkHours.Db.Tables;
+using WorkHours.Db.Entities;
 
 namespace WorkHours.ViewModels;
 

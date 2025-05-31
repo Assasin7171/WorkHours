@@ -24,16 +24,11 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-
-        builder.Services.AddScoped<MainViewModel>();
-        builder.Services.AddScoped<MainView>(s => new MainView()
-        {
-            BindingContext = s.GetRequiredService<MainViewModel>(),
-        });
-        builder.Services.AddDbContext<WorkHoursContext>(options =>
+        
+        builder.Services.AddDbContext<WorkHoursContext>(op =>
         {
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "workhours.db");
-            options.UseSqlite($"Filename={dbPath}");
+            op.UseSqlite($"Filename={dbPath}");
         });
         
         using (var scope = builder.Services.BuildServiceProvider().CreateScope())
