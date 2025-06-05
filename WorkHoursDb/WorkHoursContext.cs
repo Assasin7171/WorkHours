@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using WorkHoursDb.Entities;
 
-namespace WorkHours.Entities;
+namespace WorkHoursDb;
 
 public class WorkHoursContext : DbContext
 {
@@ -18,6 +19,11 @@ public class WorkHoursContext : DbContext
         {
             eb.HasOne(x => x.Place).WithMany();
             eb.Property(x => x.CreatedTime).IsRequired();
+        });
+
+        modelBuilder.Entity<Place>(eb =>
+        {
+            eb.Property(x => x.Description).IsRequired().HasMaxLength(50);
         });
     }
 }

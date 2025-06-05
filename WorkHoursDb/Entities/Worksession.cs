@@ -1,4 +1,4 @@
-namespace WorkHours.Entities;
+namespace WorkHoursDb.Entities;
 
 public class Worksession
 {

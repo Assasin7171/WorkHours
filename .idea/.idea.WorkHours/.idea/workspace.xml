@@ -4,25 +4,38 @@
     <projectFile kind="XamarinAndroid">WorkHours/WorkHours.csproj</projectFile>
     <projectFile kind="XamarinIOS">WorkHours/WorkHours.csproj</projectFile>
     <projectFile kind="XamarinMacOS">WorkHours/WorkHours.csproj</projectFile>
-    <projectFile>WorkHoursDb/WorkHoursDb.csproj</projectFile>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe8b06b-746e-464c-8797-d840e909ce77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WorkHours/Entities/Place.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Entities/WorkHoursContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Entities/Worksession.cs" afterDir="false" />
+    <list default="true" id="f23e66a7-dd98-4c9e-aeb2-4854fec97717" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Images/edit_location.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DbInitializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Services/IDataStoreService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Services/IDbInitializer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContextFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours.Db/Entities/Place.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours.Db/Entities/Worksession.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours.Db/WorkHoursContext.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/AppShell.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/AppShell.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/Place.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/WorkHoursContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/Worksession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +58,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/WorkHours/MauiProgram.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///Users/konradbojanecki/Desktop/Projects/C#/MAUI/WorkHours/WorkHours/Views/MainView.xaml" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fbe98590646aebff9544d108a38af157364681ca7472f44fcd224435a11f59b/Runtime.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36266f7d5f39672aea6bce7f15cdb44b2bc2a1479c14452cd9657a340d6a80/Delegate.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -55,37 +72,38 @@
     </ignored-facets>
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2xOWPGIr2vNkwi7PwUvyYo85QOS" />
+  <component name="ProjectId" id="2xwzDWmEydkuEdeZBlEdu5mk44j" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Android.WorkHours.executor&quot;: &quot;Debug&quot;,
-    &quot;Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSConnectedDeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours&quot;: &quot;Konrad’s iPhone&quot;,
-    &quot;Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSSimulatorKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours&quot;: &quot;iPad (A16)&quot;,
-    &quot;DeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider&quot;: &quot;Simulator&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;iOS.WorkHours.executor&quot;: &quot;Debug&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSConnectedDeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "Konrad’s iPhone",
+    "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSSimulatorKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "iPhone 16 Pro",
+    "DeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider": "Simulator",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "iOS.WorkHours.executor": "Debug",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="iOS.WorkHours">
     <configuration name="WorkHours" type="XamarinAndroidProject" factoryName="Xamarin.Android">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/WorkHours/WorkHours.csproj" />
@@ -101,7 +119,7 @@
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="IS_PASS_PARENT_ENVS" value="false" />
       <option name="EXTRA_MLAUNCH_PARAMETERS" value="" />
-      <option name="PLATFORM_TYPE" value="MACCATALYST" />
+      <option name="PLATFORM_TYPE" value="IOS" />
       <method v="2" />
     </configuration>
     <configuration name="WorkHours" type="XamarinMacProject" factoryName="Xamarin.Mac">
@@ -113,80 +131,18 @@
         <option name="Build" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Android.WorkHours" />
-      <item itemvalue="iOS.WorkHours" />
-      <item itemvalue="macOS.WorkHours" />
-    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="1fe8b06b-746e-464c-8797-d840e909ce77" name="Changes" comment="" />
-      <created>1747809575042</created>
+      <changelist id="f23e66a7-dd98-4c9e-aeb2-4854fec97717" name="Changes" comment="" />
+      <created>1748863804583</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747809575042</updated>
-      <workItem from="1747809576675" duration="9485000" />
-      <workItem from="1748009630274" duration="14563000" />
-      <workItem from="1748156899924" duration="17364000" />
-      <workItem from="1748603694201" duration="543000" />
-      <workItem from="1748681889458" duration="1084000" />
-      <workItem from="1748775865643" duration="2150000" />
-      <workItem from="1748778116381" duration="37000" />
-      <workItem from="1748778339277" duration="433000" />
-      <workItem from="1748780571885" duration="337000" />
-      <workItem from="1748781100762" duration="434000" />
-      <workItem from="1748781674166" duration="192000" />
+      <updated>1748863804583</updated>
+      <workItem from="1748863807064" duration="11516000" />
+      <workItem from="1749026570732" duration="9194000" />
+      <workItem from="1749053496794" duration="3792000" />
     </task>
-    <task id="LOCAL-00001" summary="Added MainView.xaml">
-      <option name="closed" value="true" />
-      <created>1747834760163</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747834760163</updated>
-    </task>
-    <task id="LOCAL-00002" summary=".">
-      <option name="closed" value="true" />
-      <created>1747834836011</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1747834836011</updated>
-    </task>
-    <task id="LOCAL-00003" summary=".">
-      <option name="closed" value="true" />
-      <created>1747835007995</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1747835007995</updated>
-    </task>
-    <task id="LOCAL-00004" summary=".">
-      <option name="closed" value="true" />
-      <created>1748164918727</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1748164918727</updated>
-    </task>
-    <task id="LOCAL-00005" summary=".">
-      <option name="closed" value="true" />
-      <created>1748257427756</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1748257427756</updated>
-    </task>
-    <task id="LOCAL-00006" summary=".">
-      <option name="closed" value="true" />
-      <created>1748706029326</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1748706029326</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -196,9 +152,6 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Added MainView.xaml" />
-    <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

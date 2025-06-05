@@ -1,9 +1,17 @@
-﻿using CommunityToolkit.Maui;
+﻿using System;
+using System.IO;
+using CommunityToolkit.Maui;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using WorkHours.Entities;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
+using Microsoft.Maui.Storage;
+using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
+using WorkHoursDb;
+using WorkHoursDb.Entities;
 
 namespace WorkHours;
 
@@ -31,52 +39,29 @@ public static class MauiProgram
             op.UseSqlite($"Filename={dbPath}");
         });
         
+        //services
+        builder.Services.AddSingleton<DataStoreService>();
+        builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+        
+        //Inicjalizacja bazy danych
         using (var scope = builder.Services.BuildServiceProvider().CreateScope())
         {
-            var db = scope.ServiceProvider.GetRequiredService<WorkHoursContext>();
-            if (db.Database.CanConnect())
-            {
-                var places = db.Places.ToList();
-                var worksessions = db.Worksessions.ToList();
-            
-                if (places.Count <= 0)
-                {
-                    db.Places.AddRange(
-                        new Place()
-                        {
-                            Id = Guid.NewGuid(), Name = "Home"
-                        },
-                        new Place()
-                        {
-                            Id = Guid.NewGuid(), Name = "Office"
-                        });
-                }
-
-                if (worksessions.Count <= 0)
-                {
-                    db.Worksessions.AddRange(
-                        new Worksession()
-                        {
-                            Id = Guid.NewGuid(),
-                            CreatedTime = new DateTime(2025,4,10),
-                            HoursWorked = 4,
-                            Place = places.First(),
-                        },
-                        new Worksession()
-                        {
-                            Id = Guid.NewGuid(),
-                            CreatedTime = new DateTime(2025,3,16),
-                            HoursWorked = 10,
-                            Place = places.Last(),
-                        });
-                }
-            
-                db.SaveChanges();
-                db.Database.Migrate();
-            }
-            
+            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
+            dbInitializer.Initialize();
         }
+
         
+        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddTransient<MainView>(b => new MainView()
+        {
+            BindingContext = b.GetService<MainViewModel>(),
+        });
+        builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddTransient<SettingsView>(b => new SettingsView()
+        {
+            BindingContext = b.GetService<SettingsViewModel>(),
+        });
+
         return builder.Build();
     }
 }

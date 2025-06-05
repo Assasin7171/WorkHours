@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:models="clr-namespace:WorkHours.Entities"
+             xmlns:models="clr-namespace:WorkHoursDb.Entities;assembly=WorkHoursDb"
              x:Class="WorkHours.Views.MainView"
              HideSoftInputOnTapped="True"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">

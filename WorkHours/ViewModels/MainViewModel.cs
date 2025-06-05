@@ -1,19 +1,20 @@
+using System;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.EntityFrameworkCore;
-using WorkHours.Entities;
+using WorkHours.Services;
+using WorkHoursDb;
+using WorkHoursDb.Entities;
 
 namespace WorkHours.ViewModels;
 
 public partial class MainViewModel : ObservableObject
 {
-    public WorkHoursContext DbContext { get; }
-
+    private readonly DataStoreService _dataStoreService;
     [ObservableProperty] private DateTime _date = DateTime.Now;
     [ObservableProperty] private DateTime _minDate = DateTime.Now - TimeSpan.FromDays(7);
     [ObservableProperty] private DateTime _maxDate = DateTime.Now;
-    [ObservableProperty] private int _workHours;
+    [ObservableProperty] private string _workHours;
     [ObservableProperty] private Place _selectedPlace;
     [ObservableProperty] private string _arrowImage = "arrow_down.png";
 
@@ -21,15 +22,35 @@ public partial class MainViewModel : ObservableObject
     public ObservableCollection<Place> Places { get; set; } = new ObservableCollection<Place>();
     public ObservableCollection<Worksession> Worksessions { get; set; } = new ObservableCollection<Worksession>();
 
-    public MainViewModel(WorkHoursContext dbContext)
+    public MainViewModel(DataStoreService dataStoreService)
     {
-        DbContext = dbContext;
-        LoadSessionsFromDatabase();
+        _dataStoreService = dataStoreService;
+        LoadData();
+        _dataStoreService.PlacesChanged += (sender, args) =>
+        {
+            LoadData();
+        };
+        _dataStoreService.WorksessionsChanged += (sender, args) =>
+        {
+            LoadData();
+        };
     }
 
-    private void LoadSessionsFromDatabase()
+    private void LoadData()
     {
-        var sessions = DbContext.Worksessions
+        var places = _dataStoreService.Places;
+        if (places.Count > 0)
+        {
+            Places.Clear();
+
+            foreach (Place place in places)
+            {
+                Places.Add(place);
+            }
+        }
+
+
+        var sessions = _dataStoreService.Worksessions
             .OrderByDescending(s => s.CreatedTime)
             .Take(5)
             .ToList();
@@ -48,17 +69,23 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private void AddSessionToDatabase()
     {
-        Worksession worksession = new Worksession()
+        if (int.TryParse(WorkHours, out int hoursCount))
         {
-            HoursWorked = WorkHours,
-            Place = SelectedPlace,
-            Id = Guid.NewGuid(),
-        };
+            Worksession worksession = new Worksession()
+            {
+                HoursWorked = hoursCount,
+                Place = SelectedPlace,
+                CreatedTime = DateTime.Now,
+                Id = Guid.NewGuid(),
+            };
+            
+            _dataStoreService.AddWorksession(worksession);
 
-        DbContext.Worksessions.Add(worksession);
-        DbContext.SaveChanges();
-        
-        Worksessions.Add(worksession);
+            //resetuje pola
+            WorkHours = string.Empty;
+            SelectedPlace = null;
+            Date = DateTime.Now;
+        }
     }
 
     [RelayCommand]

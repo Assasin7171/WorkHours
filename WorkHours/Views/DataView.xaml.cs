@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WorkHours.ViewModels;
 
 namespace WorkHours.Views;
 
-public partial class MainView : ContentPage
+public partial class DataView : ContentPage
 {
-    public MainView()
+    public DataView()
     {
         InitializeComponent();
     }
