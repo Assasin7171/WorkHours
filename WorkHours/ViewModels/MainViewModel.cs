@@ -3,8 +3,8 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WorkHours.Services;
-using WorkHoursDb;
-using WorkHoursDb.Entities;
+using Place = WorkHours.Database.Entities.Place;
+using Worksession = WorkHours.Database.Entities.Worksession;
 
 namespace WorkHours.ViewModels;
 
@@ -25,62 +25,50 @@ public partial class MainViewModel : ObservableObject
     public MainViewModel(DataStoreService dataStoreService)
     {
         _dataStoreService = dataStoreService;
-        LoadData();
-        _dataStoreService.PlacesChanged += (sender, args) =>
-        {
-            LoadData();
-        };
-        _dataStoreService.WorksessionsChanged += (sender, args) =>
-        {
-            LoadData();
-        };
+        // _dataStoreService.PlacesChanged += (sender, args) =>
+        // {
+        //     LoadData();
+        // };
+        // _dataStoreService.WorksessionsChanged += (sender, args) =>
+        // {
+        //     LoadData();
+        // };
     }
+    
 
-    private void LoadData()
+    [RelayCommand]
+    private async Task LoadDataFromDatabase()
     {
-        var places = _dataStoreService.Places;
-        if (places.Count > 0)
+        await _dataStoreService.GetDataAsync();
+        
+        Places.Clear();
+        foreach (var place in _dataStoreService.Places)
         {
-            Places.Clear();
-
-            foreach (Place place in places)
-            {
-                Places.Add(place);
-            }
+            Places.Add(place);
         }
-
-
-        var sessions = _dataStoreService.Worksessions
-            .OrderByDescending(s => s.CreatedTime)
-            .Take(5)
-            .ToList();
-
-        if (sessions.Count > 0)
+        
+        Worksessions.Clear();
+        foreach (var worksession in _dataStoreService.Worksessions)
         {
-            Worksessions.Clear();
-
-            foreach (var session in sessions)
-            {
-                Worksessions.Add(session);
-            }
+            worksession.Place = Places.First(x=>x.Id == worksession.PlaceId);
+            Worksessions.Add(worksession);
         }
     }
 
     [RelayCommand]
-    private void AddSessionToDatabase()
+    private async Task AddSessionToDatabase()
     {
         if (int.TryParse(WorkHours, out int hoursCount))
         {
             Worksession worksession = new Worksession()
             {
                 HoursWorked = hoursCount,
-                Place = SelectedPlace,
+                PlaceId = SelectedPlace.Id,
                 CreatedTime = DateTime.Now,
-                Id = Guid.NewGuid(),
             };
             
-            _dataStoreService.AddWorksession(worksession);
-
+            await _dataStoreService.AddWorksession(worksession);
+            await LoadDataFromDatabase();
             //resetuje pola
             WorkHours = string.Empty;
             SelectedPlace = null;

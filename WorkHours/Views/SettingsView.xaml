@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
-             xmlns:entities="clr-namespace:WorkHoursDb.Entities;assembly=WorkHoursDb"
+             xmlns:entities="clr-namespace:WorkHours.Database.Entities"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              HideSoftInputOnTapped="True"
              x:Class="WorkHours.Views.SettingsView">
@@ -15,68 +15,68 @@
                     x:DataType="vm:SettingsViewModel">
             <VerticalStackLayout Spacing="15">
                 <Label Text="Dodaj nową lokalizację"
-                   TextColor="{StaticResource TextPrimary}"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   FontSize="24" />
-            <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                   HasShadow="False">
-                <FlexLayout Direction="Row"
-                            JustifyContent="SpaceBetween">
-                    <HorizontalStackLayout Spacing="10"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center">
-                        <Image Source="edit_location.png"
-                               WidthRequest="20" HeightRequest="20"
-                               VerticalOptions="Center" />
-                        <Label Text="Nazwa"
+                       TextColor="{StaticResource TextPrimary}"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       FontSize="24" />
+                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                       HasShadow="False">
+                    <FlexLayout Direction="Row"
+                                JustifyContent="SpaceBetween">
+                        <HorizontalStackLayout Spacing="10"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center">
+                            <Image Source="edit_location.png"
+                                   WidthRequest="20" HeightRequest="20"
+                                   VerticalOptions="Center" />
+                            <Label Text="Nazwa"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   FontSize="16" />
+                        </HorizontalStackLayout>
+                        <Entry Text="{Binding NewLocation}"
+                               BackgroundColor="{StaticResource BorderLight}"
                                TextColor="{StaticResource TextPrimary}"
-                               FontSize="16" />
-                    </HorizontalStackLayout>
-                    <Entry Text="{Binding NewLocation}"
-                           BackgroundColor="{StaticResource BorderLight}"
-                           TextColor="{StaticResource TextPrimary}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="FillAndExpand"
-                           HeightRequest="30"
-                           FontSize="16"
-                           WidthRequest="100" />
-                </FlexLayout>
-            </Frame>
-            <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                   HasShadow="False">
-                <FlexLayout Direction="Row"
-                            JustifyContent="SpaceBetween">
-                    <HorizontalStackLayout Spacing="10"
-                                           VerticalOptions="Center"
-                                           HorizontalOptions="Center">
-                        <Image Source="edit_location.png"
-                               WidthRequest="20" HeightRequest="20"
-                               VerticalOptions="Center" />
-                        <Label Text="Opis"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               HeightRequest="30"
+                               FontSize="16"
+                               WidthRequest="100" />
+                    </FlexLayout>
+                </Frame>
+                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                       HasShadow="False">
+                    <FlexLayout Direction="Row"
+                                JustifyContent="SpaceBetween">
+                        <HorizontalStackLayout Spacing="10"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center">
+                            <Image Source="edit_location.png"
+                                   WidthRequest="20" HeightRequest="20"
+                                   VerticalOptions="Center" />
+                            <Label Text="Opis"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   FontSize="16" />
+                        </HorizontalStackLayout>
+                        <Entry Text="{Binding NewLocationDescription}"
+                               BackgroundColor="{StaticResource BorderLight}"
                                TextColor="{StaticResource TextPrimary}"
-                               FontSize="16" />
-                    </HorizontalStackLayout>
-                    <Entry Text="{Binding NewLocationDescription}"
-                           BackgroundColor="{StaticResource BorderLight}"
-                           TextColor="{StaticResource TextPrimary}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="FillAndExpand"
-                           HeightRequest="30"
-                           FontSize="16"
-                           WidthRequest="100" />
-                </FlexLayout>
-            </Frame>
-            <Button Text="Dodaj miejsce"
-                    BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
-                    TextColor="White"
-                    Command="{Binding AddNewPlaceToDbCommand}"
-                    FontSize="16"
-                    FontAttributes="Bold"
-                    CornerRadius="8"
-                    HeightRequest="50" />
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               HeightRequest="30"
+                               FontSize="16"
+                               WidthRequest="100" />
+                    </FlexLayout>
+                </Frame>
+                <Button Text="Dodaj miejsce"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
+                        TextColor="White"
+                        Command="{Binding AddNewPlaceToDbCommand}"
+                        FontSize="16"
+                        FontAttributes="Bold"
+                        CornerRadius="8"
+                        HeightRequest="50" />
             </VerticalStackLayout>
-            
+
             <VerticalStackLayout>
                 <toolkit:Expander Command="{Binding ChangeArrowImageCommand}">
                     <toolkit:Expander.Header>
@@ -101,7 +101,7 @@
                         <ScrollView MaximumHeightRequest="300">
                             <CollectionView ItemsSource="{Binding Places}">
                                 <CollectionView.ItemsLayout>
-                                    <LinearItemsLayout Orientation="Vertical" 
+                                    <LinearItemsLayout Orientation="Vertical"
                                                        ItemSpacing="10" />
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
@@ -115,10 +115,10 @@
                                             <FlexLayout Direction="Row"
                                                         JustifyContent="SpaceBetween"
                                                         AlignItems="Center">
-                                                <Label Text="{Binding Name, StringFormat='Nazwa: {0}'}"
+                                                <Label Text="{Binding Name, StringFormat='{0}'}"
                                                        TextColor="{StaticResource TextPrimary}"
                                                        FontSize="18" />
-                                                <Label Text="{Binding Description, StringFormat='Opis: {0}'}"
+                                                <Label Text="{Binding Description, StringFormat='{0}'}"
                                                        TextColor="{StaticResource TextPrimary}"
                                                        FontSize="18" />
                                             </FlexLayout>

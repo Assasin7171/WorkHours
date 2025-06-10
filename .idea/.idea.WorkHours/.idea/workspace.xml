@@ -10,32 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f23e66a7-dd98-4c9e-aeb2-4854fec97717" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Images/edit_location.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DbInitializer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Services/IDataStoreService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Services/IDbInitializer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContextFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DatabaseContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/AppShell.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/AppShell.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/Place.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/WorkHoursContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Entities/Worksession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Services/DbInitializer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Services/IDataStoreService.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Services/IDbInitializer.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Database/Entities/Place.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Database/Entities/Worksession.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContextFactory.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,10 +55,14 @@
     <setting file="file://$PROJECT_DIR$/WorkHours/MauiProgram.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61fe11e9d86b4d2a9bd2b806929b7d381a400/e9/67f4a40e/SQLiteAsyncConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/20f4825c4341fc5ca8bed5d846e4a6668c9b10eba31675d5d548fa8519db8/TaskContinuation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36266f7d5f39672aea6bce7f15cdb44b2bc2a1479c14452cd9657a340d6a80/Delegate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5967259aff81a295fc2280e640ed76b14d29f2687882c55d5297aabd281af70/Task.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/68b06b8592b1287fd78f3ee68566d6a38d6e2f45b9a9e6ebd4d0e9972f7c29/Object.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/752bbcc9cc4f8bd1a0d29d96d43040cdeaeb40f1ef3e19fde544683879d537ef/AsyncRelayCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e358d67bcd5815a5083706ec88db8489a9872915d46156ba24277cd21bd662/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///var/folders/n1/py114l355fsf6g111fp1xcfh0000gn/T/SourceGeneratedDocuments/2E104BBD5BCFC410581EE73B/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.RelayCommandGenerator/WorkHours.ViewModels.MainViewModel.LoadDataFromDatabase.g.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -90,7 +88,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "iOS.WorkHours.executor": "Debug",
+    "iOS.WorkHours.executor": "Run",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -141,8 +139,17 @@
       <updated>1748863804583</updated>
       <workItem from="1748863807064" duration="11516000" />
       <workItem from="1749026570732" duration="9194000" />
-      <workItem from="1749053496794" duration="3792000" />
+      <workItem from="1749053496794" duration="25490000" />
     </task>
+    <task id="LOCAL-00001" summary=".">
+      <option name="closed" value="true" />
+      <created>1749153056126</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749153056126</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +159,8 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

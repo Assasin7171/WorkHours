@@ -1,17 +1,12 @@
-﻿using System;
-using System.IO;
-using CommunityToolkit.Maui;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using CommunityToolkit.Maui;
+using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
-using Microsoft.Maui.Storage;
+using SkiaSharp.Views.Maui.Controls.Hosting;
+using SQLite;
+using WorkHours.Database.Entities;
 using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
-using WorkHoursDb;
-using WorkHoursDb.Entities;
 
 namespace WorkHours;
 
@@ -23,6 +18,8 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
+            .UseSkiaSharp()
+            .UseMicrocharts()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -32,31 +29,22 @@ public static class MauiProgram
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
-        
-        builder.Services.AddDbContext<WorkHoursContext>(op =>
-        {
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "workhours.db");
-            op.UseSqlite($"Filename={dbPath}");
-        });
+        // klasa do inicjalizowania bazy danych
+        builder.Services.AddSingleton<DatabaseContext>();
+        builder.Services.AddSingleton<DataStoreService>();
         
         //services
-        builder.Services.AddSingleton<DataStoreService>();
-        builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-        
-        //Inicjalizacja bazy danych
-        using (var scope = builder.Services.BuildServiceProvider().CreateScope())
-        {
-            var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbInitializer>();
-            dbInitializer.Initialize();
-        }
-
-        
-        builder.Services.AddTransient<MainViewModel>();
+        builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddTransient<MainView>(b => new MainView()
         {
             BindingContext = b.GetService<MainViewModel>(),
         });
-        builder.Services.AddTransient<SettingsViewModel>();
+        builder.Services.AddSingleton<DataViewModel>();
+        builder.Services.AddTransient<DataView>(b=>new DataView()
+        {
+            BindingContext = b.GetRequiredService<DataViewModel>(),
+        });
+        builder.Services.AddSingleton<SettingsViewModel>();
         builder.Services.AddTransient<SettingsView>(b => new SettingsView()
         {
             BindingContext = b.GetService<SettingsViewModel>(),

@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WorkHours.Services;
-using WorkHoursDb.Entities;
+using Place = WorkHours.Database.Entities.Place;
 
 namespace WorkHours.ViewModels;
 
@@ -10,11 +10,11 @@ public partial class SettingsViewModel : ObservableObject
 {
     private readonly DataStoreService _dataStoreService;
     private bool _changeImage = true;
-    
+
     [ObservableProperty] private string _newLocation = string.Empty;
     [ObservableProperty] private string _newLocationDescription = string.Empty;
     [ObservableProperty] private string _arrowImage = "arrow_down.png";
-    
+
     public ObservableCollection<Place> Places { get; set; } = new ObservableCollection<Place>();
 
     public SettingsViewModel(DataStoreService dataStoreService)
@@ -27,7 +27,7 @@ public partial class SettingsViewModel : ObservableObject
     private void InitializeData()
     {
         Places.Clear();
-        var data = _dataStoreService.Places;
+        var data = _dataStoreService.Places.OrderByDescending(x => x.Id).ToList();
         foreach (var item in data)
         {
             Places.Add(item);
@@ -35,26 +35,22 @@ public partial class SettingsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void AddNewPlaceToDb()
+    private async Task AddNewPlaceToDb()
     {
         var newPlace = new Place()
         {
-            Id = Guid.NewGuid(),
             Name = NewLocation,
             Description = NewLocationDescription
         };
 
-        _dataStoreService.PlacesChanged += (sender, args) =>
-        {
-            Application.Current?.MainPage?.DisplayAlert("Informacja", "Dodano nową lokalizację do bazy", "OK");
-            NewLocation = string.Empty;
-            NewLocationDescription = string.Empty;
-            
-            InitializeData();
-        };
-        _dataStoreService.AddPlace(newPlace);
+        await _dataStoreService.AddPlace(newPlace);
+        InitializeData();
+        //czyszczenie pól po dodaniu i informacja zwrotna do użytkownika.
+        NewLocation = string.Empty;
+        NewLocationDescription = string.Empty;
+        await Shell.Current.DisplayAlert("Information", "New place added", "OK");
     }
-    
+
     [RelayCommand]
     private void ChangeArrowImage()
     {
