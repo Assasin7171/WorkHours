@@ -10,26 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f23e66a7-dd98-4c9e-aeb2-4854fec97717" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WorkHours/Services/DatabaseContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/MauiProgram.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Services/DbInitializer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Services/IDataStoreService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Services/IDbInitializer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/MainView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/WorkHours.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHoursDb/Entities/Place.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Database/Entities/Place.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHoursDb/Entities/Worksession.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Database/Entities/Worksession.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHoursDb/WorkHoursContextFactory.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +66,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Android.WorkHours.executor": "Debug",
     "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSConnectedDeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "Konrad’s iPhone",
     "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSSimulatorKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "iPhone 16 Pro",
     "DeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider": "Simulator",
@@ -88,7 +74,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "iOS.WorkHours.executor": "Run",
+    "iOS.WorkHours.executor": "Debug",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -120,15 +106,10 @@
       <option name="PLATFORM_TYPE" value="IOS" />
       <method v="2" />
     </configuration>
-    <configuration name="WorkHours" type="XamarinMacProject" factoryName="Xamarin.Mac">
-      <option name="PROJECT_PATH" value="$PROJECT_DIR$/WorkHours/WorkHours.csproj" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="PASS_PARENT_ENVS_MAC" value="1" />
-      <method v="2">
-        <option name="Build" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Android.WorkHours" />
+      <item itemvalue="iOS.WorkHours" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -139,7 +120,9 @@
       <updated>1748863804583</updated>
       <workItem from="1748863807064" duration="11516000" />
       <workItem from="1749026570732" duration="9194000" />
-      <workItem from="1749053496794" duration="25490000" />
+      <workItem from="1749053496794" duration="25785000" />
+      <workItem from="1749564601885" duration="8068000" />
+      <workItem from="1749641512272" duration="8564000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -149,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749153056126</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".">
+      <option name="closed" value="true" />
+      <created>1749544601458</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749544601458</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

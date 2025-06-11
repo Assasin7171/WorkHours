@@ -11,6 +11,8 @@ namespace WorkHours.ViewModels;
 public partial class MainViewModel : ObservableObject
 {
     private readonly DataStoreService _dataStoreService;
+    private bool _changeImage = true;
+
     [ObservableProperty] private DateTime _date = DateTime.Now;
     [ObservableProperty] private DateTime _minDate = DateTime.Now - TimeSpan.FromDays(7);
     [ObservableProperty] private DateTime _maxDate = DateTime.Now;
@@ -18,40 +20,30 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private Place _selectedPlace;
     [ObservableProperty] private string _arrowImage = "arrow_down.png";
 
-    private bool _changeImage = true;
     public ObservableCollection<Place> Places { get; set; } = new ObservableCollection<Place>();
     public ObservableCollection<Worksession> Worksessions { get; set; } = new ObservableCollection<Worksession>();
 
     public MainViewModel(DataStoreService dataStoreService)
     {
         _dataStoreService = dataStoreService;
-        // _dataStoreService.PlacesChanged += (sender, args) =>
-        // {
-        //     LoadData();
-        // };
-        // _dataStoreService.WorksessionsChanged += (sender, args) =>
-        // {
-        //     LoadData();
-        // };
     }
-    
+
 
     [RelayCommand]
     private async Task LoadDataFromDatabase()
     {
         await _dataStoreService.GetDataAsync();
-        
-        Places.Clear();
-        foreach (var place in _dataStoreService.Places)
+
+        RefreshCollection(Places, _dataStoreService.Places);
+        RefreshCollection(Worksessions, _dataStoreService.Worksessions);
+    }
+
+    private void RefreshCollection<T>(ObservableCollection<T> target, IEnumerable<T> source)
+    {
+        target.Clear();
+        foreach (var item in source)
         {
-            Places.Add(place);
-        }
-        
-        Worksessions.Clear();
-        foreach (var worksession in _dataStoreService.Worksessions)
-        {
-            worksession.Place = Places.First(x=>x.Id == worksession.PlaceId);
-            Worksessions.Add(worksession);
+            target.Add(item);
         }
     }
 
@@ -66,7 +58,7 @@ public partial class MainViewModel : ObservableObject
                 PlaceId = SelectedPlace.Id,
                 CreatedTime = DateTime.Now,
             };
-            
+
             await _dataStoreService.AddWorksession(worksession);
             await LoadDataFromDatabase();
             //resetuje pola

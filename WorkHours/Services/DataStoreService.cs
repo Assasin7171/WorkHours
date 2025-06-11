@@ -21,6 +21,11 @@ public class DataStoreService
         {
             Places = await _db.SqLiteAsyncConnection.Table<Place>().ToListAsync();
             Worksessions = await _db.SqLiteAsyncConnection.Table<Worksession>().ToListAsync();
+            
+            foreach (var worksession in Worksessions)
+            {
+                worksession.Place = Places.First(x=>x.Id == worksession.PlaceId);
+            }
         }
         catch (Exception e)
         {
