@@ -8,6 +8,8 @@ public class DataStoreService
     private readonly DatabaseContext _db;
     public List<Place> Places { get; set; } = new List<Place>();
     public List<Worksession> Worksessions { get; set; } = new List<Worksession>();
+    public List<WorkRate> WorkRate { get; set; } = new List<WorkRate>();
+    
 
     public DataStoreService(DatabaseContext db)
     {
@@ -21,7 +23,9 @@ public class DataStoreService
         {
             Places = await _db.SqLiteAsyncConnection.Table<Place>().ToListAsync();
             Worksessions = await _db.SqLiteAsyncConnection.Table<Worksession>().ToListAsync();
-            
+            // naprawienia musi byc pobrany jeden.
+            WorkRate = await _db.SqLiteAsyncConnection.Table<WorkRate>().ToListAsync();
+
             foreach (var worksession in Worksessions)
             {
                 worksession.Place = Places.First(x=>x.Id == worksession.PlaceId);
@@ -52,6 +56,21 @@ public class DataStoreService
         if (result == 0)
         {
             await Shell.Current.DisplayAlert("Error", "Worksession must be linked to a Place(PlaceId can't be null)",
+                "Ok");
+        }
+
+        return result;
+    }
+
+    public async Task<int> AddWorkRate(WorkRate workRate)
+    {
+        int result = await _db.SqLiteAsyncConnection.InsertAsync(workRate);
+
+        await GetDataAsync();
+
+        if (result == 0)
+        {
+            await Shell.Current.DisplayAlert("Error", "Work rate must be a decimal value",
                 "Ok");
         }
 

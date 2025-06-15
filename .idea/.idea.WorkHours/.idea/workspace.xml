@@ -10,11 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f23e66a7-dd98-4c9e-aeb2-4854fec97717" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WorkHours/Database/Entities/WorkRate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WorkHours/Resources/Images/money.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WorkHours/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/DataStoreService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Services/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Services/DatabaseContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/DataViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/ViewModels/SettingsViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/DataView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/WorkHours/Views/SettingsView.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,13 +46,14 @@
     <setting file="file://$PROJECT_DIR$/WorkHours/Platforms/iOS/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WorkHours/ViewModels/MainViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/61fe11e9d86b4d2a9bd2b806929b7d381a400/e9/67f4a40e/SQLiteAsyncConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a390c15bf9074fbd9ce69a7a46a8244944128/92/586f2f14/EventToCommandBehavior.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/20f4825c4341fc5ca8bed5d846e4a6668c9b10eba31675d5d548fa8519db8/TaskContinuation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/36266f7d5f39672aea6bce7f15cdb44b2bc2a1479c14452cd9657a340d6a80/Delegate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5967259aff81a295fc2280e640ed76b14d29f2687882c55d5297aabd281af70/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/68b06b8592b1287fd78f3ee68566d6a38d6e2f45b9a9e6ebd4d0e9972f7c29/Object.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/752bbcc9cc4f8bd1a0d29d96d43040cdeaeb40f1ef3e19fde544683879d537ef/AsyncRelayCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/95cd8cf2ccd2bb650b63829170ed7bc1282533b0e83fa5cacd7bc0626dc6/RelayCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e358d67bcd5815a5083706ec88db8489a9872915d46156ba24277cd21bd662/AsyncTaskMethodBuilderT.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file:///var/folders/n1/py114l355fsf6g111fp1xcfh0000gn/T/SourceGeneratedDocuments/2E104BBD5BCFC410581EE73B/CommunityToolkit.Mvvm.SourceGenerators/CommunityToolkit.Mvvm.SourceGenerators.RelayCommandGenerator/WorkHours.ViewModels.MainViewModel.LoadDataFromDatabase.g.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="InvalidFacetManager">
     <ignored-facets>
@@ -64,30 +70,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android.WorkHours.executor": "Debug",
-    "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSConnectedDeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "Konrad’s iPhone",
-    "Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSSimulatorKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours": "iPhone 16 Pro",
-    "DeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider": "Simulator",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "iOS.WorkHours.executor": "Debug",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSConnectedDeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours&quot;: &quot;Konrad’s iPhone&quot;,
+    &quot;Device#class com.jetbrains.rider.run.multiPlatform.ios.devices.IOSSimulatorKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider#iOS: WorkHours&quot;: &quot;iPhone 16 Pro&quot;,
+    &quot;DeviceKind#com.jetbrains.rider.run.multiPlatform.ios.devices.IOSDevicesProvider&quot;: &quot;Simulator&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;iOS.WorkHours.executor&quot;: &quot;Debug&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="iOS.WorkHours">
     <configuration name="WorkHours" type="XamarinAndroidProject" factoryName="Xamarin.Android">
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/WorkHours/WorkHours.csproj" />
@@ -122,7 +128,9 @@
       <workItem from="1749026570732" duration="9194000" />
       <workItem from="1749053496794" duration="25785000" />
       <workItem from="1749564601885" duration="8068000" />
-      <workItem from="1749641512272" duration="8564000" />
+      <workItem from="1749641512272" duration="8589000" />
+      <workItem from="1749886825171" duration="14736000" />
+      <workItem from="1749984311268" duration="1132000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -140,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749544601458</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".">
+      <option name="closed" value="true" />
+      <created>1749669110165</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1749669110165</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

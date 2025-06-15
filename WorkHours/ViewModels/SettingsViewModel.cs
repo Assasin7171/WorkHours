@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using WorkHours.Database.Entities;
 using WorkHours.Services;
 using Place = WorkHours.Database.Entities.Place;
 
@@ -11,6 +12,7 @@ public partial class SettingsViewModel : ObservableObject
     private readonly DataStoreService _dataStoreService;
     private bool _changeImage = true;
 
+    [ObservableProperty] private decimal _workRateValue;
     [ObservableProperty] private string _newLocation = string.Empty;
     [ObservableProperty] private string _newLocationDescription = string.Empty;
     [ObservableProperty] private string _arrowImage = "arrow_down.png";
@@ -32,6 +34,18 @@ public partial class SettingsViewModel : ObservableObject
         {
             Places.Add(item);
         }
+
+        var rate = _dataStoreService.WorkRate.LastOrDefault();
+        WorkRateValue = rate?.ValueRate ?? 0;
+    }
+
+    [RelayCommand]
+    private async Task SetWorkRate()
+    {
+        WorkRate workRate = new WorkRate() { ValueRate = WorkRateValue, CreatedTime = DateTime.Now };
+        await _dataStoreService.AddWorkRate(workRate);
+
+        await Shell.Current.DisplayAlert("Info", "Ustawiono stawke godzinową", "OK");
     }
 
     [RelayCommand]

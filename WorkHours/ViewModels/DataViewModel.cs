@@ -9,8 +9,7 @@ namespace WorkHours.ViewModels;
 public partial class DataViewModel : ObservableObject
 {
     private readonly DataStoreService _dataStoreService;
-    private bool _changeImage = true;
-    private List<ChartEntry> _chartData = new List<ChartEntry>();
+    private readonly List<ChartEntry> _chartData = new List<ChartEntry>();
     private readonly Random _random = new();
 
     [ObservableProperty] private Chart _chart;
@@ -21,34 +20,100 @@ public partial class DataViewModel : ObservableObject
     [ObservableProperty] private bool _isMonthlyExpanded;
     [ObservableProperty] private bool _isYearlyExpanded;
     [ObservableProperty] private int _workedHours;
+    [ObservableProperty] private decimal _earnedMoney;
+    [ObservableProperty] private bool _isLoading;
 
     public DataViewModel(DataStoreService dataStoreService)
     {
         _dataStoreService = dataStoreService;
 
-        var today = DateTime.Today;
-        var startOfWeek = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday); // początek tygodnia (poniedziałek)
-        var endOfWeek = startOfWeek.AddDays(7); // koniec tygodnia (poniedziałek następnego tygodnia)
+        
+    }
+    
+    private (DateTime start, DateTime end) GetWeekRange(DateTime data)
+    {
+        int daysToSubtract = (int)data.DayOfWeek - (int)DayOfWeek.Monday;
+        if (daysToSubtract < 0)
+            daysToSubtract += 7;
+
+        var start = data.Date.AddDays(-daysToSubtract);
+        var end = start.AddDays(7);
+
+        return (start, end);
+    }
+
+    [RelayCommand]
+    private void Init()
+    {
+        IsLoading = true;
+        
+        var week = GetWeekRange(DateTime.Now);
 
         var thisWeek = _dataStoreService.Worksessions
-            .Where(w => w.CreatedTime >= startOfWeek && w.CreatedTime < endOfWeek)
+            .Where(w => w.CreatedTime >= week.start && w.CreatedTime <= week.end)
             .ToList();
-        
-        foreach (var worksession in thisWeek)
+
+        var orderedDays = new[]
         {
-            //zliczam przepracowane godziny
-            WorkedHours += worksession.HoursWorked;
-            
-            _chartData.Add(new ChartEntry(worksession.HoursWorked)
+            DayOfWeek.Monday,
+            DayOfWeek.Tuesday,
+            DayOfWeek.Wednesday,
+            DayOfWeek.Thursday,
+            DayOfWeek.Friday,
+            DayOfWeek.Saturday,
+            DayOfWeek.Sunday
+        };
+
+        var sorted = orderedDays
+            .Select(day => (
+                day,
+                hours: thisWeek
+                    .Where(w => w.CreatedTime.DayOfWeek == day)
+                    .Sum(w => w.HoursWorked)))
+            .ToList();
+
+        var dayShortNames = new Dictionary<DayOfWeek, string>
+        {
+            { DayOfWeek.Monday, "Pn" },
+            { DayOfWeek.Tuesday, "Wt" },
+            { DayOfWeek.Wednesday, "Śr" },
+            { DayOfWeek.Thursday, "Cz" },
+            { DayOfWeek.Friday, "Pt" },
+            { DayOfWeek.Saturday, "Sb" },
+            { DayOfWeek.Sunday, "Nd" },
+        };
+
+        foreach (var (day, hours) in sorted)
+        {
+            WorkedHours += hours;
+
+            var isToday = day == DateTime.Today.DayOfWeek;
+
+            _chartData.Add(new ChartEntry(hours)
             {
-                Label = worksession.CreatedTime.DayOfWeek.ToString(),
-                ValueLabel = $"{worksession.HoursWorked}",
-                Color = new SKColor(
-                    (byte)_random.Next(0, 256),
-                    (byte)_random.Next(0, 256),
-                    (byte)_random.Next(0, 256))
+                Label = dayShortNames[day],
+                ValueLabel = hours.ToString(),
+                Color = isToday
+                    ? SKColors.Red
+                    : new SKColor(
+                        (byte)_random.Next(0, 256),
+                        (byte)_random.Next(0, 256),
+                        (byte)_random.Next(0, 256))
             });
         }
+
+        //obliczam ile zarobiono i z ilu godzin.
+        var ratio = _dataStoreService.WorkRate.LastOrDefault().ValueRate;
+        if (ratio != 0)
+        {
+            EarnedMoney = (WorkedHours * ratio);
+        }
+        else
+        {
+            ratio = 0;
+            EarnedMoney = (WorkedHours * ratio);
+        }
+
 
         while (_chartData.Count < 7)
         {
@@ -64,6 +129,8 @@ public partial class DataViewModel : ObservableObject
             ValueLabelOrientation = Orientation.Horizontal,
             CornerRadius = 10,
         };
+        
+        IsLoading = false;
     }
 
     //pomyśleć nad refaktoryzacją kodu

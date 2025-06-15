@@ -19,5 +19,6 @@ public class DatabaseContext
         //trzeba się upewnić że tabele są stworzone
         SqLiteAsyncConnection.CreateTableAsync<Worksession>().Wait();
         SqLiteAsyncConnection.CreateTableAsync<Place>().Wait();
+        SqLiteAsyncConnection.CreateTableAsync<WorkRate>().Wait();
     }
 }
