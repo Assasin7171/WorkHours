@@ -26,10 +26,8 @@ public partial class DataViewModel : ObservableObject
     public DataViewModel(DataStoreService dataStoreService)
     {
         _dataStoreService = dataStoreService;
-
-        
     }
-    
+
     private (DateTime start, DateTime end) GetWeekRange(DateTime data)
     {
         int daysToSubtract = (int)data.DayOfWeek - (int)DayOfWeek.Monday;
@@ -45,8 +43,13 @@ public partial class DataViewModel : ObservableObject
     [RelayCommand]
     private void Init()
     {
-        IsLoading = true;
+        //Wymaga resetowania co ładowanie.
+        _chartData.Clear();
+        EarnedMoney = 0;
+        WorkedHours = 0;
         
+        IsLoading = true;
+
         var week = GetWeekRange(DateTime.Now);
 
         var thisWeek = _dataStoreService.Worksessions
@@ -103,23 +106,16 @@ public partial class DataViewModel : ObservableObject
         }
 
         //obliczam ile zarobiono i z ilu godzin.
-        var ratio = _dataStoreService.WorkRate.LastOrDefault().ValueRate;
-        if (ratio != 0)
-        {
-            EarnedMoney = (WorkedHours * ratio);
-        }
-        else
-        {
-            ratio = 0;
-            EarnedMoney = (WorkedHours * ratio);
-        }
+        var ratio = _dataStoreService.WorkRate.LastOrDefault()?.ValueRate ?? 0;
 
+        EarnedMoney = (WorkedHours * ratio);
+        
 
         while (_chartData.Count < 7)
         {
             _chartData.Add(new ChartEntry(0));
         }
-        
+
         Chart = new BarChart()
         {
             Entries = _chartData,
@@ -129,7 +125,7 @@ public partial class DataViewModel : ObservableObject
             ValueLabelOrientation = Orientation.Horizontal,
             CornerRadius = 10,
         };
-        
+
         IsLoading = false;
     }
 

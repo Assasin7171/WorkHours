@@ -17,8 +17,9 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private DateTime _minDate = DateTime.Now - TimeSpan.FromDays(7);
     [ObservableProperty] private DateTime _maxDate = DateTime.Now;
     [ObservableProperty] private string _workHours;
-    [ObservableProperty] private Place _selectedPlace;
+    [ObservableProperty] private Place? _selectedPlace;
     [ObservableProperty] private string _arrowImage = "arrow_down.png";
+    [ObservableProperty] private string _description = String.Empty;
 
     public ObservableCollection<Place> Places { get; set; } = new ObservableCollection<Place>();
     public ObservableCollection<Worksession> Worksessions { get; set; } = new ObservableCollection<Worksession>();
@@ -30,7 +31,7 @@ public partial class MainViewModel : ObservableObject
 
 
     [RelayCommand]
-    private async Task LoadDataFromDatabase()
+    private async Task InitAsync()
     {
         await _dataStoreService.GetDataAsync();
 
@@ -48,6 +49,16 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private async Task DeleteSession(Worksession o)
+    {
+        if (Worksessions.Remove(o))
+        {
+            await Shell.Current.DisplayAlert("Info", "Usunięto sesje pracy", "OK");
+            await _dataStoreService.RemoveWorkSession(o);
+        }
+    }
+
+    [RelayCommand]
     private async Task AddSessionToDatabase()
     {
         if (int.TryParse(WorkHours, out int hoursCount))
@@ -56,14 +67,16 @@ public partial class MainViewModel : ObservableObject
             {
                 HoursWorked = hoursCount,
                 PlaceId = SelectedPlace.Id,
-                CreatedTime = DateTime.Now,
+                Description = Description,
+                CreatedTime = Date,
             };
 
             await _dataStoreService.AddWorksession(worksession);
-            await LoadDataFromDatabase();
+            await InitAsync();
             //resetuje pola
             WorkHours = string.Empty;
             SelectedPlace = null;
+            Description = string.Empty;
             Date = DateTime.Now;
         }
     }

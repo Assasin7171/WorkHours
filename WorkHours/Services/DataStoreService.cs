@@ -37,7 +37,15 @@ public class DataStoreService
         }
     }
 
+    public async Task<int> RemoveWorkSession(Worksession worksession)
+    {
+        var result = await _db.SqLiteAsyncConnection.DeleteAsync(worksession);
 
+        await GetDataAsync();
+
+        return result;
+    }
+    
     public async Task<int> AddPlace(Place place)
     {
         var result = await _db.SqLiteAsyncConnection.InsertAsync(place);

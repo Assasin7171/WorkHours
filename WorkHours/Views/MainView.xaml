@@ -10,7 +10,7 @@
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior EventName="Appearing" x:DataType="vm:MainViewModel"
-                                        Command="{Binding LoadDataFromDatabaseCommand}" />
+                                        Command="{Binding InitCommand}" />
     </ContentPage.Behaviors>
     <ContentPage.Content>
         <VerticalStackLayout Margin="20,10"
@@ -111,6 +111,34 @@
                         </Picker>
                     </FlexLayout>
                 </Frame>
+                
+                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                       HasShadow="False">
+                    <FlexLayout Direction="Row"
+                                JustifyContent="SpaceBetween">
+                        <HorizontalStackLayout Spacing="10"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center">
+                            <Image Source="tooltip.png"
+                                   WidthRequest="20"
+                                   HeightRequest="20"
+                                   VerticalOptions="Center" />
+                            <Label Text="Komentarz"
+                                   TextColor="{StaticResource TextPrimary}"
+                                   FontSize="16" />
+                        </HorizontalStackLayout>
+
+                        <Entry Text="{Binding Description}"
+                               BackgroundColor="{StaticResource BorderLight}"
+                               TextColor="{StaticResource TextPrimary}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="FillAndExpand"
+                               IsTextPredictionEnabled="True"
+                               HeightRequest="30"
+                               FontSize="16"
+                               WidthRequest="100" />
+                    </FlexLayout>
+                </Frame>
 
                 <Button Text="Zapisz sesję"
                         BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
@@ -152,23 +180,37 @@
                                 </CollectionView.ItemsLayout>
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="models:Worksession">
-                                        <Frame BackgroundColor="{StaticResource EntryBackground}"
-                                               CornerRadius="8"
-                                               Padding="10,8"
-                                               HasShadow="False"
-                                               Margin="0,5"
-                                               HeightRequest="50">
-                                            <FlexLayout Direction="Row"
-                                                        JustifyContent="SpaceBetween"
-                                                        AlignItems="Center">
-                                                <Label Text="{Binding Place.Name}"
-                                                       TextColor="{StaticResource TextPrimary}"
-                                                       FontSize="18" />
-                                                <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
-                                                       TextColor="{StaticResource TextPrimary}"
-                                                       FontSize="18" />
-                                            </FlexLayout>
-                                        </Frame>
+                                        <SwipeView>
+                                            <SwipeView.LeftItems>
+                                                <SwipeItems>
+                                                    <SwipeItem Text="Usuń"
+                                                               IconImageSource="delete.png"
+                                                               BackgroundColor="red"
+                                                               Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteSessionCommand}"
+                                                               CommandParameter="{Binding .}"/>
+                                                </SwipeItems>
+                                            </SwipeView.LeftItems>
+
+                                            <Frame BackgroundColor="{StaticResource EntryBackground}"
+                                                   CornerRadius="8"
+                                                   Padding="10,8"
+                                                   HasShadow="False"
+                                                   Margin="0,5"
+
+                                                   HeightRequest="50">
+                                                <FlexLayout Direction="Row"
+                                                            JustifyContent="SpaceBetween"
+                                                            AlignItems="Center">
+                                                    <Label Text="{Binding Place.Name}"
+                                                           TextColor="{StaticResource TextPrimary}"
+                                                           FontSize="18" />
+                                                    <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
+                                                           TextColor="{StaticResource TextPrimary}"
+                                                           FontSize="18" />
+                                                </FlexLayout>
+                                            </Frame>
+                                        </SwipeView>
+
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
