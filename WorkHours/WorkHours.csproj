@@ -70,6 +70,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Handlers\" />
       <Folder Include="Helpers\" />
       <Folder Include="Models\" />
     </ItemGroup>

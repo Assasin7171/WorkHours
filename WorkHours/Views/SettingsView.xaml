@@ -35,13 +35,7 @@
                                        FontSize="16" />
                             </HorizontalStackLayout>
                             <Entry Text="{Binding NewLocation}"
-                                   BackgroundColor="{StaticResource BorderLight}"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="FillAndExpand"
-                                   HeightRequest="30"
-                                   FontSize="16"
-                                   WidthRequest="100" />
+                                   StyleClass="EntryMain" />
                         </FlexLayout>
                     </Frame>
                     <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
@@ -61,11 +55,7 @@
                             <Entry Text="{Binding NewLocationDescription}"
                                    BackgroundColor="{StaticResource BorderLight}"
                                    TextColor="{StaticResource TextPrimary}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="FillAndExpand"
-                                   HeightRequest="30"
-                                   FontSize="16"
-                                   WidthRequest="100" />
+                                   StyleClass="EntryMain"/>
                         </FlexLayout>
                     </Frame>
                     <Button Text="Dodaj miejsce"
@@ -104,13 +94,7 @@
                                        FontSize="16" />
                             </HorizontalStackLayout>
                             <Entry Text="{Binding WorkRateValue}"
-                                   BackgroundColor="{StaticResource BorderLight}"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="FillAndExpand"
-                                   HeightRequest="30"
-                                   FontSize="16"
-                                   WidthRequest="100" />
+                                   StyleClass="EntryMain"/>
                         </FlexLayout>
                     </Frame>
                     <Button Text="Zapisz stawkę"

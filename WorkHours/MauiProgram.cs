@@ -50,6 +50,7 @@ public static class MauiProgram
             BindingContext = b.GetService<SettingsViewModel>(),
         });
 
+        
         return builder.Build();
     }
 }

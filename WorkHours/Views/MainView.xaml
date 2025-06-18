@@ -41,16 +41,12 @@
                                    FontSize="16" />
                         </HorizontalStackLayout>
 
-                        <DatePicker BackgroundColor="{StaticResource BorderLight}"
-                                    TextColor="{StaticResource TextPrimary}"
-                                    VerticalOptions="Center"
-                                    HorizontalOptions="Center"
-                                    Date="{Binding Date}"
+                        <DatePicker Date="{Binding Date}"
                                     MinimumDate="{Binding MinDate}"
                                     MaximumDate="{Binding MaxDate}"
-                                    FontSize="16"
-                                    HeightRequest="30"
-                                    WidthRequest="100" />
+                                    StyleClass="DatePickerMain" >
+             
+                        </DatePicker>
                     </FlexLayout>
                 </Frame>
 
@@ -71,15 +67,9 @@
                         </HorizontalStackLayout>
 
                         <Entry Text="{Binding WorkHours}"
-                               BackgroundColor="{StaticResource BorderLight}"
-                               TextColor="{StaticResource TextPrimary}"
-                               VerticalOptions="Center"
-                               HorizontalOptions="FillAndExpand"
+                               StyleClass="EntryMain"
                                Keyboard="Numeric"
-                               MaxLength="2"
-                               HeightRequest="30"
-                               FontSize="16"
-                               WidthRequest="100" />
+                               MaxLength="2" />
                     </FlexLayout>
                 </Frame>
 
@@ -96,22 +86,16 @@
                                    FontSize="16" />
                         </HorizontalStackLayout>
 
-                        <Picker BackgroundColor="{StaticResource BorderLight}"
-                                TextColor="{StaticResource TextPrimary}"
-                                VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"
-                                HeightRequest="30"
-                                FontSize="16"
-                                ItemsSource="{Binding Places}"
-                                WidthRequest="100"
+                        <Picker ItemsSource="{Binding Places}"
                                 Title="Wybierz"
                                 ItemDisplayBinding="{Binding Name}"
-                                SelectedItem="{Binding SelectedPlace}">
-
+                                SelectedItem="{Binding SelectedPlace}"
+                                StyleClass="PickerMain">
+                  
                         </Picker>
                     </FlexLayout>
                 </Frame>
-                
+
                 <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
                        HasShadow="False">
                     <FlexLayout Direction="Row"
@@ -129,14 +113,7 @@
                         </HorizontalStackLayout>
 
                         <Entry Text="{Binding Description}"
-                               BackgroundColor="{StaticResource BorderLight}"
-                               TextColor="{StaticResource TextPrimary}"
-                               VerticalOptions="Center"
-                               HorizontalOptions="FillAndExpand"
-                               IsTextPredictionEnabled="True"
-                               HeightRequest="30"
-                               FontSize="16"
-                               WidthRequest="100" />
+                               StyleClass="EntryMain"/>
                     </FlexLayout>
                 </Frame>
 
@@ -187,7 +164,7 @@
                                                                IconImageSource="delete.png"
                                                                BackgroundColor="red"
                                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteSessionCommand}"
-                                                               CommandParameter="{Binding .}"/>
+                                                               CommandParameter="{Binding .}" />
                                                 </SwipeItems>
                                             </SwipeView.LeftItems>
 
