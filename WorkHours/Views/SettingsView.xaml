@@ -9,11 +9,10 @@
              x:Class="WorkHours.Views.SettingsView">
     <ContentPage.Content>
         <ScrollView>
-            <FlexLayout Margin="20,10"
-                        Padding="5"
-                        Direction="Column"
-                        JustifyContent="SpaceBetween"
-                        x:DataType="vm:SettingsViewModel">
+            <VerticalStackLayout Margin="20,10"
+                                 Padding="5"
+                                 x:DataType="vm:SettingsViewModel"
+                                 Spacing="20">
                 <VerticalStackLayout Spacing="15">
                     <Label Text="Dodaj nową lokalizację"
                            TextColor="{StaticResource TextPrimary}"
@@ -55,7 +54,7 @@
                             <Entry Text="{Binding NewLocationDescription}"
                                    BackgroundColor="{StaticResource BorderLight}"
                                    TextColor="{StaticResource TextPrimary}"
-                                   StyleClass="EntryMain"/>
+                                   StyleClass="EntryMain" />
                         </FlexLayout>
                     </Frame>
                     <Button Text="Dodaj miejsce"
@@ -77,8 +76,8 @@
                            HorizontalTextAlignment="Center"
                            FontSize="24" />
 
-                    <Frame BackgroundColor="{StaticResource EntryBackground}" 
-                           CornerRadius="8" 
+                    <Frame BackgroundColor="{StaticResource EntryBackground}"
+                           CornerRadius="8"
                            Padding="10,8"
                            HasShadow="False">
                         <FlexLayout Direction="Row"
@@ -94,7 +93,7 @@
                                        FontSize="16" />
                             </HorizontalStackLayout>
                             <Entry Text="{Binding WorkRateValue}"
-                                   StyleClass="EntryMain"/>
+                                   StyleClass="EntryMain" />
                         </FlexLayout>
                     </Frame>
                     <Button Text="Zapisz stawkę"
@@ -160,7 +159,7 @@
                         </toolkit:Expander.Content>
                     </toolkit:Expander>
                 </VerticalStackLayout>
-            </FlexLayout>
+            </VerticalStackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
