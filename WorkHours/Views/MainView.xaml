@@ -5,6 +5,7 @@
              xmlns:vm="clr-namespace:WorkHours.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:models="clr-namespace:WorkHours.Database.Entities"
+
              x:Class="WorkHours.Views.MainView"
              HideSoftInputOnTapped="True"
              BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundDark}, Light={StaticResource BackgroundLight}}">
@@ -13,144 +14,145 @@
                                         Command="{Binding InitCommand}" />
     </ContentPage.Behaviors>
     <ContentPage.Content>
-        <VerticalStackLayout Margin="20,10"
-                             Padding="5"
-                             x:DataType="vm:MainViewModel">
-            <Label Text="WorkHours"
-                   TextColor="{StaticResource TextPrimary}"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   FontSize="30" />
-            <Label Text="{Binding Date, StringFormat='{0:dddd, dd MMM yyyy}'}"
-                   TextColor="{StaticResource TextSecondary}"
-                   FontSize="20"
-                   HorizontalTextAlignment="Center" />
-            <VerticalStackLayout Spacing="12" Margin="0,20,0,0">
-                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                       HasShadow="False">
-                    <FlexLayout Direction="Row"
-                                JustifyContent="SpaceBetween">
-                        <HorizontalStackLayout Spacing="10"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center">
-                            <Image Source="calendar.png"
-                                   WidthRequest="20" HeightRequest="20"
-                                   VerticalOptions="Center" />
-                            <Label Text="Data"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="16" />
-                        </HorizontalStackLayout>
-
-                        <DatePicker Date="{Binding Date}"
-                                    MinimumDate="{Binding MinDate}"
-                                    MaximumDate="{Binding MaxDate}"
-                                    StyleClass="DatePickerMain" >
-             
-                        </DatePicker>
-                    </FlexLayout>
-                </Frame>
-
-                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                       HasShadow="False">
-                    <FlexLayout Direction="Row"
-                                JustifyContent="SpaceBetween">
-                        <HorizontalStackLayout Spacing="10"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center">
-                            <Image Source="clock.png"
-                                   WidthRequest="20"
-                                   HeightRequest="20"
-                                   VerticalOptions="Center" />
-                            <Label Text="Ilość godzin"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="16" />
-                        </HorizontalStackLayout>
-
-                        <Entry Text="{Binding WorkHours}"
-                               StyleClass="EntryMain"
-                               Keyboard="Numeric"
-                               MaxLength="2" />
-                    </FlexLayout>
-                </Frame>
-
-                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                       HasShadow="False">
-                    <FlexLayout Direction="Row"
-                                JustifyContent="SpaceBetween">
-                        <HorizontalStackLayout Spacing="10"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center">
-                            <Image Source="location.png" WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
-                            <Label Text="Lokalizacja"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="16" />
-                        </HorizontalStackLayout>
-
-                        <Picker ItemsSource="{Binding Places}"
-                                Title="Wybierz"
-                                ItemDisplayBinding="{Binding Name}"
-                                SelectedItem="{Binding SelectedPlace}"
-                                StyleClass="PickerMain">
-                  
-                        </Picker>
-                    </FlexLayout>
-                </Frame>
-
-                <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
-                       HasShadow="False">
-                    <FlexLayout Direction="Row"
-                                JustifyContent="SpaceBetween">
-                        <HorizontalStackLayout Spacing="10"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center">
-                            <Image Source="tooltip.png"
-                                   WidthRequest="20"
-                                   HeightRequest="20"
-                                   VerticalOptions="Center" />
-                            <Label Text="Komentarz"
-                                   TextColor="{StaticResource TextPrimary}"
-                                   FontSize="16" />
-                        </HorizontalStackLayout>
-
-                        <Entry Text="{Binding Description}"
-                               StyleClass="EntryMain"/>
-                    </FlexLayout>
-                </Frame>
-
-                <Button Text="Zapisz sesję"
-                        BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
-                        TextColor="White"
-                        Command="{Binding AddSessionToDatabaseCommand}"
-                        FontSize="16"
-                        FontAttributes="Bold"
-                        CornerRadius="8"
-                        HeightRequest="50" />
-            </VerticalStackLayout>
-            <BoxView HeightRequest="1"
-                     BackgroundColor="{StaticResource BorderLight}"
-                     Margin="0,30" />
-            <VerticalStackLayout>
-                <toolkit:Expander Command="{Binding ChangeArrowImageCommand}">
-                    <toolkit:Expander.Header>
-                        <Frame BackgroundColor="{StaticResource EntryBackground}"
-                               CornerRadius="8"
-                               HasShadow="False"
-                               Margin="0,0,0,10">
-                            <FlexLayout Direction="Row"
-                                        JustifyContent="SpaceBetween"
-                                        AlignItems="Center">
-                                <Label Text="Ostatnie sesje"
+        <ScrollView>
+            <VerticalStackLayout Margin="20,10"
+                                 Padding="5"
+                                 x:DataType="vm:MainViewModel">
+                <Label Text="WorkHours"
+                       TextColor="{StaticResource TextPrimary}"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       FontSize="30" />
+                <Label Text="{Binding Date, StringFormat='{0:dddd, dd MMM yyyy}'}"
+                       TextColor="{StaticResource TextSecondary}"
+                       FontSize="20"
+                       HorizontalTextAlignment="Center" />
+                <VerticalStackLayout Spacing="12" Margin="0,20,0,0">
+                    <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                           HasShadow="False">
+                        <FlexLayout Direction="Row"
+                                    JustifyContent="SpaceBetween">
+                            <HorizontalStackLayout Spacing="10"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                <Image Source="calendar.png"
+                                       WidthRequest="20" HeightRequest="20"
+                                       VerticalOptions="Center" />
+                                <Label Text="Data"
                                        TextColor="{StaticResource TextPrimary}"
-                                       FontSize="20"
-                                       Padding="5"
-                                       FontAttributes="Bold" />
-                                <Image Source="{Binding ArrowImage}"
-                                       WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
-                            </FlexLayout>
-                        </Frame>
-                    </toolkit:Expander.Header>
-                    <toolkit:Expander.Content>
-                        <ScrollView MaximumHeightRequest="300">
+                                       FontSize="16" />
+                            </HorizontalStackLayout>
+
+                            <DatePicker Date="{Binding Date}"
+                                        MinimumDate="{Binding MinDate}"
+                                        MaximumDate="{Binding MaxDate}"
+                                        StyleClass="DatePickerMain">
+
+                            </DatePicker>
+                        </FlexLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                           HasShadow="False">
+                        <FlexLayout Direction="Row"
+                                    JustifyContent="SpaceBetween">
+                            <HorizontalStackLayout Spacing="10"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                <Image Source="clock.png"
+                                       WidthRequest="20"
+                                       HeightRequest="20"
+                                       VerticalOptions="Center" />
+                                <Label Text="Ilość godzin"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       FontSize="16" />
+                            </HorizontalStackLayout>
+
+                            <Entry Text="{Binding WorkHours}"
+                                   StyleClass="EntryMain"
+                                   Keyboard="Numeric"
+                                   MaxLength="2" />
+                        </FlexLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                           HasShadow="False">
+                        <FlexLayout Direction="Row"
+                                    JustifyContent="SpaceBetween">
+                            <HorizontalStackLayout Spacing="10"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                <Image Source="location.png" WidthRequest="20" HeightRequest="20"
+                                       VerticalOptions="Center" />
+                                <Label Text="Lokalizacja"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       FontSize="16" />
+                            </HorizontalStackLayout>
+
+                            <Picker ItemsSource="{Binding Places}"
+                                    Title="Wybierz"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    SelectedItem="{Binding SelectedPlace}"
+                                    StyleClass="PickerMain">
+
+                            </Picker>
+                        </FlexLayout>
+                    </Frame>
+
+                    <Frame BackgroundColor="{StaticResource EntryBackground}" CornerRadius="8" Padding="10,8"
+                           HasShadow="False">
+                        <FlexLayout Direction="Row"
+                                    JustifyContent="SpaceBetween">
+                            <HorizontalStackLayout Spacing="10"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Center">
+                                <Image Source="tooltip.png"
+                                       WidthRequest="20"
+                                       HeightRequest="20"
+                                       VerticalOptions="Center" />
+                                <Label Text="Komentarz"
+                                       TextColor="{StaticResource TextPrimary}"
+                                       FontSize="16" />
+                            </HorizontalStackLayout>
+
+                            <Entry Text="{Binding Description}"
+                                   StyleClass="EntryMain" />
+                        </FlexLayout>
+                    </Frame>
+
+                    <Button Text="Zapisz sesję"
+                            BackgroundColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Secondary}}"
+                            TextColor="White"
+                            Command="{Binding AddSessionToDatabaseCommand}"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            CornerRadius="8"
+                            HeightRequest="50" />
+                </VerticalStackLayout>
+                <BoxView HeightRequest="1"
+                         BackgroundColor="{StaticResource BorderLight}"
+                         Margin="0,30" />
+                <VerticalStackLayout>
+                    <toolkit:Expander Command="{Binding ChangeArrowImageCommand}">
+                        <toolkit:Expander.Header>
+                            <Frame BackgroundColor="{StaticResource EntryBackground}"
+                                   CornerRadius="8"
+                                   HasShadow="False"
+                                   Margin="0,0,0,10">
+                                <FlexLayout Direction="Row"
+                                            JustifyContent="SpaceBetween"
+                                            AlignItems="Center">
+                                    <Label Text="Ostatnie sesje"
+                                           TextColor="{StaticResource TextPrimary}"
+                                           FontSize="20"
+                                           Padding="5"
+                                           FontAttributes="Bold" />
+                                    <Image Source="{Binding ArrowImage}"
+                                           WidthRequest="20" HeightRequest="20" VerticalOptions="Center" />
+                                </FlexLayout>
+                            </Frame>
+                        </toolkit:Expander.Header>
+                        <toolkit:Expander.Content>
                             <CollectionView ItemsSource="{Binding Worksessions}">
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
@@ -173,28 +175,37 @@
                                                    Padding="10,8"
                                                    HasShadow="False"
                                                    Margin="0,5"
-
-                                                   HeightRequest="50">
-                                                <FlexLayout Direction="Row"
-                                                            JustifyContent="SpaceBetween"
-                                                            AlignItems="Center">
-                                                    <Label Text="{Binding Place.Name}"
-                                                           TextColor="{StaticResource TextPrimary}"
-                                                           FontSize="18" />
-                                                    <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
-                                                           TextColor="{StaticResource TextPrimary}"
-                                                           FontSize="18" />
-                                                </FlexLayout>
+                                                   HeightRequest="85">
+                                                <VerticalStackLayout Spacing="10"
+                                                                     VerticalOptions="Center"
+                                                                     HorizontalOptions="Center">
+                                                    <FlexLayout JustifyContent="SpaceBetween"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="Center">
+                                                        <Label Text="{Binding Place.Name}"
+                                                               TextColor="{StaticResource TextPrimary}"
+                                                               FontSize="18" />
+                                                        <Label Text="{Binding HoursWorked, StringFormat='{0}H'}"
+                                                               TextColor="{StaticResource TextPrimary}"
+                                                               FontSize="18" />
+                                                    </FlexLayout>
+                                                    <FlexLayout JustifyContent="End"
+                                                                VerticalOptions="Center"
+                                                                HorizontalOptions="Center">
+                                                        <Label Text="{Binding CreatedTime, StringFormat='{0:dd.MM}'}"
+                                                               TextColor="{StaticResource TextPrimary}"
+                                                               FontSize="18" />
+                                                    </FlexLayout>
+                                                </VerticalStackLayout>
                                             </Frame>
                                         </SwipeView>
-
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
                             </CollectionView>
-                        </ScrollView>
-                    </toolkit:Expander.Content>
-                </toolkit:Expander>
+                        </toolkit:Expander.Content>
+                    </toolkit:Expander>
+                </VerticalStackLayout>
             </VerticalStackLayout>
-        </VerticalStackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

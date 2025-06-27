@@ -54,6 +54,7 @@ public partial class MainViewModel : ObservableObject
         if (Worksessions.Remove(o))
         {
             await Shell.Current.DisplayAlert("Info", "Usunięto sesje pracy", "OK");
+            await InitAsync();
             await _dataStoreService.RemoveWorkSession(o);
         }
     }

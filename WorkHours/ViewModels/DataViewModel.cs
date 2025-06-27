@@ -1,3 +1,4 @@
+using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microcharts;
@@ -15,31 +16,33 @@ public partial class DataViewModel : ObservableObject
     private readonly List<ChartEntry> _chartDataWeekly = new List<ChartEntry>();
     private readonly List<ChartEntry> _chartDataMonthly = new List<ChartEntry>();
     private readonly List<ChartEntry> _chartDataYearly = new List<ChartEntry>();
+    private readonly List<ChartEntry> _chartDataYearlyFreeDays = new List<ChartEntry>();
 
     [ObservableProperty] private int _workedHoursWeekly;
     [ObservableProperty] private int _workedHoursMonthly;
     [ObservableProperty] private int _workedHoursYearly;
     [ObservableProperty] private int _freeDaysYearly;
-    
+
     [ObservableProperty] private double _averageHoursWeekly;
-    
+
     [ObservableProperty] private decimal _earnedMoneyWeekly;
     [ObservableProperty] private decimal _earnedMoneyMonthly;
     [ObservableProperty] private decimal _earnedMoneyYearly;
-    
+
     [ObservableProperty] private Chart _chartWeekly;
     [ObservableProperty] private Chart _chartMonthly;
     [ObservableProperty] private Chart _chartYearly;
+    [ObservableProperty] private Chart _chartYearlyFreeDays;
 
     [ObservableProperty] private string _arrowImageWeekly = "arrow_down.png";
     [ObservableProperty] private string _arrowImageMonthly = "arrow_down.png";
     [ObservableProperty] private string _arrowImageYearly = "arrow_down.png";
-    
+
     [ObservableProperty] private bool _isWeeklyExpanded;
     [ObservableProperty] private bool _isMonthlyExpanded;
     [ObservableProperty] private bool _isYearlyExpanded;
     [ObservableProperty] private bool _isLoading;
-    
+
 
     public DataViewModel(DataStoreService dataStoreService)
     {
@@ -76,8 +79,66 @@ public partial class DataViewModel : ObservableObject
         try
         {
             IsLoading = true;
+
+            _chartDataYearly.Clear();
+            var shortMonthNames = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames;
+            var hoursInMonths = _dataStoreService.Worksessions.Select(x => new { x.HoursWorked, x.CreatedTime })
+                .ToList();
+            
+            for (int i = 0; i <= 11; i++)
+            {
+                var hoursInMonth = hoursInMonths.Where(x => x.CreatedTime.Month == i + 1).Select(x => x.HoursWorked)
+                    .Sum();
+                _chartDataYearly.Add(new ChartEntry(hoursInMonth)
+                {
+                    Label = $"{shortMonthNames[i]}",
+                    ValueLabel = $"{hoursInMonth}",
+                    Color = new SKColor(
+                        (byte)_random.Next(0, 256),
+                        (byte)_random.Next(0, 256),
+                        (byte)_random.Next(0, 256))
+                });
+            }
+
+            ChartYearly = new BarChart()
+            {
+                Entries = _chartDataYearly,
+                LabelOrientation = Orientation.Horizontal,
+                LabelTextSize = 40,
+                ValueLabelTextSize = 40,
+                ValueLabelOrientation = Orientation.Horizontal,
+                CornerRadius = 10,
+            };
             
             
+            _chartDataYearlyFreeDays.Clear();
+            
+            int totalDays = DateTime.IsLeapYear(DateTime.Now.Year) ? 366 : 365;
+            var workedDays = _dataStoreService.Worksessions.Where(x => x.CreatedTime.Year == DateTime.Now.Year)
+                .Select(x => x.CreatedTime.Date)
+                .Distinct()
+                .Count();
+            var freeDays = totalDays - workedDays;
+            
+            _chartDataYearlyFreeDays.Add(new ChartEntry(freeDays)
+            {
+                Label = "Wolne dni",
+                ValueLabel = $"{freeDays}",
+                Color = SKColors.Gray
+            });
+            _chartDataYearlyFreeDays.Add(new ChartEntry(workedDays)
+            {
+                Label = "Pracujące dni",
+                ValueLabel = $"{workedDays}",
+                Color = SKColors.DarkGreen,
+            });
+            
+            ChartYearlyFreeDays = new DonutChart()
+            {
+                Entries = _chartDataYearlyFreeDays,
+                MaxValue = totalDays,
+                LabelTextSize = 40,
+            };
         }
         finally
         {

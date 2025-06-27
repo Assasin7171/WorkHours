@@ -42,7 +42,8 @@
                                                  Spacing="10">
                                 <Label Text="{Binding WorkedHoursWeekly, StringFormat='Przepracowane godziny - {0}'}" />
                                 <Label Text="{Binding EarnedMoneyWeekly, StringFormat='Zarobiono - {0} zł'}" />
-                                <Label Text="{Binding AverageHoursWeekly, StringFormat='Średnia dzienna liczba godzin - {0}'}" />
+                                <Label
+                                    Text="{Binding AverageHoursWeekly, StringFormat='Średnia dzienna liczba godzin - {0}'}" />
                                 <!-- <Label Text="W porównaniu z {1-7 czerwiec} zarobiono więcej o {300} zł" /> -->
                                 <ActivityIndicator IsRunning="{Binding IsLoading}"
                                                    VerticalOptions="Center"
@@ -128,18 +129,22 @@
                         <toolkit:Expander.Content>
                             <VerticalStackLayout Spacing="10"
                                                  Margin="0,10">
-                                <Label Text="{Binding WorkedHoursYearly, StringFormat='Przepracowane godziny - {0}'}"
-                                       HorizontalTextAlignment="Center" />
+                                <!-- <Label Text="{Binding WorkedHoursYearly, StringFormat='Przepracowane godziny - {0}'}" -->
+                                <!--        HorizontalTextAlignment="Center" /> -->
+                                <Label Text="Przepracowane godziny w poszczególnych miesiącach" />
                                 <Label Text="{Binding EarnedMoneyYearly, StringFormat='Zarobiono - {0} zł'}"
                                        HorizontalTextAlignment="Center" />
-                                <Label Text="{Binding FreeDaysYearly, StringFormat='Wolnych dni - {0} zł'}"
-                                       HorizontalTextAlignment="Center" />
-
                                 <VerticalStackLayout>
                                     <ActivityIndicator IsRunning="{Binding IsLoading}"
                                                        VerticalOptions="Center"
                                                        HorizontalOptions="Center" />
                                     <charts:ChartView Chart="{Binding ChartYearly}"
+                                                      HeightRequest="250" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout>
+                                    <Label Text="Wolnych dni"
+                                           HorizontalTextAlignment="Center" />
+                                    <charts:ChartView Chart="{Binding ChartYearlyFreeDays}"
                                                       HeightRequest="250" />
                                 </VerticalStackLayout>
                             </VerticalStackLayout>

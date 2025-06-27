@@ -3,12 +3,20 @@
 
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
     <!-- Tło aplikacji -->
     <Color x:Key="BackgroundLight">#FFFFFF</Color>
     <Color x:Key="BackgroundDark">#121212</Color>
+
+    <!-- Jasny motyw -->
+    <toolkit:AppThemeColor x:Key="ShellBackgroundColor" Light="#F3F4F6" Dark="#202124" />
+    <toolkit:AppThemeColor x:Key="ShellForegroundColor" Light="#1F2937" Dark="#E5E7EB" />
+    <toolkit:AppThemeColor x:Key="ShellTabBarColor" Light="#E0E7FF" Dark="#374151" />
+    <toolkit:AppThemeColor x:Key="ShellAccentColor" Light="#3B82F6" Dark="#60A5FA" />
+
 
     <!-- Główne kolory -->
     <Color x:Key="Primary">#3B82F6</Color>           <!-- niebieski CTA -->
