@@ -41,14 +41,15 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
+        <!--        ForegroundFile="Resources\AppIcon\appiconfg.svg"-->
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" Color="#B3B2B8"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#050505" BaseSize="128,128"/>
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*"/>
-        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185"/>
+        <!--        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185"/>-->
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
@@ -58,28 +59,27 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-        <PackageReference Include="Microcharts.Maui" Version="1.0.0" />
+        <PackageReference Include="CommunityToolkit.Maui" Version="9.1.1"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="Microcharts.Maui" Version="1.0.0"/>
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1"/>
-        <PackageReference Include="SkiaSharp" Version="3.119.0" />
-        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.0" />
-        <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.119.0" />
-        <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
+        <PackageReference Include="SkiaSharp" Version="3.119.0"/>
+        <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.0"/>
+        <PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.119.0"/>
+        <PackageReference Include="sqlite-net-pcl" Version="1.9.172"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Handlers\" />
-      <Folder Include="Helpers\" />
-      <Folder Include="Models\" />
+        <Folder Include="Handlers\"/>
+        <Folder Include="Models\"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="CommunityToolkit.Maui">
-        <HintPath>..\..\..\..\..\..\.nuget\packages\communitytoolkit.maui\9.1.1\lib\net8.0-maccatalyst18.0\CommunityToolkit.Maui.dll</HintPath>
-      </Reference>
+        <Reference Include="CommunityToolkit.Maui">
+            <HintPath>..\..\..\..\..\..\.nuget\packages\communitytoolkit.maui\9.1.1\lib\net8.0-maccatalyst18.0\CommunityToolkit.Maui.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

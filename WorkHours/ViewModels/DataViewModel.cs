@@ -34,6 +34,10 @@ public partial class DataViewModel : ObservableObject
     [ObservableProperty] private Chart _chartYearly;
     [ObservableProperty] private Chart _chartYearlyFreeDays;
 
+    [ObservableProperty] private bool _showChartWeekly;
+    [ObservableProperty] private bool _showChartMonthly;
+    [ObservableProperty] private bool _showChartYearly;
+
     [ObservableProperty] private string _arrowImageWeekly = "arrow_down.png";
     [ObservableProperty] private string _arrowImageMonthly = "arrow_down.png";
     [ObservableProperty] private string _arrowImageYearly = "arrow_down.png";
@@ -64,7 +68,7 @@ public partial class DataViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Init()
+    public void Init()
     {
         //Do tygodniowych statystyk
         LoadWeeklyData();
@@ -72,6 +76,35 @@ public partial class DataViewModel : ObservableObject
         LoadMonthlyData();
         //Do rocznych statystyk
         LoadYearlyData();
+        //Sprawdzanie czy wyświetlić wykresy
+        CheckChartEntry();
+    }
+
+    private void CheckChartEntry()
+    {
+        foreach (var chartEntry in _chartDataWeekly)
+        {
+            if (chartEntry.Value > 0)
+            {
+                ShowChartWeekly = true;
+            }
+        }
+
+        foreach (var chartEntry in _chartDataMonthly)
+        {
+            if (chartEntry is { Value: > 0, Label: "Pracujące dni" })
+            {
+                ShowChartMonthly =  true;
+            }
+        }
+
+        foreach (var chartEntry in _chartDataYearly)
+        {
+            if (chartEntry.Value > 0)
+            {
+                ShowChartYearly =  true;
+            }
+        }
     }
 
     private void LoadYearlyData()
@@ -80,23 +113,34 @@ public partial class DataViewModel : ObservableObject
         {
             IsLoading = true;
 
+            AppTheme currentTheme = Application.Current.RequestedTheme;
+            var freeColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#4B5563") : SKColor.Parse("#D1D5DB");
+            var workColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#6EE7B7") : SKColor.Parse("#10B981");
+            var labelColor = currentTheme == AppTheme.Dark ? SKColors.White : SKColors.Black;
+            var backgroundColor = currentTheme == AppTheme.Dark ? SKColors.Black : SKColors.White;
+
             _chartDataYearly.Clear();
             var shortMonthNames = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedMonthNames;
             var hoursInMonths = _dataStoreService.Worksessions.Select(x => new { x.HoursWorked, x.CreatedTime })
                 .ToList();
-            
+
             for (int i = 0; i <= 11; i++)
             {
                 var hoursInMonth = hoursInMonths.Where(x => x.CreatedTime.Month == i + 1).Select(x => x.HoursWorked)
                     .Sum();
+
+                var isCurrentMonth = (i + 1) == DateTime.Today.Month;
+                var entryColor = isCurrentMonth
+                    ? (currentTheme == AppTheme.Dark ? SKColor.Parse("#F87171") : SKColor.Parse("#DC2626"))
+                    : (currentTheme == AppTheme.Dark ? SKColor.Parse("#60A5FA") : SKColor.Parse("#2563EB"));
+
                 _chartDataYearly.Add(new ChartEntry(hoursInMonth)
                 {
                     Label = $"{shortMonthNames[i]}",
                     ValueLabel = $"{hoursInMonth}",
-                    Color = new SKColor(
-                        (byte)_random.Next(0, 256),
-                        (byte)_random.Next(0, 256),
-                        (byte)_random.Next(0, 256))
+                    Color = entryColor,
+                    ValueLabelColor = labelColor,
+                    TextColor = entryColor,
                 });
             }
 
@@ -108,36 +152,41 @@ public partial class DataViewModel : ObservableObject
                 ValueLabelTextSize = 40,
                 ValueLabelOrientation = Orientation.Horizontal,
                 CornerRadius = 10,
+                BackgroundColor = backgroundColor,
+                LabelColor = labelColor,
             };
-            
-            
+
+
             _chartDataYearlyFreeDays.Clear();
-            
+
             int totalDays = DateTime.IsLeapYear(DateTime.Now.Year) ? 366 : 365;
             var workedDays = _dataStoreService.Worksessions.Where(x => x.CreatedTime.Year == DateTime.Now.Year)
                 .Select(x => x.CreatedTime.Date)
                 .Distinct()
                 .Count();
             var freeDays = totalDays - workedDays;
-            
+
             _chartDataYearlyFreeDays.Add(new ChartEntry(freeDays)
             {
                 Label = "Wolne dni",
                 ValueLabel = $"{freeDays}",
-                Color = SKColors.Gray
+                Color = freeColor,
+                ValueLabelColor = labelColor,
             });
             _chartDataYearlyFreeDays.Add(new ChartEntry(workedDays)
             {
                 Label = "Pracujące dni",
                 ValueLabel = $"{workedDays}",
-                Color = SKColors.DarkGreen,
+                Color = workColor,
+                ValueLabelColor = labelColor,
             });
-            
+
             ChartYearlyFreeDays = new DonutChart()
             {
                 Entries = _chartDataYearlyFreeDays,
                 MaxValue = totalDays,
                 LabelTextSize = 40,
+                BackgroundColor = backgroundColor,
             };
         }
         finally
@@ -151,6 +200,12 @@ public partial class DataViewModel : ObservableObject
         try
         {
             IsLoading = true;
+
+            AppTheme currentTheme = Application.Current.RequestedTheme;
+            var freeColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#4B5563") : SKColor.Parse("#D1D5DB");
+            var workColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#6EE7B7") : SKColor.Parse("#10B981");
+            var labelColor = currentTheme == AppTheme.Dark ? SKColors.White : SKColors.Black;
+            var backgroundColor = currentTheme == AppTheme.Dark ? SKColors.Black : SKColors.White;
 
             _chartDataMonthly.Clear();
             EarnedMoneyMonthly = 0;
@@ -176,13 +231,15 @@ public partial class DataViewModel : ObservableObject
             {
                 Label = "Pracujące dni",
                 ValueLabel = $"{workingDays}",
-                Color = SKColors.DarkGreen
+                Color = workColor,
+                ValueLabelColor = labelColor,
             });
             _chartDataMonthly.Add(new ChartEntry(freeDays)
             {
                 Label = "Wolne dni",
                 ValueLabel = $"{freeDays}",
-                Color = SKColors.DarkMagenta
+                Color = freeColor,
+                ValueLabelColor = labelColor,
             });
 
             ChartMonthly = new DonutChart()
@@ -190,6 +247,8 @@ public partial class DataViewModel : ObservableObject
                 Entries = _chartDataMonthly,
                 LabelTextSize = 40,
                 MaxValue = daysInMonth,
+                BackgroundColor = backgroundColor,
+                LabelColor = labelColor,
             };
 
             EarnedMoneyMonthly = (_ratio * WorkedHoursMonthly);
@@ -205,6 +264,12 @@ public partial class DataViewModel : ObservableObject
         try
         {
             IsLoading = true;
+            AppTheme currentTheme = Application.Current.RequestedTheme;
+
+            var labelColor = currentTheme == AppTheme.Dark ? SKColors.White : SKColors.Black;
+            var backgroundColor = currentTheme == AppTheme.Dark ? SKColors.Black : SKColors.White;
+            var regularBarColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#60A5FA") : SKColor.Parse("#2563EB");
+            var todayBarColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#F87171") : SKColor.Parse("#DC2626");
 
             //Wymaga resetowania co ładowanie.
             _chartDataWeekly.Clear();
@@ -257,12 +322,9 @@ public partial class DataViewModel : ObservableObject
                 {
                     Label = dayShortNames[day],
                     ValueLabel = hours.ToString(),
-                    Color = isToday
-                        ? SKColors.Red
-                        : new SKColor(
-                            (byte)_random.Next(0, 256),
-                            (byte)_random.Next(0, 256),
-                            (byte)_random.Next(0, 256))
+                    ValueLabelColor = (currentTheme == AppTheme.Dark ? SKColors.White : SKColors.Black),
+                    Color = isToday ? todayBarColor : regularBarColor,
+                    TextColor = isToday ? todayBarColor : regularBarColor,
                 });
             }
 
@@ -284,6 +346,8 @@ public partial class DataViewModel : ObservableObject
                 ValueLabelTextSize = 40,
                 ValueLabelOrientation = Orientation.Horizontal,
                 CornerRadius = 10,
+                BackgroundColor = backgroundColor,
+                LabelColor = labelColor,
             };
         }
         finally

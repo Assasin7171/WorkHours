@@ -18,16 +18,17 @@
 - [ ] Możliwość edycji sesji pracy
 
 ### 📊 Statystyki / Wykresy
-- [ ] Statystyki miesięczne – BarChart / DonutChart
-- [ ] Obsługa przypisania do dnia z przeszłości
-- [ ] Unikanie duplikatów dni w wykresie tygodniowym
-- [ ] Roczne statystyki – sumowanie godzin per miesiąc
+- [x] Statystyki miesięczne – BarChart / DonutChart
+- [x] Obsługa przypisania do dnia z przeszłości
+- [x] Unikanie duplikatów dni w wykresie tygodniowym
+- [x] Roczne statystyki – sumowanie godzin per miesiąc
 
 ### 🎨 UI / UX
 - [ ] Przewijanie do nowo dodanego elementu
 - [ ] Poprawka pozycjonowania formularza (iOS, dół ekranu)
 - [ ] Wyróżnianie dnia dzisiejszego na wykresie
 - [ ] Blokowanie przycisków formularza przy brakujących danych
+- [x] Adaptacja statytystyk/wykresów do jasnego i ciemnego motywu.
 
 ## 💡 Pomysły na przyszłość
 - [ ] Eksport danych do CSV / PDF

@@ -50,7 +50,15 @@
                                                    HorizontalOptions="Center" />
                                 <charts:ChartView Chart="{Binding ChartWeekly}"
                                                   HeightRequest="250"
-                                                  Margin="10" />
+                                                  Margin="10"
+                                                  IsVisible="{Binding ShowChartWeekly}" />
+                                <Label Text="Dodaj więcej danych aby zobaczyć wykres"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="20"
+                                       Padding="5"
+                                       FontAttributes="Bold"
+                                       IsVisible="{Binding ShowChartWeekly, Converter={StaticResource InverseBoolConverter}}" />
 
                             </VerticalStackLayout>
                         </toolkit:Expander.Content>
@@ -84,10 +92,8 @@
                                    Margin="0,10">
                                 <VerticalStackLayout Spacing="10">
                                     <Label
-                                        Text="{Binding WorkedHoursMonthly, StringFormat='Przepracowane godziny - {0}'}"
-                                        HorizontalTextAlignment="Center" />
-                                    <Label Text="{Binding EarnedMoneyMonthly, StringFormat='Zarobiono - {0} zł'}"
-                                           HorizontalTextAlignment="Center" />
+                                        Text="{Binding WorkedHoursMonthly, StringFormat='Przepracowane godziny - {0}'}" />
+                                    <Label Text="{Binding EarnedMoneyMonthly, StringFormat='Zarobiono - {0} zł'}" />
                                     <!-- <Label Text="W porównaniu z {1-7 czerwiec} zarobiono więcej o {300} zł" /> -->
 
                                     <VerticalStackLayout>
@@ -95,7 +101,16 @@
                                                            VerticalOptions="Center"
                                                            HorizontalOptions="Center" />
                                         <charts:ChartView Chart="{Binding ChartMonthly}"
-                                                          HeightRequest="250" />
+                                                          HeightRequest="250"
+                                                          IsVisible="{Binding ShowChartMonthly}" />
+
+                                        <Label Text="Dodaj więcej danych aby zobaczyć wykres"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"
+                                               FontSize="20"
+                                               Padding="5"
+                                               FontAttributes="Bold"
+                                               IsVisible="{Binding ShowChartMonthly, Converter={StaticResource InverseBoolConverter}}" />
                                     </VerticalStackLayout>
 
                                 </VerticalStackLayout>
@@ -132,20 +147,39 @@
                                 <!-- <Label Text="{Binding WorkedHoursYearly, StringFormat='Przepracowane godziny - {0}'}" -->
                                 <!--        HorizontalTextAlignment="Center" /> -->
                                 <Label Text="Przepracowane godziny w poszczególnych miesiącach" />
-                                <Label Text="{Binding EarnedMoneyYearly, StringFormat='Zarobiono - {0} zł'}"
-                                       HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding EarnedMoneyYearly, StringFormat='Zarobiono - {0} zł'}" />
                                 <VerticalStackLayout>
                                     <ActivityIndicator IsRunning="{Binding IsLoading}"
                                                        VerticalOptions="Center"
                                                        HorizontalOptions="Center" />
                                     <charts:ChartView Chart="{Binding ChartYearly}"
-                                                      HeightRequest="250" />
+                                                      HeightRequest="250"
+                                                      IsVisible="{Binding ShowChartYearly}" />
+
+                                    <!-- <Label Text="Dodaj więcej danych aby zobaczyć wykres" -->
+                                    <!--        VerticalTextAlignment="Center" -->
+                                    <!--        HorizontalTextAlignment="Center" -->
+                                    <!--        FontSize="20" -->
+                                    <!--        Padding="5" -->
+                                    <!--        FontAttributes="Bold" -->
+                                    <!--        IsVisible="{Binding ShowChartYearly, Converter={StaticResource InverseBoolConverter}}" /> -->
                                 </VerticalStackLayout>
                                 <VerticalStackLayout>
                                     <Label Text="Wolnych dni"
-                                           HorizontalTextAlignment="Center" />
+                                           HorizontalTextAlignment="Center"
+                                           Margin="0,0,0,10"
+                                           IsVisible="{Binding ShowChartYearly}"/>
                                     <charts:ChartView Chart="{Binding ChartYearlyFreeDays}"
-                                                      HeightRequest="250" />
+                                                      HeightRequest="250"
+                                                      IsVisible="{Binding ShowChartYearly}" />
+
+                                    <Label Text="Dodaj więcej danych aby zobaczyć wykres"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="20"
+                                           Padding="5"
+                                           FontAttributes="Bold"
+                                           IsVisible="{Binding ShowChartYearly, Converter={StaticResource InverseBoolConverter}}" />
                                 </VerticalStackLayout>
                             </VerticalStackLayout>
                         </toolkit:Expander.Content>
