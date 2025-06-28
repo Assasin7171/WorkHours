@@ -32,25 +32,25 @@ public static class MauiProgram
         // klasa do inicjalizowania bazy danych
         builder.Services.AddSingleton<DatabaseContext>();
         builder.Services.AddSingleton<DataStoreService>();
-        
+
         //services
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddTransient<MainView>(b => new MainView()
         {
-            BindingContext = b.GetService<MainViewModel>(),
+            BindingContext = b.GetRequiredService<MainViewModel>(),
         });
         builder.Services.AddSingleton<DataViewModel>();
-        builder.Services.AddTransient<DataView>(b=>new DataView()
+        builder.Services.AddTransient<DataView>(b => new DataView()
         {
             BindingContext = b.GetRequiredService<DataViewModel>(),
         });
         builder.Services.AddSingleton<SettingsViewModel>();
         builder.Services.AddTransient<SettingsView>(b => new SettingsView()
         {
-            BindingContext = b.GetService<SettingsViewModel>(),
+            BindingContext = b.GetRequiredService<SettingsViewModel>(),
         });
 
-        
+
         return builder.Build();
     }
 }

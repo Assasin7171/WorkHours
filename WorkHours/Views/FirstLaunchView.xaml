@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             x:Class="WorkHours.Views.FirstLaunchView">
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="20"
+                             Spacing="15"
+                             x:DataType="vm:FirstLaunchViewModel">
+            <Label Text="Ustawienia początkowe" 
+                   FontAttributes="Bold" FontSize="20" />
+
+            <Entry Placeholder="Stawka godzinowa" 
+                   Keyboard="Numeric" 
+                   Text="{Binding HourlyRate}" />
+
+            <Picker Title="Wybierz język" 
+                    ItemsSource="{Binding Languages}" 
+                    SelectedItem="{Binding SelectedLanguage}" />
+
+            <Picker Title="Wybierz walutę" 
+                    ItemsSource="{Binding Currencies}" 
+                    SelectedItem="{Binding SelectedCurrency}" />
+
+            <Button Text="Zapisz i kontynuuj" 
+                    Command="{Binding SaveCommand}" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

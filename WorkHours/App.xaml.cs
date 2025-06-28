@@ -1,4 +1,5 @@
 ﻿using WorkHours.ViewModels;
+using WorkHours.Views;
 
 namespace WorkHours;
 
@@ -8,7 +9,11 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new AppShell();
+        if (!Preferences.ContainsKey("HasLaunchedBefore"))
+            MainPage = new FirstLaunchView();
+        else
+            MainPage = new AppShell();
+        
 
         if (Application.Current != null)
             Application.Current.RequestedThemeChanged += (s, e) =>
