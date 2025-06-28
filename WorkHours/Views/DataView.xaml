@@ -174,8 +174,8 @@
                                                       IsVisible="{Binding ShowChartYearly}" />
 
                                     <Label Text="Dodaj więcej danych aby zobaczyć wykres"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Center"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
                                            FontSize="20"
                                            Padding="5"
                                            FontAttributes="Bold"
