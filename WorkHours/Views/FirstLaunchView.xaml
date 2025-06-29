@@ -12,8 +12,8 @@
                    FontAttributes="Bold" FontSize="20" />
 
             <Entry Placeholder="Stawka godzinowa" 
-                   Keyboard="Numeric" 
-                   Text="{Binding HourlyRate}" />
+                   Keyboard="Numeric"
+                   Text="{Binding WorkRateValue}" />
 
             <Picker Title="Wybierz język" 
                     ItemsSource="{Binding Languages}" 
@@ -24,7 +24,7 @@
                     SelectedItem="{Binding SelectedCurrency}" />
 
             <Button Text="Zapisz i kontynuuj" 
-                    Command="{Binding SaveCommand}" />
+                    Command="{Binding SaveSettingsCommand}" />
         </VerticalStackLayout>
     </ContentPage.Content>
 </ContentPage>

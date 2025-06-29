@@ -1,6 +1,6 @@
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace WorkHours.ViewModels;
 
@@ -11,18 +11,20 @@ public partial class FirstLaunchViewModel : ObservableObject
 
     [ObservableProperty] private string _selectedLanguage = string.Empty;
     [ObservableProperty] private string _selectedCurrency = string.Empty;
-    [ObservableProperty] private string _hourlyRate = string.Empty;
+    [ObservableProperty] private string _workRateValue = string.Empty;
 
-    public IRelayCommand SaveCommand => new RelayCommand(SaveSettings);
 
+    [RelayCommand]
     private void SaveSettings()
     {
-        Preferences.Set("HourlyRate", HourlyRate);
+        Preferences.Set("HourlyRate", WorkRateValue);
         Preferences.Set("SelectedLanguage", SelectedLanguage);
         Preferences.Set("SelectedCurrency", SelectedCurrency);
         Preferences.Set("HasLaunchedBefore", true);
 
         // Przejście do głównej aplikacji
         Application.Current!.MainPage = new AppShell();
+        Console.WriteLine();
     }
+
 }

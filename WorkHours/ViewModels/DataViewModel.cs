@@ -1,8 +1,8 @@
-using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microcharts;
 using SkiaSharp;
+using System.Globalization;
 using WorkHours.Services;
 
 namespace WorkHours.ViewModels;
@@ -94,7 +94,7 @@ public partial class DataViewModel : ObservableObject
         {
             if (chartEntry is { Value: > 0, Label: "Pracujące dni" })
             {
-                ShowChartMonthly =  true;
+                ShowChartMonthly = true;
             }
         }
 
@@ -102,7 +102,7 @@ public partial class DataViewModel : ObservableObject
         {
             if (chartEntry.Value > 0)
             {
-                ShowChartYearly =  true;
+                ShowChartYearly = true;
             }
         }
     }

@@ -1,7 +1,6 @@
-using System;
-using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 using WorkHours.Services;
 using Place = WorkHours.Database.Entities.Place;
 using Worksession = WorkHours.Database.Entities.Worksession;
@@ -28,6 +27,16 @@ public partial class MainViewModel : ObservableObject
     {
         _dataStoreService = dataStoreService;
     }
+
+    partial void OnWorkHoursChanging(string value)
+    {
+        int.TryParse(value, out int x);
+        if (x > 24)
+        {
+            WorkHours = "24";
+        }
+    }
+
 
 
     [RelayCommand]

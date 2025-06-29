@@ -2,8 +2,6 @@
 using Microcharts.Maui;
 using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
-using SQLite;
-using WorkHours.Database.Entities;
 using WorkHours.Services;
 using WorkHours.ViewModels;
 using WorkHours.Views;
@@ -45,6 +43,11 @@ public static class MauiProgram
             BindingContext = b.GetRequiredService<DataViewModel>(),
         });
         builder.Services.AddSingleton<SettingsViewModel>();
+        builder.Services.AddTransient<SettingsView>(b => new SettingsView()
+        {
+            BindingContext = b.GetRequiredService<SettingsViewModel>(),
+        });
+        builder.Services.AddSingleton<SettlementsViewModel>();
         builder.Services.AddTransient<SettingsView>(b => new SettingsView()
         {
             BindingContext = b.GetRequiredService<SettingsViewModel>(),

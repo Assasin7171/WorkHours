@@ -5,26 +5,30 @@
 <!-- ReSharper disable once Xaml.InvalidResourceType -->
 <!-- ReSharper disable once Xaml.InvalidResourceType -->
 <!-- ReSharper disable Xaml.InvalidResourceType -->
-<Shell
-    x:Class="WorkHours.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:WorkHours"
-    xmlns:views="clr-namespace:WorkHours.Views"
-    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    BackgroundColor="{toolkit:AppThemeResource ShellBackgroundColor}"
-    ForegroundColor="{toolkit:AppThemeResource ShellForegroundColor}"
-    TabBarBackgroundColor="{toolkit:AppThemeResource ShellTabBarColor}"
-    TabBarForegroundColor="{toolkit:AppThemeResource ShellAccentColor}"
-    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
-    ios:Page.UseSafeArea="True"
-    Title="WorkHours">
+<Shell x:Class="WorkHours.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:WorkHours"
+       xmlns:views="clr-namespace:WorkHours.Views"
+       xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+       BackgroundColor="{toolkit:AppThemeResource ShellBackgroundColor}"
+       ForegroundColor="{toolkit:AppThemeResource ShellForegroundColor}"
+       TabBarBackgroundColor="{toolkit:AppThemeResource ShellTabBarColor}"
+       TabBarForegroundColor="{toolkit:AppThemeResource ShellAccentColor}"
+       Shell.TitleColor="{toolkit:AppThemeResource ShellTitleColor}"
+       Shell.UnselectedColor="{toolkit:AppThemeResource ShellUnselected}"
+       xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+       ios:Page.UseSafeArea="True"
+       Title="WorkHours">
     <!-- ReSharper restore Xaml.InvalidResourceType -->
 
     <TabBar>
         <ShellContent Title="Strona główna"
                       ContentTemplate="{DataTemplate views:MainView}"
                       Route="MainPage" />
+        <ShellContent Title="Rozliczenia"
+                      ContentTemplate="{DataTemplate views:SettlementsView}"
+                      Route="Settlements" />
         <ShellContent Title="Statystyki"
                       ContentTemplate="{DataTemplate views:DataView}"
                       Route="DataView" />

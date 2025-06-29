@@ -11,11 +11,13 @@
     <Color x:Key="BackgroundLight">#FFFFFF</Color>
     <Color x:Key="BackgroundDark">#121212</Color>
 
-    <!-- Jasny motyw -->
+    <!-- Motywy Shell -->
     <toolkit:AppThemeColor x:Key="ShellBackgroundColor" Light="#F3F4F6" Dark="#202124" />
     <toolkit:AppThemeColor x:Key="ShellForegroundColor" Light="#1F2937" Dark="#E5E7EB" />
+    <toolkit:AppThemeColor x:Key="ShellUnselected" Light="#af9aaa" Dark="#E5E7EB" />
     <toolkit:AppThemeColor x:Key="ShellTabBarColor" Light="#E0E7FF" Dark="#374151" />
     <toolkit:AppThemeColor x:Key="ShellAccentColor" Light="#3B82F6" Dark="#60A5FA" />
+    <toolkit:AppThemeColor x:Key="ShellTitleColor" Light="#202124" Dark="#F3F4F6" />
 
 
     <!-- Główne kolory -->
@@ -25,7 +27,8 @@
     <Color x:Key="SecondaryDarkText">#FFFFFF</Color> <!-- tekst na ciemnym tle -->
 
     <!-- Tekst -->
-    <Color x:Key="TextPrimary">#374151</Color>       <!-- tekst podstawowy -->
+    <!--<toolkit:AppThemeColor x:Key="TextPrimary" Light="#1e1e1f" Dark="#b5b5b5" /> --><!-- tekst podstawowy -->
+    <Color x:Key="TextPrimary">#1e1e1f</Color>       
     <Color x:Key="TextSecondary">#9CA3AF</Color>     <!-- tekst mniej widoczny -->
     <Color x:Key="TextDisabled">#6B7280</Color>      <!-- tekst nieaktywny -->
 
