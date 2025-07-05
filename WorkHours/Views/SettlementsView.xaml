@@ -1,38 +1,71 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WorkHours.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="WorkHours.Views.SettlementsView"
-             Title="SettlementsView">
+             x:DataType="vm:SettlementsViewModel">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior EventName="Appearing"
+                                        Command="{Binding InitCommand}" />
+    </ContentPage.Behaviors>
 
     <VerticalStackLayout Padding="20"
                          Spacing="10">
-        <Label Text="Rozliczenia"
-               FontSize="24"
-               FontAttributes="Bold" />
+        <VerticalStackLayout Spacing="15">
+            <Label Text="{Binding TotalWorkedHours, StringFormat='Do rozliczenia zostało {0} godzin'}"
+                   FontSize="18"
+                   HorizontalOptions="Center" />
+            <Label Text="Wybierz sposób rozliczania" />
+            <RadioButton Content="Tygodniowe"
+                         IsChecked="{Binding Weekly}"
+                         GroupName="settlements" />
+            <RadioButton Content="Miesięczne"
+                         GroupName="settlements"
+                         IsChecked="{Binding Monthly}" />
+            <RadioButton Content="Dowolny okres"
+                         GroupName="settlements"
+                         IsChecked="{Binding Other}" />
+        </VerticalStackLayout>
 
-        <CollectionView ItemsSource="{Binding Settlements}"
-                        SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10"
-                           Margin="0,5"
-                           HasShadow="True"
-                           BackgroundColor="{DynamicResource SecondaryColor}">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding PeriodLabel}"
-                                   FontSize="18"
-                                   FontAttributes="Bold" />
-                            <Label Text="{Binding HoursDisplay}" />
-                            <Label Text="{Binding AmountDisplay}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <BoxView HeightRequest="1"
+                 BackgroundColor="{StaticResource BorderLight}"
+                 Margin="0,10" />
 
-        <Button Text="Rozlicz bieżący tydzień"
-                Command="{Binding SettleCurrentWeekCommand}"
-                StyleClass="ButtonMain" />
+        <!-- tygodniowe rozliczanie -->
+        <VerticalStackLayout Spacing="15"
+                             IsVisible="{Binding Weekly}"
+                             Margin="0,0,0,10">
+            <Picker ItemsSource="{Binding WeeksList}"
+                    SelectedItem="{Binding SelectedWeek}"
+                    ItemDisplayBinding="{Binding Display}"
+                    Title="Wybierz tydzień" />
+            <Label Text="{Binding HoursCountWeekly, StringFormat='Ilość nierozliczonych godzin - {0}'}" />
+            <Label Text="{Binding EarnedMoneyWeekly, StringFormat='Zarobione pieniądze - {0} zł'}" />
+        </VerticalStackLayout>
+
+        <!-- miesięczne rozliczenie -->
+        <VerticalStackLayout Spacing="15"
+                             IsVisible="{Binding Monthly}"
+                             Margin="0,0,0,10">
+            <Picker Title="Wybierz miesiąc"
+                    />
+            <Label Text="{Binding HoursCountMonthly, StringFormat='Ilość godzin - {0}'}" />
+            <Label Text="{Binding EarnedMoneyMonthly, StringFormat='Zarobione pieniądze - {0} zł'}" />
+        </VerticalStackLayout>
+
+        <Button Text="Rozlicz wybrany tydzień"
+                StyleClass="ButtonMain"
+                IsVisible="{Binding Weekly}"
+                Margin="0,10,0,0"
+                Command="{Binding SettleTheSelectedWeekCommand}" />
+        <Button Text="Rozlicz wybrany miesiąc"
+                StyleClass="ButtonMain"
+                IsVisible="{Binding Monthly}" />
+        <Button Text="Rozlicz wybrany okres"
+                StyleClass="ButtonMain"
+                IsVisible="{Binding Other}" />
     </VerticalStackLayout>
 
 </ContentPage>

@@ -12,4 +12,6 @@ public class Worksession
     [Ignore]
     public Place Place { get; set; }
     public DateTime CreatedTime { get; set; }
+    public bool IsSettled { get; set; }
+    public DateTime SettledDate { get; set; }
 }

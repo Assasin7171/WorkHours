@@ -37,20 +37,23 @@ public static class MauiProgram
         {
             BindingContext = b.GetRequiredService<MainViewModel>(),
         });
+        
         builder.Services.AddSingleton<DataViewModel>();
         builder.Services.AddTransient<DataView>(b => new DataView()
         {
             BindingContext = b.GetRequiredService<DataViewModel>(),
         });
+        
         builder.Services.AddSingleton<SettingsViewModel>();
         builder.Services.AddTransient<SettingsView>(b => new SettingsView()
         {
             BindingContext = b.GetRequiredService<SettingsViewModel>(),
         });
+        
         builder.Services.AddSingleton<SettlementsViewModel>();
-        builder.Services.AddTransient<SettingsView>(b => new SettingsView()
+        builder.Services.AddTransient<SettlementsView>(b => new SettlementsView()
         {
-            BindingContext = b.GetRequiredService<SettingsViewModel>(),
+            BindingContext = b.GetRequiredService<SettlementsViewModel>(),
         });
 
 

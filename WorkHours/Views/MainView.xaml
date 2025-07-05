@@ -13,6 +13,11 @@
                                         x:DataType="vm:MainViewModel"
                                         Command="{Binding InitCommand}" />
     </ContentPage.Behaviors>
+    <ContentPage.Resources>
+        <toolkit:BoolToObjectConverter x:Key="BoolToCheckIcon"
+                                       TrueObject="checked_box.png"
+                                       FalseObject="un_checked_box.png" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <VerticalStackLayout Margin="20,10"
@@ -205,8 +210,13 @@
                                                                 VerticalOptions="Center"
                                                                 HorizontalOptions="Center">
                                                         <HorizontalStackLayout Spacing="20">
-                                                            <Label Text="Rozliczono" />
-                                                            <CheckBox IsChecked="True" />
+                                                            <Label Text="Rozliczono"
+                                                                   TextColor="{StaticResource TextPrimary}"
+                                                                   FontSize="18" />
+                                                            <Image
+                                                                Source="{Binding IsSettled, Converter={StaticResource BoolToCheckIcon}}"
+                                                                HeightRequest="24"
+                                                                WidthRequest="24" />
                                                         </HorizontalStackLayout>
                                                         <Label Text="{Binding CreatedTime, StringFormat='{0:dd.MM}'}"
                                                                TextColor="{StaticResource TextPrimary}"

@@ -70,6 +70,22 @@ public class DataStoreService
         return result;
     }
 
+    public async Task<int> UpdateWorksessions(List<Worksession> worksessions)
+    {
+        await _db.SqLiteAsyncConnection.DeleteAllAsync<Worksession>();
+        int result = await _db.SqLiteAsyncConnection.InsertAllAsync(worksessions);
+        
+        await GetDataAsync();
+
+        if (result == 0)
+        {
+            await Shell.Current.DisplayAlert("Error", "Error with database updating",
+                "Ok");
+        }
+        
+        return result;
+    }
+
     public async Task<int> AddWorkRate(WorkRate workRate)
     {
         int result = await _db.SqLiteAsyncConnection.InsertAsync(workRate);
