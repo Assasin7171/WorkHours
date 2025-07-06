@@ -11,7 +11,6 @@ public partial class DataViewModel : ObservableObject
 {
     private readonly Random _random = new();
     private readonly DataStoreService _dataStoreService;
-    private readonly decimal _ratio;
 
     private readonly List<ChartEntry> _chartDataWeekly = new List<ChartEntry>();
     private readonly List<ChartEntry> _chartDataMonthly = new List<ChartEntry>();
@@ -51,8 +50,6 @@ public partial class DataViewModel : ObservableObject
     public DataViewModel(DataStoreService dataStoreService)
     {
         _dataStoreService = dataStoreService;
-
-        _ratio = _dataStoreService.WorkRate.LastOrDefault()?.ValueRate ?? 0;
     }
 
     private (DateTime start, DateTime end) GetWeekRange(DateTime data)
@@ -68,14 +65,14 @@ public partial class DataViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void Init()
+    public async Task Init()
     {
         //Do tygodniowych statystyk
         LoadWeeklyData();
         //Do miesięcznych statystyk
-        LoadMonthlyData();
+        await LoadMonthlyData();
         //Do rocznych statystyk
-        LoadYearlyData();
+        await LoadYearlyData();
         //Sprawdzanie czy wyświetlić wykresy
         CheckChartEntry();
     }
@@ -107,13 +104,13 @@ public partial class DataViewModel : ObservableObject
         }
     }
 
-    private void LoadYearlyData()
+    private async Task LoadYearlyData()
     {
         try
         {
             IsLoading = true;
-
-            AppTheme currentTheme = Application.Current.RequestedTheme;
+            EarnedMoneyYearly = 0;
+            AppTheme currentTheme = Application.Current!.RequestedTheme;
             var freeColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#4B5563") : SKColor.Parse("#D1D5DB");
             var workColor = currentTheme == AppTheme.Dark ? SKColor.Parse("#6EE7B7") : SKColor.Parse("#10B981");
             var labelColor = currentTheme == AppTheme.Dark ? SKColors.White : SKColors.Black;
@@ -124,10 +121,21 @@ public partial class DataViewModel : ObservableObject
             var hoursInMonths = _dataStoreService.Worksessions.Select(x => new { x.HoursWorked, x.CreatedTime })
                 .ToList();
 
+            var hourlyRate = Preferences.Get("HourlyRate", 0);
+
+            await _dataStoreService.GetDataAsync();
+            var data = _dataStoreService.Worksessions;
+
+            var countedHours = data.Where(x => x.IsSettled && x.CreatedTime.Year == DateTime.Now.Year).Sum(x => x.HoursWorked);
+
+            EarnedMoneyYearly += (countedHours * hourlyRate);
+
             for (int i = 0; i <= 11; i++)
             {
                 var hoursInMonth = hoursInMonths.Where(x => x.CreatedTime.Month == i + 1).Select(x => x.HoursWorked)
                     .Sum();
+
+
 
                 var isCurrentMonth = (i + 1) == DateTime.Today.Month;
                 var entryColor = isCurrentMonth
@@ -166,6 +174,8 @@ public partial class DataViewModel : ObservableObject
                 .Count();
             var freeDays = totalDays - workedDays;
 
+
+
             _chartDataYearlyFreeDays.Add(new ChartEntry(freeDays)
             {
                 Label = "Wolne dni",
@@ -188,6 +198,8 @@ public partial class DataViewModel : ObservableObject
                 LabelTextSize = 40,
                 BackgroundColor = backgroundColor,
             };
+
+
         }
         finally
         {
@@ -195,7 +207,7 @@ public partial class DataViewModel : ObservableObject
         }
     }
 
-    private void LoadMonthlyData()
+    private async Task LoadMonthlyData()
     {
         try
         {
@@ -251,7 +263,15 @@ public partial class DataViewModel : ObservableObject
                 LabelColor = labelColor,
             };
 
-            EarnedMoneyMonthly = (_ratio * WorkedHoursMonthly);
+            var hourlyRate = Preferences.Get("HourlyRate", 0);
+
+            await _dataStoreService.GetDataAsync();
+            var data = _dataStoreService.Worksessions;
+
+            var countedHours = data.Where(x => x.IsSettled && x.CreatedTime.Month == DateTime.Now.Month).Sum(x => x.HoursWorked);
+
+
+            EarnedMoneyMonthly = (hourlyRate * countedHours);
         }
         finally
         {
@@ -328,8 +348,10 @@ public partial class DataViewModel : ObservableObject
                 });
             }
 
+            var hourlyRate = Preferences.Get("HourlyRate", 0);
+
             //obliczam ile zarobiono i z ilu godzin.
-            EarnedMoneyWeekly = (WorkedHoursWeekly * _ratio);
+            EarnedMoneyWeekly = (WorkedHoursWeekly * hourlyRate);
             //średnia dzienna przepracowanych godzin z tygodnia.
             AverageHoursWeekly = WorkedHoursWeekly / 7;
 
