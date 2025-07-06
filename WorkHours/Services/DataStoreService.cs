@@ -9,7 +9,7 @@ public class DataStoreService
     public List<Place> Places { get; set; } = new List<Place>();
     public List<Worksession> Worksessions { get; set; } = new List<Worksession>();
     public List<WorkRate> WorkRate { get; set; } = new List<WorkRate>();
-    
+
 
     public DataStoreService(DatabaseContext db)
     {
@@ -28,7 +28,7 @@ public class DataStoreService
 
             foreach (var worksession in Worksessions)
             {
-                worksession.Place = Places.First(x=>x.Id == worksession.PlaceId);
+                worksession.Place = Places.First(x => x.Id == worksession.PlaceId);
             }
         }
         catch (Exception e)
@@ -45,7 +45,7 @@ public class DataStoreService
 
         return result;
     }
-    
+
     public async Task<int> AddPlace(Place place)
     {
         var result = await _db.SqLiteAsyncConnection.InsertAsync(place);
@@ -72,9 +72,8 @@ public class DataStoreService
 
     public async Task<int> UpdateWorksessions(List<Worksession> worksessions)
     {
-        await _db.SqLiteAsyncConnection.DeleteAllAsync<Worksession>();
-        int result = await _db.SqLiteAsyncConnection.InsertAllAsync(worksessions);
-        
+        int result = await _db.SqLiteAsyncConnection.UpdateAllAsync(worksessions);
+
         await GetDataAsync();
 
         if (result == 0)
@@ -82,7 +81,7 @@ public class DataStoreService
             await Shell.Current.DisplayAlert("Error", "Error with database updating",
                 "Ok");
         }
-        
+
         return result;
     }
 

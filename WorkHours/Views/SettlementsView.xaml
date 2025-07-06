@@ -18,15 +18,42 @@
                    FontSize="18"
                    HorizontalOptions="Center" />
             <Label Text="Wybierz sposób rozliczania" />
-            <RadioButton Content="Tygodniowe"
-                         IsChecked="{Binding Weekly}"
-                         GroupName="settlements" />
-            <RadioButton Content="Miesięczne"
-                         GroupName="settlements"
-                         IsChecked="{Binding Monthly}" />
-            <RadioButton Content="Dowolny okres"
-                         GroupName="settlements"
-                         IsChecked="{Binding Other}" />
+            
+            <HorizontalStackLayout>
+                <Image Source="calendar_view_week.png"
+                       HeightRequest="24"
+                       WidthRequest="24"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                <RadioButton Content="Tygodniowe"
+                             IsChecked="{Binding Weekly}"
+                             GroupName="settlements" />
+            
+            </HorizontalStackLayout>
+            
+            <HorizontalStackLayout>
+                <Image Source="calendar_view_month.png"
+                       HeightRequest="24"
+                       WidthRequest="24"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                <RadioButton Content="Miesięczne"
+                             GroupName="settlements"
+                             IsChecked="{Binding Monthly}" />
+    
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Image Source="date_range.png"
+                       HeightRequest="24"
+                       WidthRequest="24"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center" />
+                <RadioButton Content="Dowolny okres"
+                             GroupName="settlements"
+                             IsChecked="{Binding Other}" />
+            
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <BoxView HeightRequest="1"
@@ -42,6 +69,7 @@
                     ItemDisplayBinding="{Binding Display}"
                     Title="Wybierz tydzień" />
             <Label Text="{Binding HoursCountWeekly, StringFormat='Ilość nierozliczonych godzin - {0}'}" />
+            
             <Label Text="{Binding EarnedMoneyWeekly, StringFormat='Zarobione pieniądze - {0} zł'}" />
         </VerticalStackLayout>
 
@@ -50,9 +78,35 @@
                              IsVisible="{Binding Monthly}"
                              Margin="0,0,0,10">
             <Picker Title="Wybierz miesiąc"
-                    />
+                    ItemsSource="{Binding MonthsList}"
+                    ItemDisplayBinding="{Binding Display}"
+                    SelectedItem="{Binding SelectedMonthEntry}"/>
             <Label Text="{Binding HoursCountMonthly, StringFormat='Ilość godzin - {0}'}" />
             <Label Text="{Binding EarnedMoneyMonthly, StringFormat='Zarobione pieniądze - {0} zł'}" />
+        </VerticalStackLayout>
+
+        <!-- dowolny okres rozliczenia -->
+        <VerticalStackLayout Spacing="15"
+                             IsVisible="{Binding Other}"
+                             Margin="0,0,0,10">
+            <Label Text="Wybierz zakres dat:"
+                   FontAttributes="Bold" />
+
+            <HorizontalStackLayout Spacing="10"
+                                   HorizontalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Od:"/>
+                    <DatePicker Date="{Binding SelectedStartDate}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Do:" />
+                    <DatePicker Date="{Binding SelectedEndDate}" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <Label Text="{Binding HoursCountRange, StringFormat='Ilość godzin - {0}'}" />
+            <Label Text="{Binding EarnedMoneyRange, StringFormat='Zarobione pieniądze - {0} zł'}" />
         </VerticalStackLayout>
 
         <Button Text="Rozlicz wybrany tydzień"
@@ -62,10 +116,12 @@
                 Command="{Binding SettleTheSelectedWeekCommand}" />
         <Button Text="Rozlicz wybrany miesiąc"
                 StyleClass="ButtonMain"
-                IsVisible="{Binding Monthly}" />
+                IsVisible="{Binding Monthly}"
+                Command="{Binding SettleSelectedMonthCommand}"/>
         <Button Text="Rozlicz wybrany okres"
                 StyleClass="ButtonMain"
-                IsVisible="{Binding Other}" />
+                IsVisible="{Binding Other}"
+                Command="{Binding SettleCustomRangeCommand}"/>
     </VerticalStackLayout>
 
 </ContentPage>
