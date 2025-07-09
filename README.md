@@ -17,8 +17,12 @@
 
 ## 📷 Zrzuty ekranu
 
-> *(Dodaj tu zrzuty ekranu aplikacji — np. `screenshots/weekly_stats.png` itd.)*
-
+![ss1](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.38.54.png)
+![ss2](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.39.04.png)
+![ss2](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.39.10.png)
+![ss2](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.39.21.png)
+![ss2](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.39.25.png)
+![ss2](screenshots/Simulator%20Screenshot%20-%20iPhone%2016%20Pro%20-%202025-07-09%20at%2015.39.32.png)
 ---
 
 ## 🛠️ Technologie
